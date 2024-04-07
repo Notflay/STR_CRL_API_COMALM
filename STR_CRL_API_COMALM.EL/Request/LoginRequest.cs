@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace STR_CRL_API_COMALM.EL.Request
+namespace STR_CRL_API_COMALM.EL
 {
     public class LoginRequest
     {

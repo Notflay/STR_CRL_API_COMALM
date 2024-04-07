@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<query nameid="ObtenerContraseniaUsuario" definition="I">
+		<hana>SELECT "STR_CONTRASENIA" FROM STR_WEB_USUARIOS WHERE STR_USERNAME = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerInformacionUsuario" definition="I">
+		<hana>
+			SELECT * FROM STR_WEB_USUARIOS  T1
+			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName" WHERE STR_USERNAME = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerEstados" definition="I">
+		<hana>SELECT * FROM STR_WEB_ESTADOS</hana>
+	</query>
+	<query nameid="ObtenerProveedores" definition="I">
+		<hana>SELECT TOP 200 "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+	</query>
+	<query nameid="ObtieneFiliales" definition="I">
+		<hana>SELECT * FROM "@ST_ZONAS_FILIAL"</hana>
+	</query>
+	<query nameid="ObtieneFilial" definition="I">
+		<hana>SELECT * FROM "@ST_ZONAS_FILIAL" WHERE "U_ST_Filial" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneRoles" definition="I">
+		<hana>SELECT * FROM STR_WEB_ROL</hana>
+	</query>
+	<query nameid="ObtieneRol" definition="I">
+		<hana>SELECT * FROM STR_WEB_ROL WHERE "STR_IDROL" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneCondiciones" definition="I">
+		<hana>Select "GroupNum", "PymntGroup"FROM OCTG</hana>
+	</query>
+	<query nameid="ObtieneDireccion" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName", "DimCode", 0, -1, case when "DimCode" = 2 then 'Direccion ' || "PrcName" else '' end AS "InfoDireccion"
+			FROM OPRC where "DimCode" = '002' and "PrcCode" not like '%Stelle%'
+		</hana>
+	</query>
+</root>

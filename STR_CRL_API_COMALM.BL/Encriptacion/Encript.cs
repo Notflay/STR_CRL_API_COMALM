@@ -1,5 +1,7 @@
-﻿using System;
+﻿using STR_CRL_API_COMALM.EL;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,86 +11,121 @@ namespace STR_CRL_API_COMALM.BL.Encriptacion
 {
     public class Encript
     {
-
-
-        public static string GetToken(string password)
+        private static string clave_secret { get; set; }
+        private static string aesIV { get; set; }
+        public Encript() 
         {
-            string stringConcar =  password;
+            clave_secret = ConfigurationManager.AppSettings["aesSecret"];
+            aesIV = ConfigurationManager.AppSettings["aesIV"];
+        }
 
-            byte[] bytes = Encoding.UTF8.GetBytes(stringConcar);
+        public string DesencriptaPass(string pass)
+        {
+            // Contraseña que desencriptar (en texto claro)
+            string encryptedPassword = pass;
+
+            // Convertir la clave secreta y el IV de cadenas a bytes
+            List<Byte[]> lista = SetKey(clave_secret, aesIV);
+
+            byte[] secretKeyBytes = lista[0];
+            byte[] ivBytes = lista[1];
+
+            string decryptedPassword;
+            // Crear un objeto Aes para cifrar
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = secretKeyBytes;
+                aesAlg.IV = ivBytes;
+
+                // Crear un cifrador
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                // Convertir la contraseña en texto claro a bytes
+                byte[] encryptedBytes = Convert.FromBase64String(encryptedPassword);
+
+                // Cifrar la contraseña
+                byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
+
+                // Convertir la contraseña cifrada a Base64 (para almacenamiento)
+                decryptedPassword = Encoding.UTF8.GetString(decryptedBytes);
+
+                Console.WriteLine("Contraseña cifrada: " + decryptedPassword);
+
+
+            }
+            return decryptedPassword;
+
+        }
+        public bool ValidarCredenciales(string passActual, string password)
+        {
+
+            // Contraseña que deseas encriptar (en texto claro)
+            string plainTextPassword = password;
+
+            // Convertir la clave secreta y el IV de cadenas a bytes
+            List<Byte[]> lista = SetKey(clave_secret, aesIV);
+
+            byte[] secretKeyBytes = lista[0];
+            byte[] ivBytes = lista[1];
+
+            string encryptedPassword;
+            // Crear un objeto Aes para cifrar
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = secretKeyBytes;
+                aesAlg.IV = ivBytes;
+
+                // Crear un cifrador
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                // Convertir la contraseña en texto claro a bytes
+                byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainTextPassword);
+
+                // Cifrar la contraseña
+                byte[] encryptedBytes = encryptor.TransformFinalBlock(plainTextBytes, 0, plainTextBytes.Length);
+
+                // Convertir la contraseña cifrada a Base64 (para almacenamiento)
+                encryptedPassword = Convert.ToBase64String(encryptedBytes);
+
+                Console.WriteLine("Contraseña cifrada: " + encryptedPassword);
+
+            }
+            if (encryptedPassword == passActual)
+                return true;
+            return false;
+        }
+
+
+        public static List<Byte[]> SetKey(string securityAESSecret, string securityAESIV)
+        {
+
+            byte[] secretKey;
+            byte[] iv;
+            // Convierte la cadena securityAESSecret en bytes UTF-8
+            byte[] keyBytes = Encoding.UTF8.GetBytes(securityAESSecret);
+
+            // Calcula un resumen hash SHA-1 de la clave secreta
             using (SHA1 sha1 = SHA1.Create())
             {
-                byte[] hashBytes = sha1.ComputeHash(bytes);
-                string token = EncodeToBase64(hashBytes);
+                byte[] hashedKeyBytes = sha1.ComputeHash(keyBytes);
 
-                return token.Substring(0, 23);
+                // Ajusta la longitud de la clave a 16 bytes
+                Array.Resize(ref hashedKeyBytes, 16);
+
+                // Asigna la clave secreta
+                secretKey = hashedKeyBytes;
             }
+
+            // Convierte la cadena securityAESIV en bytes UTF-8
+            byte[] ivBytes = Encoding.UTF8.GetBytes(securityAESIV);
+
+            // Ajusta la longitud del IV a 16 bytes
+            Array.Resize(ref ivBytes, 16);
+
+            // Asigna el IV
+            iv = ivBytes;
+
+            return new List<Byte[]> { secretKey, iv };
         }
-
-        private static string EncodeToBase64(byte[] toEncode)
-        {
-            int len = toEncode.Length;
-            int len64, groups, remainder, pos64, pos256, pos;
-            byte[] rpta;
-
-            groups = len / 3;
-            remainder = len % 3;
-            len64 = groups;
-            if (remainder > 0)
-                len64 = len64 + 1;
-
-            rpta = new byte[len64 * 4];
-            pos64 = 0;
-            pos256 = 0;
-
-            // Generates complete groups
-            for (int i = 0; i < groups; i++)
-            {
-                pos = (toEncode[pos256] & 252) >> 2;
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = ((toEncode[pos256++] & 3) << 4);
-                pos = pos + ((toEncode[pos256] & 240) >> 4);
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = ((toEncode[pos256++] & 15) << 2);
-                pos = pos + ((toEncode[pos256] & 192) >> 6);
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = toEncode[pos256++] & 63;
-                rpta[pos64++] = (byte)mapa[pos];
-            }
-
-            if (remainder == 1)
-            {
-                pos = (toEncode[pos256] & 252) >> 2;
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = ((toEncode[pos256++] & 3) << 4);
-                rpta[pos64++] = (byte)mapa[pos];
-
-                rpta[pos64++] = (byte)'=';
-                rpta[pos64++] = (byte)'=';
-            }
-            else if (remainder == 2)
-            {
-                pos = (toEncode[pos256] & 252) >> 2;
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = ((toEncode[pos256++] & 3) << 4);
-                pos = pos + ((toEncode[pos256] & 240) >> 4);
-                rpta[pos64++] = (byte)mapa[pos];
-
-                pos = ((toEncode[pos256++] & 15) << 2);
-                rpta[pos64++] = (byte)mapa[pos];
-
-                rpta[pos64++] = (byte)'=';
-            }
-
-            return Encoding.ASCII.GetString(rpta, 0, pos64);
-        }
-
-        private static readonly char[] mapa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToCharArray();
-
     }
 }

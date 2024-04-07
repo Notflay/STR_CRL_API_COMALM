@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,9 +42,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Sq_Condicion.cs" />
+    <Compile Include="Sq_Direccion.cs" />
+    <Compile Include="Sq_Estado.cs" />
+    <Compile Include="Sq_Filial.cs" />
+    <Compile Include="Sq_Proveedor.cs" />
+    <Compile Include="Sq_query.cs" />
     <Compile Include="Encriptacion\Encript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQ_QueryManager.cs" />
+    <Compile Include="Sq_Rol.cs" />
+    <Compile Include="Sq_Usuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\STR_CRL_API_COMALM.EL\STR_CRL_API_COMALM.EL.csproj">
+      <Project>{85e51d87-ff9c-41b5-a114-deae2cb5b026}</Project>
+      <Name>STR_CRL_API_COMALM.EL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STR_CRL_API_COMALM.SQ\STR_CRL_API_COMALM.SQ.csproj">
+      <Project>{6b37333f-26a3-4e26-aede-18e1ec531a83}</Project>
+      <Name>STR_CRL_API_COMALM.SQ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Querys.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
