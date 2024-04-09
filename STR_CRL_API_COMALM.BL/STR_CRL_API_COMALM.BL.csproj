@@ -52,6 +52,7 @@
     <Compile Include="Sq_Direccion.cs" />
     <Compile Include="Sq_Estado.cs" />
     <Compile Include="Sq_Filial.cs" />
+    <Compile Include="Sq_Item.cs" />
     <Compile Include="Sq_Proveedor.cs" />
     <Compile Include="Sq_query.cs" />
     <Compile Include="Encriptacion\Encript.cs" />

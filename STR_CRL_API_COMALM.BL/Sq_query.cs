@@ -18,5 +18,6 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_rol = "ObtieneRol";
         public static readonly string get_condicionPago = "ObtieneCondiciones";
         public static readonly string get_direccion = "ObtieneDireccion";
+        public static readonly string get_items = "ObtieneItems";
     }   
 }

@@ -6,7 +6,8 @@
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
 			SELECT * FROM STR_WEB_USUARIOS  T1
-			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName" WHERE STR_USERNAME = '{0}'</hana>
+			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName" WHERE STR_USERNAME = '{0}'
+		</hana>
 	</query>
 	<query nameid="ObtenerEstados" definition="I">
 		<hana>SELECT * FROM STR_WEB_ESTADOS</hana>
@@ -34,5 +35,8 @@
 			Select "PrcCode", "PrcName", "DimCode", 0, -1, case when "DimCode" = 2 then 'Direccion ' || "PrcName" else '' end AS "InfoDireccion"
 			FROM OPRC where "DimCode" = '002' and "PrcCode" not like '%Stelle%'
 		</hana>
+	</query>
+	<query nameid="ObtieneItems" definition="I">
+		<hana>SELECT "ItemCode","ItemName" FROM OITM</hana>
 	</query>
 </root>
