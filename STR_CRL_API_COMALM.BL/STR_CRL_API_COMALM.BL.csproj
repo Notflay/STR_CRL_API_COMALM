@@ -49,6 +49,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sq_Condicion.cs" />
+    <Compile Include="Sq_Dimension.cs" />
     <Compile Include="Sq_Direccion.cs" />
     <Compile Include="Sq_Estado.cs" />
     <Compile Include="Sq_Filial.cs" />

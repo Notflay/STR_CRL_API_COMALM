@@ -39,4 +39,24 @@
 	<query nameid="ObtieneItems" definition="I">
 		<hana>SELECT "ItemCode","ItemName" FROM OITM</hana>
 	</query>
+	<query nameid="ObtieneDimensiones" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName"
+			FROM OPRC where "PrcCode" not like 'Stelle%'
+			and "DimCode" = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneDimension" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName"
+			FROM OPRC where "PrcCode" not like 'Stelle%'
+			and "PrcCode" = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneProyectos" definition="I">
+		<hana>SELECT "PrjCode","PrjName" FROM OPRJ  WHERE "Active" = 'Y'</hana>
+	</query>
+	<query nameid="ObtieneProyecto" definition="I">
+		<hana>SELECT "PrjCode","PrjName" FROM OPRJ  WHERE "Active" = 'Y' AND "PrjCode" = '{0}'</hana>
+	</query>
 </root>

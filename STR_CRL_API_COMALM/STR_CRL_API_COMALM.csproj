@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CondicionController.cs" />
+    <Compile Include="Controllers\DimensionController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
     <Compile Include="Controllers\FilialController.cs" />
