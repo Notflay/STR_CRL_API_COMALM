@@ -32,7 +32,7 @@
 	</query>
 	<query nameid="ObtieneDireccion" definition="I">
 		<hana>
-			Select "PrcCode", "PrcName", "DimCode", 0, -1, case when "DimCode" = 2 then 'Direccion ' || "PrcName" else '' end AS "InfoDireccion"
+			Select "PrcCode", "PrcName", "DimCode", 0, -1, case when "	DimCode" = 2 then 'Direccion ' || "PrcName" else '' end AS "InfoDireccion"
 			FROM OPRC where "DimCode" = '002' and "PrcCode" not like '%Stelle%'
 		</hana>
 	</query>
