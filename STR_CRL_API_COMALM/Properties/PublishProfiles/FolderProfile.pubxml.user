@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Work\Regatas\Portales\Compilado</_PublishTargetUrl>
-    <History>True|2024-04-04T21:45:44.9214859Z;True|2024-04-04T12:42:11.4375594-05:00;True|2024-04-03T17:39:44.5165826-05:00;True|2024-04-03T17:05:50.9943255-05:00;True|2024-04-03T13:03:37.8447319-05:00;</History>
+    <History>True|2024-04-12T15:58:08.3739392Z;True|2024-04-12T09:26:20.4288147-05:00;True|2024-04-04T16:45:44.9214859-05:00;True|2024-04-04T12:42:11.4375594-05:00;True|2024-04-03T17:39:44.5165826-05:00;True|2024-04-03T17:05:50.9943255-05:00;True|2024-04-03T13:03:37.8447319-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -184,22 +184,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/01/2018 18:34:10</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.BL.dll">
-      <publishTime>04/04/2024 16:54:35</publishTime>
+      <publishTime>04/12/2024 10:58:07</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.BL.pdb">
-      <publishTime>04/04/2024 16:54:35</publishTime>
+      <publishTime>04/12/2024 10:58:07</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.dll">
-      <publishTime>04/04/2024 16:54:41</publishTime>
+      <publishTime>04/12/2024 10:58:07</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.EL.dll">
-      <publishTime>04/04/2024 16:54:35</publishTime>
+      <publishTime>04/12/2024 10:58:06</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.EL.pdb">
-      <publishTime>04/04/2024 16:54:35</publishTime>
+      <publishTime>04/12/2024 10:58:06</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.pdb">
-      <publishTime>04/04/2024 16:54:41</publishTime>
+      <publishTime>04/12/2024 10:58:07</publishTime>
     </File>
     <File Include="bin/STR_CRL_API_COMALM.SL.dll">
       <publishTime>04/03/2024 13:03:36</publishTime>
@@ -247,7 +247,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/22/2024 18:02:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/03/2024 13:03:37</publishTime>
+      <publishTime>04/12/2024 10:58:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

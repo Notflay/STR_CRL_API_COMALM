@@ -13,11 +13,25 @@ namespace STR_CRL_API_COMALM.Controllers
     public class ItemController : ApiController
     {
         [HttpGet]
-        [Route]
-        public IHttpActionResult Get()
+        [Route("art")]
+        public IHttpActionResult Articulos(string area)
         {
             Sq_Item sq = new Sq_Item();
-            var response = sq.ObtieneItems();
+            var response = sq.ObtieneItems("art", area);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("serv")]
+        public IHttpActionResult Servicios(string area)
+        {
+            Sq_Item sq = new Sq_Item();
+            var response = sq.ObtieneItems("serv", area);
 
             if (response.CodRespuesta == "99")
             {

@@ -119,6 +119,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\ViaticoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

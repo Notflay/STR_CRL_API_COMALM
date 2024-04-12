@@ -36,8 +36,23 @@
 			FROM OPRC where "DimCode" = '002' and "PrcCode" not like '%Stelle%'
 		</hana>
 	</query>
-	<query nameid="ObtieneItems" definition="I">
-		<hana>SELECT "ItemCode","ItemName" FROM OITM</hana>
+	<query nameid="ObtieneItemsArticulo" definition="I">
+		<hana>
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}'
+			and T0."ItmsGrpCod" != '110' and T0."InvntItem" ='Y' and T0."SellItem"= 'Y'
+		</hana>
+	</query>
+	<query nameid="ObtieneItemsServicio" definition="I">
+		<hana>
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}'
+			and T0."ItmsGrpCod" = '110' and T0."InvntItem" ='N' and T0."PrchseItem"= 'Y'
+		</hana>
 	</query>
 	<query nameid="ObtieneDimensiones" definition="I">
 		<hana>
@@ -58,5 +73,11 @@
 	</query>
 	<query nameid="ObtieneProyecto" definition="I">
 		<hana>SELECT "PrjCode","PrjName" FROM OPRJ  WHERE "Active" = 'Y' AND "PrjCode" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneTipoViaticos" definition="I">
+		<hana>SELECT "FldValue", "Descr"  FROM "UFD1" WHERE "TableID" = 'OPRQ' AND "FieldID" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneTipoViatico" definition="I">
+		<hana>SELECT "FldValue", "Descr"  FROM "UFD1" WHERE "TableID" = 'OPRQ' AND "FieldID" = '{0}' AND "FldValue" = '{1}'</hana>
 	</query>
 </root>

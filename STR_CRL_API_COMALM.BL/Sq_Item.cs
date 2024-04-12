@@ -11,7 +11,7 @@ namespace STR_CRL_API_COMALM.BL
 {
     public class Sq_Item
     {
-        public ConsultationResponse<Complemento> ObtieneItems()
+        public ConsultationResponse<Articulo> ObtieneItems(string tipo,string area)
         {
             var respOk = "OK";
             var respIncorrect = "No se encontraron items";
@@ -19,20 +19,24 @@ namespace STR_CRL_API_COMALM.BL
             HanaADOHelper hash = new HanaADOHelper();
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_items), dc =>
+                List<Articulo> list = hash.GetResultAsType(SQ_QueryManager.Generar(tipo == "art" ? Sq_query.get_items_art : Sq_query.get_items_serv), dc =>
                 {
-                    return new Complemento
+                    return new Articulo
                     {
-                        id = dc["ItemCode"],
-                        name = dc["ItemName"]
+                        ItemCode = dc["ItemCode"],
+                        ItemName = dc["ItemName"],
+                        U_BPP_TIPUNMED = dc["U_BPP_TIPUNMED"],
+                        WhsCode = dc["WhsCode"],
+                        Stock = string.IsNullOrWhiteSpace(Convert.ToString(dc["OnHand"])) ? (double?)null : Convert.ToDouble(dc["OnHand"]),                   
+                        Precio = string.IsNullOrWhiteSpace(Convert.ToString(dc["AvgPrice"])) ? (double?)null : Convert.ToDouble(dc["AvgPrice"]),
                     };
-                }).ToList();
+                }, area.ToString()).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
             }
             catch (Exception ex)
             {
-                return Global.ReturnError<Complemento>(ex);
+                return Global.ReturnError<Articulo>(ex);
             }
         }
     }

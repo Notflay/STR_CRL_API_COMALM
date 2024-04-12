@@ -18,10 +18,12 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_rol = "ObtieneRol";
         public static readonly string get_condicionPago = "ObtieneCondiciones";
         public static readonly string get_direccion = "ObtieneDireccion";
-        public static readonly string get_items = "ObtieneItems";
+        public static readonly string get_items_art = "ObtieneItemsArticulo";
+        public static readonly string get_items_serv = "ObtieneItemsServicio";
         public static readonly string get_dimensiones = "ObtieneDimensiones";
         public static readonly string get_dimension = "ObtieneDimension";
         public static readonly string get_proyectos = "ObtieneProyectos";
         public static readonly string get_proyecto = "ObtieneProyecto";
+        public static readonly string get_viaticos = "ObtieneTipoViaticos";
     }   
 }
