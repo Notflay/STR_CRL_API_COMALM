@@ -80,4 +80,7 @@
 	<query nameid="ObtieneTipoViatico" definition="I">
 		<hana>SELECT "FldValue", "Descr"  FROM "UFD1" WHERE "TableID" = 'OPRQ' AND "FieldID" = '{0}' AND "FldValue" = '{1}'</hana>
 	</query>
+	<query nameid="CreacionSolicitudTraslado" definition="I">
+		<hana>INSERT INTO STR_WEB_SR(STR_USUARIO_ID,STR_FEC_REGISTRO,STR_FEC_REQUER,STR_FILIAL_ID,STR_MONEDA) VALUES('{0}','{1}','{2}','{3}','{4}')</hana>
+	</query>
 </root>
