@@ -14,3 +14,19 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Releas
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.pdb
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.BL.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.BL.pdb
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.EL.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.SQ.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\Sap.Data.Hana.v4.5.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.EL.pdb
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\STR_CRL_API_COMALM.SQ.pdb
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\Sap.Data.Hana.v4.5.xml
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\bin\Release\Sap.Data.Hana.v4.5.dll.config
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.csproj.AssemblyReference.cache
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.Properties.Resources.resources
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.csproj.GenerateResource.cache
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.csproj.CoreCompileInputs.cache
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.csproj.CopyComplete
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.BL\obj\Release\STR_CRL_API_COMALM.BL.pdb
