@@ -20,7 +20,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_roles), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_roles), dc =>
                 {
                     return new Complemento
                     {
@@ -56,7 +56,7 @@ namespace STR_CRL_API_COMALM.BL
         {
             HanaADOHelper hash = new HanaADOHelper();
 
-            List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_rol), dc =>
+            List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_rol), dc =>
             {
                 return new Complemento
                 {

@@ -20,7 +20,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_estados), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_estados), dc =>
                 {
                     return new Complemento
                     {

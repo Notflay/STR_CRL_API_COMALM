@@ -19,7 +19,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Proveedor> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_proveedores), dc =>
+                List<Proveedor> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_proveedores), dc =>
                 {
                     return new Proveedor
                     {

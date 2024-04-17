@@ -49,17 +49,21 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sq_Condicion.cs" />
+    <Compile Include="Sq_Configuracion.cs" />
     <Compile Include="Sq_Dimension.cs" />
     <Compile Include="Sq_Direccion.cs" />
     <Compile Include="Sq_Estado.cs" />
     <Compile Include="Sq_Filial.cs" />
     <Compile Include="Sq_Item.cs" />
     <Compile Include="Sq_Proveedor.cs" />
-    <Compile Include="Sq_query.cs" />
+    <Compile Include="Sq_Query.cs" />
     <Compile Include="Encriptacion\Encript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQ_QueryManager.cs" />
+    <Compile Include="Sq_Rendicion.cs" />
+    <Compile Include="Sq_SolicitudRd.cs" />
     <Compile Include="Sq_Rol.cs" />
+    <Compile Include="Sq_SolicitudTrsl.cs" />
     <Compile Include="Sq_Usuario.cs" />
     <Compile Include="Sq_Viatico.cs" />
   </ItemGroup>

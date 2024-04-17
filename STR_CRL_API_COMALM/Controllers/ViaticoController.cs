@@ -25,5 +25,18 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("tipos")]
+        public IHttpActionResult GetTipos() {
+            Sq_Viatico sq = new Sq_Viatico();
+            var response = sq.ObtieneTpViaticos();
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
     }
 }

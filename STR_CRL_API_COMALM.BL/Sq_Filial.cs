@@ -21,7 +21,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Filial> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_filiales), dc =>
+                List<Filial> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_filiales), dc =>
                 {
                     return new Filial
                     {
@@ -63,7 +63,7 @@ namespace STR_CRL_API_COMALM.BL
 
             HanaADOHelper hash = new HanaADOHelper();
 
-            List<Filial> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_filiales), dc =>
+            List<Filial> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_filiales), dc =>
             {
                 return new Filial
                 {

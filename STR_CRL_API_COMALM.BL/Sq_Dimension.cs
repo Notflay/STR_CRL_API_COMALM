@@ -19,7 +19,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_dimensiones), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_dimensiones), dc =>
                 {
                     return new Complemento
                     {
@@ -45,7 +45,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_dimension), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_dimension), dc =>
                 {
                     return new Complemento
                     {
@@ -71,7 +71,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_proyectos), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_proyectos), dc =>
                 {
                     return new Complemento
                     {
@@ -97,7 +97,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_proyecto), dc =>
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_proyecto), dc =>
                 {
                     return new Complemento
                     {

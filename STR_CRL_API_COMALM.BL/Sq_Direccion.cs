@@ -19,7 +19,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                List<Direccion> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_query.get_direccion), dc =>
+                List<Direccion> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_direccion), dc =>
                 {
                     return new Direccion
                     {

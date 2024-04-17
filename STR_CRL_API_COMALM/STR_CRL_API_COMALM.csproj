@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CondicionController.cs" />
+    <Compile Include="Controllers\ConfiguracionController.cs" />
     <Compile Include="Controllers\DimensionController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
@@ -118,7 +119,10 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\RendicionController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\SolicitudEarController.cs" />
+    <Compile Include="Controllers\SolicitudTrslController.cs" />
     <Compile Include="Controllers\ViaticoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

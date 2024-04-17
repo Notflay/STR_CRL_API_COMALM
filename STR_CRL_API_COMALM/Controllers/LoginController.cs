@@ -15,10 +15,10 @@ namespace STR_CRL_API_COMALM.Controllers
     {
         [Route("login")]
         [HttpPost]
-        public IHttpActionResult Post(LoginRequest user) 
+        public IHttpActionResult Post(string portalId,LoginRequest user) 
         {
             Sq_Usuario sq = new Sq_Usuario();
-            var response = sq.ObtieneSesion(user);
+            var response = sq.ObtieneSesion(user, portalId);
 
             if (response.CodRespuesta == "99")
             {

@@ -19,7 +19,7 @@ namespace STR_CRL_API_COMALM.BL
             HanaADOHelper hash = new HanaADOHelper();
             try
             {
-                List<Articulo> list = hash.GetResultAsType(SQ_QueryManager.Generar(tipo == "art" ? Sq_query.get_items_art : Sq_query.get_items_serv), dc =>
+                List<Articulo> list = hash.GetResultAsType(SQ_QueryManager.Generar(tipo == "art" ? Sq_Query.get_items_art : Sq_Query.get_items_serv), dc =>
                 {
                     return new Articulo
                     {

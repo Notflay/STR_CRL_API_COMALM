@@ -10,6 +10,7 @@ namespace STR_CRL_API_COMALM.EL
     public class Usuario
     {
         public int usuarioId { get; set; }
+        public int sapID { get; set; }
         public string nombres { get; set; }
         public string apellidos { get; set; }
         public string email { get; set; }
