@@ -132,7 +132,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_ESTADO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_ESTADO"])) ? (int?)null : Convert.ToInt32(dc["STR_ESTADO"]),
                           STR_ESTADO_INFO = dc["STR_ESTADO_INFO"],
                           STR_MONEDA = string.IsNullOrEmpty(dc["STR_MONEDA"]) ? null : new Complemento { id = dc["STR_MONEDA"], name = dc["STR_MONEDA"] },
-                        /* STR_TIPORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),*/
+                         STR_TIPORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),
                         STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_MOTIVORENDICIOON"]) ? null : sq_Viatico.ObtieneTpViatico(dc["STR_MOTIVORENDICIOON"]),
                            STR_TOTALSOLICITADO = Convert.ToDouble(dc["STR_TOTALSOLICITADO"]),
                        STR_COMENTARIO = dc["STR_COMENTARIO"],

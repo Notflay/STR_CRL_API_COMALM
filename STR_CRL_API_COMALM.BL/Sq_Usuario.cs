@@ -69,7 +69,8 @@ namespace STR_CRL_API_COMALM.BL
                         username = dc["STR_USERNAME"],
                         password = dc["STR_CONTRASENIA"],
                         rol = Sq_Rol.ObtieneRolPorId(Convert.ToInt32(dc["STR_IDROL"]))[0],
-                        filial = Sq_Filial.obtenerFilialPorId(Convert.ToInt32(dc["U_ST_CeCo2"]))[0]
+                        filial = Sq_Filial.obtenerFilialPorId(Convert.ToInt32(dc["U_ST_CeCo2"]))[0],
+                        area = new Complemento {  id = dc["Area"], name = dc["AreaDesc"] },
                     };
                 }, portalId.ToString(), username).ToList();
 

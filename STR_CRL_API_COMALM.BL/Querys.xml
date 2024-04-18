@@ -6,9 +6,10 @@
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
 			SELECT T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
-			,T3."STR_IDROL",T2."U_ST_CeCo2" FROM "STR_WEB_USUARIOS" T1
+			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
 			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'
+			INNER JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
 			WHERE T1."STR_USERNAME" = '{1}'
 		</hana>
 	</query>
