@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http.Cors;
 using System.Web.Http;
 using STR_CRL_API_COMALM.BL;
+using STR_CRL_API_COMALM.EL.Request;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -25,6 +26,22 @@ namespace STR_CRL_API_COMALM.Controllers
                 return BadRequest(response.DescRespuesta);
             }
             return Ok(response);
+        }
+
+
+        [HttpPost]
+        [Route("documento")]
+        public IHttpActionResult Post(Documento documento)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.CrearDocumento(documento);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+
         }
     }
 }

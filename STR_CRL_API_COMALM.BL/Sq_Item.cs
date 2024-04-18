@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Policy;
 
 namespace STR_CRL_API_COMALM.BL
 {
     public class Sq_Item
     {
+        HanaADOHelper hash = new HanaADOHelper();
         public ConsultationResponse<Articulo> ObtieneItems(string tipo,string area)
         {
             var respOk = "OK";
@@ -37,6 +39,35 @@ namespace STR_CRL_API_COMALM.BL
             catch (Exception ex)
             {
                 return Global.ReturnError<Articulo>(ex);
+            }
+        }
+
+        public ConsultationResponse<Item> ObtenerItem(string itemCode)
+        {
+            var respIncorrect = "No se encuentra Items";
+
+            try
+            {
+                List<Item> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_item), dc =>
+                {
+                    return new Item()
+                    {
+                        ItemCode = dc["id"],
+                        ItemName = dc["name"],
+                        id = dc["id"],
+                        name = dc["name"],
+                        // POSFINANCIERA = dc["posFinanciera"],
+                        posFinanciera = dc["posFinanciera"],
+                        CTA = dc["CTA"]
+
+                    };
+                }, itemCode).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Item>(ex);
             }
         }
     }

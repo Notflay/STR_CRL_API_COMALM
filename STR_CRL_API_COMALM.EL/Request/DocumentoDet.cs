@@ -29,5 +29,12 @@ namespace STR_CRL_API_COMALM.EL.Request
         public int STR_CANTIDAD { get; set; }
         public string STR_TPO_OPERACION { get; set; }
         public int STR_DOC_ID { get; set; }
+
+        //Nuevo
+        public Cup STR_CUP { get; set; }
+
+        public Complemento STR_PROYECTO { get; set; }
+        public CentroCosto STR_CENTCOSTO { get; set; }
+        public Complemento STR_POS_FINANCIERA { get; set; }
     }
 }

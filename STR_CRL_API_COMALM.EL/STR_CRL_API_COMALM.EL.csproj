@@ -51,11 +51,14 @@
     <Compile Include="Request\SolicitudTrsl.cs" />
     <Compile Include="Request\SolicitudTrslDet.cs" />
     <Compile Include="Response\Articulo.cs" />
+    <Compile Include="Response\CentroCosto.cs" />
     <Compile Include="Response\CFGeneral.cs" />
     <Compile Include="Response\Complemento.cs" />
     <Compile Include="Response\ConsultationResponse.cs" />
+    <Compile Include="Response\Cup.cs" />
     <Compile Include="Response\Direccion.cs" />
     <Compile Include="Response\Filial.cs" />
+    <Compile Include="Response\Item.cs" />
     <Compile Include="Response\Proveedor.cs" />
     <Compile Include="Response\Usuario.cs" />
   </ItemGroup>

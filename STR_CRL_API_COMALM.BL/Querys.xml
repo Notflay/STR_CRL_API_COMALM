@@ -150,4 +150,10 @@
 	<query nameid="ListarRendiciones" definition="I">
 		<hana>CALL STR_PW_LISTARRD('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
 	</query>
+	<query nameid="InsertRegistroDoc" definition="I">
+		<hana>INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_TIPO_AGENTE,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_ANEXO_ADJUNTO,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')</hana>
+	</query>
+	<query nameid="InsertRegistroDocDt" definition="I">
+		<hana>INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO,STR_CONCEPTO,STR_SUBTOTAL,STR_INDIC_IMPUESTO,STR_PROYECTO,STR_CENTCOSTO,STR_POS_FINANCIERA,STR_CUP,STR_ALMACEN,STR_CANTIDAD,STR_TPO_OPERACION,STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
+	</query>
 </root>

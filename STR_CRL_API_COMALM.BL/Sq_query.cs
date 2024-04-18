@@ -57,5 +57,15 @@ namespace STR_CRL_API_COMALM.BL
         // Rendiciones
         public static readonly string get_rendiciones = "ListarRendiciones";
 
+        // Nuevo
+        public static readonly string post_insertSR = "InsertaSoliRendicion";
+        public static readonly string post_insertRD = "InsertaSoliRendicion";
+        public static readonly string post_insertDOC = "InsertRegistroDoc";
+        public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
+        public static readonly string post_insertRendicion = "InsertRendicion";
+        public static readonly string post_pendientesBorrador = "InsertTotalPendientesBorr";
+        public static readonly string get_idDOC = "ObtieneIdDOC";
+        public static readonly string get_item = "ObtenerItem";
+        public static readonly string upd_RDTotal = "ActualizarRDTotal";
     }   
 }

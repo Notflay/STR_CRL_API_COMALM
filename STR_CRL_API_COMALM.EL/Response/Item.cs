@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace STR_CRL_API_COMALM.EL.Response
 {
-    public class Articulo
+    public class Item
     {
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
-        public string U_BPP_TIPUNMED { get; set; }
-        public string WhsCode { get; set; }
-        public double? Stock { get; set; }
-        public double? Precio { get; set; }
-        public string id { get; set; }//agregado by Adrian
         public string posFinanciera { get; set; }
+        public string id { get; set; }
+        public string name { get; set; }
+        public string CTA { get; set; }
     }
 }

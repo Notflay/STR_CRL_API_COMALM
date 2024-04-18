@@ -221,6 +221,7 @@ namespace STR_CRL_API_COMALM.BL
                 return sQ_Proveedor.ObtenerProveedor(proveedor).Result[0];
             }
         }
+        */
 
         public ConsultationResponse<Complemento> CrearDocumento(Documento doc)
         {
@@ -231,21 +232,21 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
                     doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum,
                     doc.STR_TIPO_AGENTE.id, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
                     doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_ANEXO_ADJUNTO, doc.STR_OPERACION, doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
 
-                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idDOC), doc.STR_RD_ID.ToString());
+                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
                 doc.detalles.ForEach((e) =>
                 {
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOCDt), e.STR_CODARTICULO?.id,
+                    hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt), e.STR_CODARTICULO?.id,
                          e.STR_CODARTICULO != null ? sq.ObtenerItem(e.STR_CODARTICULO.id).Result[0].ItemName : null, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO.id, e.STR_PROYECTO.name, e.STR_CENTCOSTO.CostCenter, e.STR_CODARTICULO.posFinanciera,
                         e.STR_CUP.U_CUP, e.STR_ALMACEN, e.STR_CANTIDAD, e.STR_TPO_OPERACION, idDoc);
                 });
 
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
 
                 Complemento complemento = new Complemento()
                 {
@@ -261,6 +262,8 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+        
+        /*
         public ConsultationResponse<Complemento> ActualizarRendicion(Rendicion rendicion)
         {
             var respIncorrect = "No se pudo Actualizar Rendición";
