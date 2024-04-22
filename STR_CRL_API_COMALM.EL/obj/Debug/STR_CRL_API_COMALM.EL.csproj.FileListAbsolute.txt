@@ -1,14 +1,10 @@
+C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll.config
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.pdb
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CoreCompileInputs.cache
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.pdb
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.SL.dll
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.SQ.dll
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Sap.Data.Hana.v4.5.dll
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.SL.pdb
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.SQ.pdb
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Sap.Data.Hana.v4.5.xml
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete

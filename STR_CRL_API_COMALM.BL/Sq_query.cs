@@ -53,9 +53,23 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_solicitudEar = "ObtenerSolicitudRendicion";
         public static readonly string get_solicitudEarId = "ObtieneIdSolicitudRendicion";
         public static readonly string get_lstSolicitudEar = "ListarSoliRendicion";
+        public static readonly string upd_cambiarMigradaSR = "CambioMigrada";
+        public static readonly string dlt_aprobadoresSr = "EliminaAprobadoresDeSolicitud";
 
         // Rendiciones
         public static readonly string get_rendiciones = "ListarRendiciones";
 
+        // ObtenerAprobadores
+        public static readonly string get_infoAprobadores = "ObtieneInfoAprobadores";
+        public static readonly string get_aprobadores = "ObtieneAprobadores";
+        public static readonly string post_insertAprobadores = "InsertaTablaAprobadoresSR";
+        public static readonly string upd_cambiarEstadoSR = "CambiaEstadoSR";
+        public static readonly string get_listaAprobadoresCab = "ListarAprobadoresCabecera";
+        public static readonly string upd_aprobadores = "ActualizaablaAprobadoresSR";
+        public static readonly string get_SerieOPRQ = "ObtenerSerieOPRQ";
+
+        public static readonly string get_numeroRendicion = "ObtieneNumeroRendicion";
+
+        public static readonly string get_listaAprobadoresDet = "ListarAprobadoresDetalle";
     }   
 }

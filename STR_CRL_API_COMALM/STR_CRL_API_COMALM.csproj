@@ -106,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Plantillas\PlantillaConfirmacion.html" />
+    <Content Include="Plantillas\PlantillaError.html" />
+    <Content Include="Plantillas\PlantillaInformacion.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Plantillas\PlantillaPortalEAR.xlsx" />
+    <Content Include="Plantillas\PlantillaPortalEAR_Exportacion.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

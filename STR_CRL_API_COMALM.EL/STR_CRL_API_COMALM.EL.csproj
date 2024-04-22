@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,33 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\Documento.cs" />
     <Compile Include="Request\DocumentoDet.cs" />
     <Compile Include="Request\LoginRequest.cs" />
     <Compile Include="Request\Rendicion.cs" />
+    <Compile Include="Request\Rq_Aprobacion.cs" />
     <Compile Include="Request\SolicitudRd.cs" />
     <Compile Include="Request\SolicitudTrsl.cs" />
     <Compile Include="Request\SolicitudTrslDet.cs" />
+    <Compile Include="Response\Aprobador.cs" />
+    <Compile Include="Response\AprobadorResponse.cs" />
     <Compile Include="Response\Articulo.cs" />
+    <Compile Include="Response\B1SLLoginResponse.cs" />
     <Compile Include="Response\CFGeneral.cs" />
     <Compile Include="Response\Complemento.cs" />
     <Compile Include="Response\ConsultationResponse.cs" />
+    <Compile Include="Response\CreateResponse.cs" />
     <Compile Include="Response\Direccion.cs" />
     <Compile Include="Response\Filial.cs" />
     <Compile Include="Response\Proveedor.cs" />
     <Compile Include="Response\Usuario.cs" />
+    <Compile Include="SL\B1SLLogin.cs" />
+    <Compile Include="SL\ErrorSL.cs" />
+    <Compile Include="SL\SolicitudRDSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\STR_CRL_API_COMALM.SL\STR_CRL_API_COMALM.SL.csproj">
-      <Project>{23b036bc-25b2-4657-a5ab-69d0f7f19e9f}</Project>
-      <Name>STR_CRL_API_COMALM.SL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\STR_CRL_API_COMALM.SQ\STR_CRL_API_COMALM.SQ.csproj">
-      <Project>{6B37333F-26A3-4E26-AEDE-18E1EC531A83}</Project>
-      <Name>STR_CRL_API_COMALM.SQ</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

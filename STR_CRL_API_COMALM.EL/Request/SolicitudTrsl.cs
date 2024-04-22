@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using STR_CRL_API_COMALM.EL.Response;
-using STR_CRL_API_COMALM.SL;
-using STR_CRL_API_COMALM.SQ;
 
 namespace STR_CRL_API_COMALM.EL.Request
 {

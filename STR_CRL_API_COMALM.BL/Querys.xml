@@ -5,20 +5,20 @@
 	</query>
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
-			SELECT T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
+			SELECT T2."branch", T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
 			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
-			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'
+			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'  AND T3."STR_IDUSUARIO" = T1."STR_IDUSUARIO"
 			INNER JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
 			WHERE T1."STR_USERNAME" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ObtenerInformacionUsuarioId" definition="I">
 		<hana>
-			SELECT T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
+			SELECT T2."branch", T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
 			,T3."STR_IDROL",T2."U_ST_CeCo2" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
-			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'
+			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'  AND T3."STR_IDUSUARIO" = T1."STR_IDUSUARIO"
 			WHERE T2."empID" = '{1}'
 		</hana>
 	</query>
@@ -139,7 +139,7 @@
 		<hana>SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", * FROM "STR_WEB_SR" T1 INNER JOIN "STR_WEB_ESTADOS" T2 ON T2."ID" = T1."STR_ESTADO" WHERE T1.ID = '{0}'</hana>
 	</query>
 	<query nameid="ActualizarSoliRendicion" definition="I">
-		<hana>UPDATE STR_WEB_SR SET "STR_EMPLDREGI" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}', "STR_ESTADO" = '{3}', "STR_EMPLDASIG" = '{4}', "STR_FECHAREGIS"  = '{5}', "STR_MONEDA" = '{6}', "STR_TIPORENDICION" ='{7}', "STR_MOTIVORENDICIOON" = '{8}', "STR_COMENTARIO" = '{9}', "STR_TOTALSOLICITADO" = '{10}', "STR_MOTIVOMIGR" = '{11}', "STR_DOCENTRY" = '{12}',"STR_AREA" ='{13}'  WHERE ID = '{14}'</hana>	
+		<hana>UPDATE STR_WEB_SR SET "STR_EMPLDREGI" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}', "STR_ESTADO" = '{3}', "STR_EMPLDASIG" = '{4}', "STR_MONEDA" = '{5}', "STR_TIPORENDICION" ='{6}', "STR_MOTIVORENDICIOON" = '{7}', "STR_COMENTARIO" = '{8}', "STR_TOTALSOLICITADO" = '{9}', "STR_MOTIVOMIGR" = '{10}', "STR_DOCENTRY" = '{11}'  WHERE ID = '{12}'</hana>	
 	</query>
 	<query nameid="ObtieneIdSolicitudRendicion" definition="I">
 		<hana>SELECT TOP 1 "ID"  FROM "STR_WEB_SR" WHERE "STR_EMPLDASIG" = {0}  ORDER BY "ID" DESC</hana>
@@ -147,8 +147,46 @@
 	<query nameid="ListarSoliRendicion" definition="I">
 		<hana>CALL STR_PW_LISTARSR('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
 	</query>
+	<query nameid="CambiaEstadoSR" definition="I">
+		<hana>UPDATE "STR_WEB_SR" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
+	</query>
+	<query nameid="ObtieneNumeroRendicion" definition="I">
+		<hana>SELECT '1' FROM DUMMY</hana>
+	</query>
+	<query nameid="CambioMigrada" definition="I">
+		<hana>UPDATE "STR_WEB_SR" SET "STR_DOCENTRY" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}' WHERE "ID" = '{3}'</hana>
+	</query>
+	<query nameid="ListarAprobadoresDetalle" definition="I">
+		<hana>
+			SELECT T0."empID",T0."firstName" ||' '||T0."lastName" AS "lastName" FROM OHEM T0 INNER JOIN STR_WEB_USUARIOS T1 ON T0."empID" = T1."STR_USUARIOSAP" INNER JOIN STR_WEB_USRPRTRL T2 ON T2."STR_IDUSUARIO" = T1."STR_IDUSUARIO" AND T2."STR_PORTAL_ID" = '1' AND T2."STR_IDROL" IN(2,3) AND T0."branch" = '{0}'
+		</hana>
+	</query>
+	<query nameid="EliminaAprobadoresDeSolicitud" definition="I">
+		<hana>DELETE FROM "STR_WEB_APR_SR" WHERE "STR_ID_SR" = '{0}'</hana>
+	</query>
 	<!-- RENDICIÓN -->
 	<query nameid="ListarRendiciones" definition="I">
 		<hana>CALL STR_PW_LISTARRD('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+	</query>
+	<query nameid="ObtieneInfoAprobadores" definition="I">
+		<hana>
+			SELECT DISTINCT T0."STR_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado",T1."branch" AS "Area" FROM "STR_WEB_APR_SR" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN "STR_WEB_SR" T2 ON T2."ID" = T0."STR_ID_SR" INNER JOIN "STR_WEB_USUARIOS" T4 ON T4."STR_USUARIOSAP" = T1."empID" INNER JOIN "STR_WEB_USRPRTRL" T5 ON T5."STR_IDUSUARIO" = T4."STR_IDUSUARIO" INNER JOIN OHEM T3 ON T3."empID" = T0."STR_USUARIOID" WHERE T5."STR_IDROL" = '{0}'
+			AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
+		</hana>
+	</query>
+	<query nameid="ObtieneAprobadores" definition="I">
+		<hana>CALL STR_PW_VALIDA_APROB ('{0}','{1}','{2}')</hana>
+	</query>
+	<query nameid="InsertaTablaAprobadoresSR" definition="I">
+		<hana>INSERT INTO "STR_WEB_APR_SR" VALUES('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
+	</query>
+	<query nameid="ActualizaablaAprobadoresSR" definition="I">
+		<hana>UPDATE "STR_WEB_APR_SR" SET "STR_USUARIOAPROBADORID" = '{0}',"FECHAAPROBACION" = '{1}', "APROBACIONFINALIZADA" = '{2}' WHERE "STR_AREA" = '{3}' AND "STR_ID_SR" = '{4}' AND "APROBACIONFINALIZADA" = '{5}'</hana>
+	</query>
+	<query nameid="ListarAprobadoresCabecera" definition="I">
+		<hana>SELECT TOP 1  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."STR_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."STR_AREA" FROM "STR_WEB_APR_SR"  T0 LEFT JOIN OHEM T1 ON T0."STR_USUARIOAPROBADORID"  = T1."empID" WHERE T0."STR_ID_SR" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerSerieOPRQ" definition="I">
+		<hana>SELECT TOP 1 "Series" FROM NNM1 WHERE "Indicator" = '{0}' AND "ObjectCode" = '1470000113' AND"SeriesName" LIKE '%{1}%'</hana>
 	</query>
 </root>

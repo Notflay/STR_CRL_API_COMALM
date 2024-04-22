@@ -1,6 +1,0 @@
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Release\STR_CRL_API_COMALM.SL.dll
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Release\STR_CRL_API_COMALM.SL.pdb
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Release\STR_CRL_API_COMALM.SL.csproj.AssemblyReference.cache
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Release\STR_CRL_API_COMALM.SL.csproj.CoreCompileInputs.cache
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Release\STR_CRL_API_COMALM.SL.dll
-C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Release\STR_CRL_API_COMALM.SL.pdb
