@@ -41,9 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\LoginRequest.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="Request\Rendicion.cs" />
+    <Compile Include="Request\SolicitudRd.cs" />
+    <Compile Include="Request\SolicitudTrsl.cs" />
+    <Compile Include="Request\SolicitudTrslDet.cs" />
+    <Compile Include="Response\Aprobador.cs" />
+    <Compile Include="Response\AprobadorResponse.cs" />
+    <Compile Include="Response\Articulo.cs" />
+    <Compile Include="Response\CentroCosto.cs" />
+    <Compile Include="Response\CFGeneral.cs" />
+    <Compile Include="Response\Complemento.cs" />
+    <Compile Include="Response\ConsultationResponse.cs" />
+    <Compile Include="Response\CreateDocument.cs" />
+    <Compile Include="Response\CreateResponse.cs" />
+    <Compile Include="Response\Direccion.cs" />
+    <Compile Include="Response\Filial.cs" />
+    <Compile Include="Response\Proveedor.cs" />
+    <Compile Include="Response\Usuario.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Response\" />

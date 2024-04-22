@@ -44,6 +44,31 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Encriptacion\Encript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="SQ_QueryManager.cs" />
+    <Compile Include="Sq_Rendicion.cs" />
+    <Compile Include="Sq_SolicitudRd.cs" />
+    <Compile Include="Sq_Rol.cs" />
+    <Compile Include="Sq_SolicitudTrsl.cs" />
+    <Compile Include="Sq_Usuario.cs" />
+    <Compile Include="Sq_Viatico.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\STR_CRL_API_COMALM.SQ\STR_CRL_API_COMALM.SQ.csproj">
+      <Project>{6b37333f-26a3-4e26-aede-18e1ec531a83}</Project>
+      <Name>STR_CRL_API_COMALM.SQ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Querys.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

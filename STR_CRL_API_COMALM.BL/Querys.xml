@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<query nameid="ObtenerContraseniaUsuario" definition="I">
+		<hana>SELECT "STR_CONTRASENIA" FROM STR_WEB_USUARIOS WHERE STR_USERNAME = '{0}' </hana>
+	</query>
+	<query nameid="ObtenerInformacionUsuario" definition="I">
+		<hana>
+			SELECT T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
+			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc" FROM "STR_WEB_USUARIOS" T1
+			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
+			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'
+			INNER JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
+			WHERE T1."STR_USERNAME" = '{1}'
+		</hana>
+	</query>
+	<query nameid="ObtenerInformacionUsuarioId" definition="I">
+		<hana>
+			SELECT T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
+			,T3."STR_IDROL",T2."U_ST_CeCo2" FROM "STR_WEB_USUARIOS" T1
+			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
+			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'
+			WHERE T2."empID" = '{1}'
+		</hana>
+	</query>
+	<query nameid="ObtenerEstados" definition="I">
+		<hana>SELECT * FROM STR_WEB_ESTADOS</hana>
+	</query>
+	<query nameid="ObtenerProveedores" definition="I">
+		<hana>SELECT TOP 200 "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+	</query>
+	<query nameid="ObtieneFiliales" definition="I">
+		<hana>SELECT * FROM "@ST_ZONAS_FILIAL"</hana>
+	</query>
+	<query nameid="ObtieneFilial" definition="I">
+		<hana>SELECT * FROM "@ST_ZONAS_FILIAL" WHERE "U_ST_Filial" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneRoles" definition="I">
+		<hana>SELECT * FROM STR_WEB_ROL</hana>
+	</query>
+	<query nameid="ObtieneRol" definition="I">
+		<hana>SELECT * FROM STR_WEB_ROL WHERE "STR_IDROL" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneCondiciones" definition="I">
+		<hana>Select "GroupNum", "PymntGroup"FROM OCTG</hana>
+	</query>
+	<query nameid="ObtieneDireccion" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName", "DimCode", 0, -1, case when "DimCode" = 2 then 'Direccion ' || "PrcName" else '' end AS "InfoDireccion"
+			FROM OPRC where "DimCode" = '002' and "PrcCode" not like '%Stelle%'
+		</hana>
+	</query>
+	<query nameid="ObtieneItemsArticulo" definition="I">
+		<hana>
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}'
+			and T0."ItmsGrpCod" != '110' and T0."InvntItem" ='Y' and T0."SellItem"= 'Y'
+		</hana>
+	</query>
+	<query nameid="ObtieneItemsServicio" definition="I">
+		<hana>
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}'
+			and T0."ItmsGrpCod" = '110' and T0."InvntItem" ='N' and T0."PrchseItem"= 'Y'
+		</hana>
+	</query>
+	<query nameid="ObtieneDimensiones" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName"
+			FROM OPRC where "PrcCode" not like 'Stelle%'
+			and "DimCode" = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneDimension" definition="I">
+		<hana>
+			Select "PrcCode", "PrcName"
+			FROM OPRC where "PrcCode" not like 'Stelle%'
+			and "PrcCode" = '{0}'
+		</hana>
+	</query>
+	<query nameid="ObtieneProyectos" definition="I">
+		<hana>SELECT "PrjCode","PrjName" FROM OPRJ  WHERE "Active" = 'Y'</hana>
+	</query>
+	<query nameid="ObtieneProyecto" definition="I">
+		<hana>SELECT "PrjCode","PrjName" FROM OPRJ  WHERE "Active" = 'Y' AND "PrjCode" = '{0}'</hana>
+	</query>
+	<!-- Tipo de Viaticos -->
+	<query nameid="ObtieneTipoViaticos" definition="I">
+		<hana>SELECT "FldValue", "Descr"  FROM "UFD1" WHERE "TableID" = 'OPRQ' AND "FieldID" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneTipoViatico" definition="I">
+		<hana>SELECT "FldValue", "Descr"  FROM "UFD1" WHERE "TableID" = 'OPRQ' AND "FieldID" = '{0}' AND "FldValue" = '{1}'</hana>
+	</query>
+	<query nameid="ObtieneViaticos" definition="I">
+		<hana>SELECT * FROM "@STR_WEB_TPVIATIC"</hana>
+	</query>
+	<query nameid="ObtieneViatico" definition="I">
+		<hana>SELECT * FROM "@STR_WEB_TPVIATIC" WHERE "Code" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerConfGeneral" definition="I">
+		<hana>SELECT * FROM "STR_WEB_CF_GENERAL" WHERE "STR_SOCIEDAD" = '{0}'</hana>
+	</query>
+	<!-- SOLICITUD DE TRASLADO -->
+	<query nameid="CreacionSolicitudTraslado" definition="I">
+		<hana>INSERT INTO STR_WEB_SLCTD_TRSL(STR_USUARIO_ID,STR_FEC_REGISTRO,STR_FEC_REQUER,STR_FILIAL_ID,STR_MONEDA,STR_ESTADO,STR_DOCNUM,STR_MENSAJE_MIG) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+	</query>
+	<query nameid="ActualizaSolicitudTraslado" definition="I">
+		<hana>UPDATE STR_WEB_SLCTD_TRSL SET "STR_USUARIO_ID" = '{0}', "STR_FEC_REQUER" = '{1}', "STR_FILIAL_ID" = '{2}', "STR_MONEDA" = '{3}' WHERE "STR_ID" = '{4}'</hana>
+	</query>
+	<query nameid="ObtenerSolicitudTraslado" definition="I">
+		<hana>SELECT * FROM STR_WEB_SLCTD_TRSL WHERE "STR_ID" = '{0}'</hana>
+	</query>
+	<query nameid="ObtieneIDSolicitudTraslado" definition="I">
+		<hana>SELECT TOP 1 "STR_ID"  FROM "STR_WEB_SLCTD_TRSL" WHERE "STR_USUARIO_ID" = '{0}' ORDER BY "STR_ID" DESC</hana>
+	</query>
+	<query nameid="CreacionSolicitudTrasladoDet" definition="I">
+		<hana>INSERT INTO STR_WEB_SLCTD_TRSLDET(STR_SLCTD_ID,STR_ITEM,STR_CANTIDAD,STR_SUBTOTAL,STR_FECHAREQ,STR_DIM1,STR_DIM2,STR_DIM4,STR_DIM5,STR_COMENTARIO) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')</hana>
+	</query>
+	<query nameid="ActualizacionSolicitudTrasladoDet" definition="I">
+		<hana>UPDATE STR_WEB_SLCTD_TRSLDET SET "STR_ITEM" = '{0}', "STR_CANTIDAD" = '{1}', "STR_SUBTOTAL" = '{2}', "STR_FECHAREQ" = '{3}', "STR_DIM1" = '{4}', "STR_DIM2" = '{5}',"STR_DIM4" = '{6}',"STR_DIM5" ='{7}', "STR_COMENTARIO" = '{8}'  WHERE "ID" = '{9}'</hana>
+	</query>
+	<query nameid="ObtenerSolicitudTrasladoDet" definition="I">
+		<hana>SELECT * FROM STR_WEB_SLCTD_TRSLDET WHERE "STR_SLCTD_ID" = '{0}'</hana>
+	</query>
+	<query nameid="BorrarSolicitudTrasladoDet" definition="I">
+		<hana>DELETE FROM STR_WEB_SLCTD_TRSLDET WHERE "ID" = '{0}'</hana>
+	</query>
+	<!-- SOLICITUD DE RENDICIÓN -->
+	<query nameid="InsertaSoliRendicion" definition="I">
+		<hana>
+			INSERT INTO STR_WEB_SR(STR_EMPLDREGI,STR_NRSOLICITUD,STR_NRRENDICION,STR_ESTADO,STR_EMPLDASIG,STR_FECHAREGIS,STR_MONEDA
+			,STR_TIPORENDICION,STR_MOTIVORENDICIOON,STR_COMENTARIO,STR_TOTALSOLICITADO,STR_MOTIVOMIGR,STR_DOCENTRY,STR_AREA) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')
+		</hana>
+	</query>
+	<query nameid="ObtenerSolicitudRendicion" definition="I">
+		<hana>SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", * FROM "STR_WEB_SR" T1 INNER JOIN "STR_WEB_ESTADOS" T2 ON T2."ID" = T1."STR_ESTADO" WHERE T1.ID = '{0}'</hana>
+	</query>
+	<query nameid="ActualizarSoliRendicion" definition="I">
+		<hana>UPDATE STR_WEB_SR SET "STR_EMPLDREGI" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}', "STR_ESTADO" = '{3}', "STR_EMPLDASIG" = '{4}', "STR_FECHAREGIS"  = '{5}', "STR_MONEDA" = '{6}', "STR_TIPORENDICION" ='{7}', "STR_MOTIVORENDICIOON" = '{8}', "STR_COMENTARIO" = '{9}', "STR_TOTALSOLICITADO" = '{10}', "STR_MOTIVOMIGR" = '{11}', "STR_DOCENTRY" = '{12}',"STR_AREA" ='{13}'  WHERE ID = '{14}'</hana>	
+	</query>
+	<query nameid="ObtieneIdSolicitudRendicion" definition="I">
+		<hana>SELECT TOP 1 "ID"  FROM "STR_WEB_SR" WHERE "STR_EMPLDASIG" = {0}  ORDER BY "ID" DESC</hana>
+	</query>
+	<query nameid="ListarSoliRendicion" definition="I">
+		<hana>CALL STR_PW_LISTARSR('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+	</query>
+	<!-- RENDICIÓN -->
+	<query nameid="ListarRendiciones" definition="I">
+		<hana>CALL STR_PW_LISTARRD('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+	</query>
+  <query nameid="InsertRegistroDoc" definition= "I">
+    <hana>INSERT INTO STR_WEB_DOC(
+    STR_RENDICION,
+    STR_FECHA_CONTABILIZA,
+    STR_FECHA_DOC,
+    STR_FECHA_VENCIMIENTO,
+    STR_PROVEEDOR,
+    STR_RUC,
+    STR_TIPO_AGENTE,
+    STR_MONEDA,
+    STR_COMENTARIOS,
+    STR_TIPO_DOC,
+    STR_SERIE_DOC,
+    STR_CORR_DOC,
+    STR_VALIDA_SUNAT,
+    STR_ANEXO_ADJUNTO,
+    STR_OPERACION,
+    STR_PARTIDAFLUJO,
+    STR_TOTALDOC,
+    STR_RAZONSOCIAL,
+    STR_RD_ID) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')</hana>
+  </query>
+
+  <query nameid="InsertRegistroDocDt" definition =" I">
+    <hana>
+      INSERT INTO STR_WEB_DOC_DET
+      (
+      STR_CODARTICULO,
+      STR_CONCEPTO,
+      STR_ALMACEN,
+      STR_SUBTOTAL,
+      STR_INDIC_IMPUESTO,
+      STR_DIM1,
+      STR_DIM2,
+      STR_DIM4,
+      STR_DIM5,
+      STR_CANTIDAD,
+      STR_TPO_OPERACION,
+      STR_DOC_ID
+      ) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')</hana>
+  </query>
+  
+  <query nameid="ObtieneIdDOC" definition="I">
+    <hana>SELECT TOP 1 "ID" As "Id" FROM "STR_WEB_DOC" WHERE "STR_RD_ID" = {0}  ORDER BY "ID" DESC</hana>
+  </query>
+ <!--hacer pruebas con este base de dato agregada-->
+  <query nameid="ObtenSolicitudAprobar" definition="I">
+    <hana>SELECT * FROM STR_WEB_APR_SR WHERE STR_ID_SR = ''  AND STR_AREA = '' AND APROBACIONFINALZIADA = ''</hana>
+  </query>
+</root>
