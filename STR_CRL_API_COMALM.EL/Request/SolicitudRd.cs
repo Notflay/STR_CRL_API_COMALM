@@ -28,7 +28,6 @@ namespace STR_CRL_API_COMALM.EL.Request
         public int? STR_DOCENTRY { get; set; }
         public string CREATE { get; set; }
         public string STR_COMENTARIO { get; set; }
-      
         /*
         public List<SolicitudRDdet> SOLICITUD_DET { get; set; }
         public Direccion STR_DIRECCION { get; set; }

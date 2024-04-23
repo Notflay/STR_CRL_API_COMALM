@@ -1,11 +1,14 @@
 ﻿using STR_CRL_API_COMALM.EL.Request;
 using STR_CRL_API_COMALM.EL;
+using STR_CRL_API_COMALM.EL.Response;
 using STR_CRL_API_COMALM.SQ;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using STR_CRL_API_COMALM.BL.Email;
 
 namespace STR_CRL_API_COMALM.BL
 {
@@ -48,6 +51,141 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Rendicion>(ex);
             }
         }
+
+        public List<Aprobador> ObtieneListaAprobadores(string tipoUsuario, string idSolicitud, string estado)
+        {
+            List<Aprobador> listaAprobadores = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_infoAprobadoresRD), dc =>
+            {
+                return new Aprobador
+                {
+                    idSolicitud = Convert.ToInt32(dc["ID_SR"]),
+                    aprobadorId = Convert.ToInt32(dc["Aprobador Id"]),
+                    aprobadorNombre = dc["Nombre Autorizador"],
+                    emailAprobador = dc["Email Aprobador"],
+                    finalizado = Convert.ToInt32(dc["Finalizado"]),
+                    empleadoId = Convert.ToInt32(dc["Empleado Id"]),
+                    nombreEmpleado = dc["Nombre Empleado"],
+                    area = string.IsNullOrWhiteSpace(Convert.ToString(dc["Area"])) ? (int?)null : Convert.ToInt32(dc["Area"]),
+                    fechaRegistro = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy")
+                };
+            }, tipoUsuario, idSolicitud, estado).ToList();
+
+            return listaAprobadores;
+        }
+
+
+        public ConsultationResponse<CreateResponse> AceptarAprobacion(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
+        {
+            var respIncorrect = "No se realizo la aprobación";
+            // Identificar si la aprobación es de Contabilidad o de otros aprobadores
+            Rendicion rendicion = new Rendicion();
+            SolicitudRd solicitudRD = new SolicitudRd();
+            Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
+            List<CreateResponse> list = new List<CreateResponse>();
+            List<Aprobador> listaAprobados = new List<Aprobador>();
+            try
+            {
+                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB").Result[0]; // Parametro Area y Id de la solicitud
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+
+                if (valor == "-1")
+                    throw new Exception("No se encontró Aprobadores con la solicitud enviada");
+
+                // Determina si es 2 aprobadores o solo 1         
+                List<string> aprobadores = valor.Split(',').Take(3).Where(aprobador => aprobador != "-1").ToList();
+                bool existeAprobador = aprobadores.Any(dat => dat.Equals(areaAprobador));
+
+                // Valide que se encuentre en la lista de aprobadores pendientes
+                listaAprobados = new List<Aprobador>();
+                listaAprobados = ObtieneListaAprobadores(estado == 10 ? "3" : "2", rendicionId.ToString(), "0");
+                existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
+
+                if (existeAprobador)
+                {
+                    if (estado == 10)
+                    {
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "11", "", rendicionId);
+                        // Cambiar upd_aprobadoresRD que permita autorizar por área
+                        /*
+                        hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("dd/MM/yy"), 1, areaAprobador, solicitudId, 0);
+                        */
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
+                        CreateResponse complemento = new CreateResponse()
+                        {
+                            DocEntry = 0,
+                            DocNum = 0,
+                            AprobacionFinalizada = 0,
+                        };
+                        list.Add(complemento);
+                        //  ActualizarAprobacion(string idSolicitud, int usuarioId, int estado) 
+                        EnviarAprobacion(rendicionId.ToString(), solicitudId.ToString(), Convert.ToInt32(solicitudRD.STR_EMPLDASIG), 11, area.ToString());
+                    }
+                    else if (estado == 11 & aprobadores.Count == 2 | estado == 13) // Valida estado final
+                    {
+                        // Envio de correo
+                        EnviarEmail envio = new EnviarEmail();
+
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
+
+                        rendicion = ObtenerRendicion(rendicionId.ToString()).Result[0];
+                        var response = GenerarRegistroDeRendicion(rendicion);
+                        listaAprobados = ObtieneAprobadores(rendicion.ID.ToString()).Result;
+
+                        if (response.IsSuccessful)
+                        {
+                            CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
+                            createResponse.AprobacionFinalizada = 1;
+
+                            // Inserts despues de crear EAR en SAP
+                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "16", "", rendicionId);
+                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
+                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
+
+                            list.Add(createResponse);
+                            envio.EnviarInformativo(rendicion.STR_EMPLEADO_ASIGNADO.email, rendicion.STR_EMPLEADO_ASIGNADO.Nombres, false,
+                                rendicion.ID.ToString(), rendicion.STR_NRRENDICION, DateTime.Now.ToString("dd/MM/yyyy"), true, "");
+                            return Global.ReturnOk(list, respIncorrect);
+                        }
+                        else
+                        {
+                            string mensaje = JsonConvert.DeserializeObject<ErrorSL>(response.Content).error.message.value;
+                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "17", mensaje.Replace("'", ""), rendicionId);
+                            envio.EnviarError(false, rendicion.STR_NRRENDICION, rendicion.ID.ToString(), rendicion.STR_FECHAREGIS, mensaje.Replace("'", ""));
+                            throw new Exception(mensaje);
+                        }
+                    }
+                    else if (estado == 11 & aprobadores.Count == 3)
+                    {
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "13", "", rendicionId);
+                        // Cambiar upd_aprobadoresRD que permita autorizar por área
+                        /*
+                        hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_aprobadores), aprobadorId, DateTime.Now.ToString("dd/MM/yy"), 1, areaAprobador, solicitudId, 0);
+                        */
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
+                        CreateResponse complemento = new CreateResponse()
+                        {
+                            DocEntry = 0,
+                            DocNum = 0,
+                            AprobacionFinalizada = 0,
+                        };
+                        list.Add(complemento);
+                        //  ActualizarAprobacion(string idSolicitud, int usuarioId, int estado) 
+                        EnviarAprobacion(rendicionId.ToString(), solicitudId.ToString(), Convert.ToInt32(solicitudRD.STR_EMPLDASIG), 13, area.ToString());
+                    }
+                    return Global.ReturnOk(list, respIncorrect);
+                }
+                else
+                {
+                    throw new Exception("No se tiene rendición a aprobar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<CreateResponse>(ex);
+            }
+
+        }
+
 
         /*
         public ConsultationResponse<Rendicion> ObtenerRendicion(string id)
