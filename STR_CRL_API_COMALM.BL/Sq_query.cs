@@ -71,5 +71,16 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_numeroRendicion = "ObtieneNumeroRendicion";
 
         public static readonly string get_listaAprobadoresDet = "ListarAprobadoresDetalle";
+
+        //
+        public static readonly string post_insertDOC = "InsertRegistroDoc";
+        public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
+        public static readonly string get_idDOC = "ObtieneIdDOC";
+        public static readonly string upd_RDTotal = "ActualizarRDTotal";
+
+        public static readonly string get_item = "ObtenerItem";
+        public static readonly string get_items = "ListardItems";
+
+        public static readonly string get_tpoDocumentos = "ObtenerTpoDocumentos";
     }   
 }

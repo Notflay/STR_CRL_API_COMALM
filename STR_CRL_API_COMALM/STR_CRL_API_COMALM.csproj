@@ -126,6 +126,7 @@
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SolicitudEarController.cs" />
     <Compile Include="Controllers\SolicitudTrslController.cs" />
+    <Compile Include="Controllers\TipoController.cs" />
     <Compile Include="Controllers\ViaticoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

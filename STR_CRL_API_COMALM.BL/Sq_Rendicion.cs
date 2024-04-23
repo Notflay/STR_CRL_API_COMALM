@@ -49,6 +49,66 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
+        public ConsultationResponse<Complemento> CrearDocumento(Documento doc)
+        {
+            var respIncorrect = "No se pudo registrar Documento";
+            Sq_Item sq = new Sq_Item();
+
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+
+                var test = ("INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) VALUES",
+doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
+                    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
+                    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
+                    doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
+
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
+                    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
+                    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
+                    doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
+
+                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
+
+                doc.detalles.ForEach((e) =>
+                {
+                    hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt), 
+                        e.STR_CODARTICULO?.ItemCode,
+                         e.STR_CODARTICULO.ItemName, 
+                         e.STR_SUBTOTAL, 
+                         e.STR_INDIC_IMPUESTO.id,
+                         e.STR_DIM1.id,
+                         e.STR_DIM2.id, 
+                         e.STR_DIM4.id, 
+                         e.STR_DIM5.id, 
+                         //e.STR_PROYECTO.name,
+                         e.STR_ALMACEN,
+                         e.STR_CANTIDAD, 
+                         e.STR_TPO_OPERACION,
+                         e.STR_PRECIO,
+                         e.STR_IMPUESTO,
+                         idDoc);
+                });
+
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
+
+                Complemento complemento = new Complemento()
+                {
+                    id = idDoc,
+                    name = "Se creó documento exitosamente"
+                };
+                list.Add(complemento);
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
         /*
         public ConsultationResponse<Rendicion> ObtenerRendicion(string id)
         {

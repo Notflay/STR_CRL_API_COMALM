@@ -8,3 +8,13 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll.config
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.pdb
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CoreCompileInputs.cache
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.dll
+D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.pdb

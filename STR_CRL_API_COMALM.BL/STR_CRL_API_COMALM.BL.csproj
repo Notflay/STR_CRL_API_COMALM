@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SQ_Complemento.cs" />
     <Compile Include="Sq_Condicion.cs" />
     <Compile Include="Sq_Configuracion.cs" />
     <Compile Include="Sq_Dimension.cs" />

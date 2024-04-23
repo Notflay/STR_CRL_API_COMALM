@@ -189,4 +189,40 @@
 	<query nameid="ObtenerSerieOPRQ" definition="I">
 		<hana>SELECT TOP 1 "Series" FROM NNM1 WHERE "Indicator" = '{0}' AND "ObjectCode" = '1470000113' AND"SeriesName" LIKE '%{1}%'</hana>
 	</query>
+	<query nameid="InsertRegistroDoc" definition="I">
+		<hana>INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) 
+		VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')</hana>
+	</query>
+	<query nameid="InsertRegistroDocDt" definition="I">
+		<hana>
+			INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO,
+			STR_CONCEPTO,
+			STR_SUBTOTAL,
+			STR_INDIC_IMPUESTO,
+			STR_DIM1,
+			STR_DIM2,
+			STR_DIM4,
+			STR_DIM5,
+			STR_ALMACEN,
+			STR_CANTIDAD,
+			STR_TPO_OPERACION,
+			STR_PRECIO,
+			STR_IMPUESTO,
+			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')</hana>
+	</query>
+	<query nameid="ObtenerTpoDocumentos" definition="I">
+		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
+	</query>
+	<query nameid="ObtieneIdDOC" definition="I">
+		<hana>SELECT TOP 1 "ID" As "Id" FROM "STR_WEB_DOC" WHERE "STR_RD_ID" = {0}  ORDER BY "ID" DESC</hana>
+	</query>
+	<query nameid="ListardItems" definition="I">
+		<hana>CALL STR_PW_LISTARITEMS ('{0}','{1}')</hana>
+	</query>
+	<query nameid="ObtenerItem" definition="I">
+		<hana>SELECT T0."ItemCode" as "id", T0."ItemName" as "name",CT."OverCode2"  AS "posFinanciera", CT."AcctCode" AS "CTA" FROM OITM T0 inner join OITW T1 on T1."ItemCode"=T0."ItemCode" inner join OACT CT on CT."AcctCode"=T1."ExpensesAc" WHERE T0."ItemCode" = '{0}' GROUP BY T0."ItemCode", T0."ItemName",CT."OverCode2",CT."AcctCode"</hana>
+	</query>
+	<query nameid="ActualizarRDTotal" definition="I">
+		<hana>UPDATE "STR_WEB_RD" SET "STR_TOTALRENDIDO" = (SELECT IFNULL(SUM("STR_TOTALDOC"),'0.0')  FROM "STR_WEB_DOC" WHERE "STR_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
+	</query>
 </root>
