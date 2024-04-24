@@ -71,7 +71,7 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
         [HttpPatch]
-        [Route("aprobacion/revertir")]
+        [Route("aprobacion/acepta")]
         public IHttpActionResult AceptaSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -102,7 +102,7 @@ namespace STR_CRL_API_COMALM.Controllers
 
 
         [HttpPatch]
-        [Route("aprobacion/acepta")]
+        [Route("aprobacion/revertir")]
         public IHttpActionResult RevertirSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -117,7 +117,7 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
 
-        /*
+        
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult Get(string id)
@@ -132,7 +132,7 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
-
+        /*
         [HttpGet]
         [Route("documento/{id}")]
         public IHttpActionResult GetDocumento(string id)

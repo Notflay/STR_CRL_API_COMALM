@@ -229,7 +229,16 @@
 		<hana>UPDATE "STR_WEB_RD" SET "STR_TOTALRENDIDO" = (SELECT IFNULL(SUM("STR_TOTALDOC"),'0.0')  FROM "STR_WEB_DOC" WHERE "STR_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
-		<hana>SELECT DISTINCT T0."STR_ID_RD" "ID_SR",T1."branch" AS "Area",  T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado" FROM "STR_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN "STR_WEB_RD" T2 ON T2."ID" = T0."STR_ID_RD" INNER JOIN OHEM T3 ON T3."empID" = T0."STR_USUARIOID" WHERE T1."U_STR_TIPO_USUARIO" = '{0}' AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'</hana>
+		<hana>
+			SELECT DISTINCT T0."STR_ID_RD" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",
+			T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" ,
+			T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado",T1."branch"
+			AS "Area" FROM "STR_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN
+			"STR_WEB_RD" T2 ON T2."ID" = T0."STR_ID_RD" INNER JOIN "STR_WEB_USUARIOS" T4 ON T4."STR_USUARIOSAP" = T1."empID"
+			INNER JOIN "STR_WEB_USRPRTRL" T5 ON T5."STR_IDUSUARIO" = T4."STR_IDUSUARIO" INNER JOIN OHEM T3 ON T3."empID"
+			= T0."STR_USUARIOID" WHERE T5."STR_IDROL" = '{0}'
+			AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
+		</hana>
 	</query>
 	<query nameid="CambiaEstadoRD" definition="I">
 		<hana>UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>

@@ -201,7 +201,7 @@ namespace STR_CRL_API_COMALM.BL
             {
 
                 solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB").Result[0]; // Parametro Area y Id de la solicitud
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION.name, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_MOTIVORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
@@ -212,7 +212,7 @@ namespace STR_CRL_API_COMALM.BL
 
                 // Valide que se encuentre en la lista de aprobadores pendientes
                 listaAprobados = new List<Aprobador>();
-                listaAprobados = ObtieneListaAprobadores(estado == 10 ? "3" : "2", rendicionId.ToString(), "0");
+                listaAprobados = ObtieneListaAprobadores(estado == 10 ? "2" : "3", rendicionId.ToString(), "0");
                 existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
 
                 if (existeAprobador)
@@ -234,7 +234,7 @@ namespace STR_CRL_API_COMALM.BL
                         };
                         list.Add(complemento);
                         //  ActualizarAprobacion(string idSolicitud, int usuarioId, int estado) 
-                        EnviarAprobacion(rendicionId.ToString(), solicitudId.ToString(), Convert.ToInt32(solicitudRD.STR_EMPLDASIG), 11, area.ToString());
+                        EnviarAprobacion(rendicionId.ToString(), solicitudId.ToString(), Convert.ToInt32(solicitudRD.STR_EMPLDASIG.sapID), 11, area.ToString());
                     }
                     else if (estado == 11 & aprobadores.Count == 2 | estado == 13) // Valida estado final
                     {
@@ -243,7 +243,8 @@ namespace STR_CRL_API_COMALM.BL
 
                         hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
 
-                        rendicion = ObtenerRendicion(rendicionId.ToString()).Result[0];
+                        var s = ObtenerRendicion(rendicionId.ToString());
+                        rendicion = s.Result[0];
                         var response = GenerarRegistroDeRendicion(rendicion);
                         listaAprobados = ObtieneAprobadores(rendicion.ID.ToString()).Result;
 
@@ -510,6 +511,7 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
         public ConsultationResponse<Rendicion> ObtenerRendicion(string id)
+        
         {
             var respIncorrect = "Obtener Rendicion";
             SQ_Complemento sQ = new SQ_Complemento();
@@ -536,8 +538,8 @@ namespace STR_CRL_API_COMALM.BL
                         STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
                         STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
                         STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
-                        STR_EMPLEADO_ASIGNADO = sQ_Usuario.getUsuario("1",dc["STR_EMPLDASIG"]),
-                        SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWB", false).Result[0],
+                        STR_EMPLEADO_ASIGNADO = sQ_Usuario.getUsuarioId("1",dc["STR_EMPLDASIG"]),
+                       SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWB", false).Result[0],
                         documentos = ObtenerDocumentos(dc["ID"]).Result
                     };
                 }, id).ToList();
@@ -641,7 +643,7 @@ namespace STR_CRL_API_COMALM.BL
                 if (estado == 9 | estado == 12) hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "10", "", idRendicion);
 
                 solicitudRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(idSolicitud), "PWB").Result[0]; // Parametro Area y Id de la solicitud
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION.name, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_MOTIVORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
