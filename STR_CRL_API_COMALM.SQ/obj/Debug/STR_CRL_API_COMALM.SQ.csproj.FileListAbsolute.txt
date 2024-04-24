@@ -8,3 +8,13 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\STR_CRL_API_COMALM.SQ.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\STR_CRL_API_COMALM.SQ.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.AssemblyReference.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.CoreCompileInputs.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.CopyComplete
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.pdb

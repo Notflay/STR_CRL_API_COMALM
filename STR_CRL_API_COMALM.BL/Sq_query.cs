@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace STR_CRL_API_COMALM.BL
+﻿namespace STR_CRL_API_COMALM.BL
 {
     public class Sq_Query
     {
@@ -55,10 +49,15 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_lstSolicitudEar = "ListarSoliRendicion";
         public static readonly string upd_cambiarMigradaSR = "CambioMigrada";
         public static readonly string dlt_aprobadoresSr = "EliminaAprobadoresDeSolicitud";
+        public static readonly string get_infoAprobadoresRD = "ObtieneInfoAprobadoresRD";
 
         // Rendiciones
         public static readonly string get_rendiciones = "ListarRendiciones";
-
+        //agregado recientemente
+        public static readonly string post_insertDOC = "InsertRegistroDoc";
+        public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
+        public static readonly string get_idDOC = "ObtieneIdDOC";
+        public static readonly string upd_RDTotal = "ActualizarRDTotal";
         // ObtenerAprobadores
         public static readonly string get_infoAprobadores = "ObtieneInfoAprobadores";
         public static readonly string get_aprobadores = "ObtieneAprobadores";
@@ -70,6 +69,6 @@ namespace STR_CRL_API_COMALM.BL
 
         public static readonly string get_numeroRendicion = "ObtieneNumeroRendicion";
 
-        public static readonly string get_listaAprobadoresDet = "ListarAprobadoresDetalle";
-    }   
+         public static readonly string get_listaAprobadoresDet = "ListarAprobadoresDetalle";
+    }
 }

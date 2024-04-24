@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using STR_CRL_API_COMALM.BL.Email;
+
 namespace STR_CRL_API_COMALM.BL
 {
     public class Sq_Rendicion
@@ -220,47 +222,76 @@ namespace STR_CRL_API_COMALM.BL
             {
                 return sQ_Proveedor.ObtenerProveedor(proveedor).Result[0];
             }
-        }
+        }*/
 
-        public ConsultationResponse<Complemento> CrearDocumento(Documento doc)
-        {
-            var respIncorrect = "No se pudo registrar Documento";
-            Sq_Item sq = new Sq_Item();
+        //public ConsultationResponse <Complemento> CrearDocumento(Documento doc)
+        //{
+        //    var respIncorrect = "No se pudo registrar Documento";
+        //    Sq_Item sq = new Sq_Item();
 
-            List<Complemento> list = new List<Complemento>();
+        //    List<Complemento> list = new List<Complemento>();
 
-            try
-            {
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
-                    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum,
-                    doc.STR_TIPO_AGENTE.id, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
-                    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_ANEXO_ADJUNTO, doc.STR_OPERACION, doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
+        //    try
+        //    {
+        //        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOC),
+        //            doc.STR_RENDICION,
+        //            doc.STR_FECHA_CONTABILIZA,
+        //            doc.STR_FECHA_DOC,
+        //            doc.STR_FECHA_VENCIMIENTO,
+        //            doc.STR_PROVEEDOR.CardCode,
+        //            doc.STR_PROVEEDOR.LicTradNum,
+        //            doc.STR_TIPO_AGENTE.id,
+        //            doc.STR_MONEDA.name,
+        //            doc.STR_COMENTARIOS,
+        //            doc.STR_TIPO_DOC.id, 
+        //            doc.STR_SERIE_DOC,
+        //            doc.STR_CORR_DOC,
+        //            doc.STR_VALIDA_SUNAT == true ? 1 : 0,
+        //            doc.STR_ANEXO_ADJUNTO, 
+        //            doc.STR_OPERACION,
+        //            doc.STR_PARTIDAFLUJO,
+        //            doc.STR_TOTALDOC,
+        //            doc.STR_PROVEEDOR.CardName,
+        //            doc.STR_RD_ID);
 
-                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idDOC), doc.STR_RD_ID.ToString());
+        //        string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
-                doc.detalles.ForEach((e) =>
-                {
-                    hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_insertDOCDt), e.STR_CODARTICULO?.id,
-                         e.STR_CODARTICULO != null ? sq.ObtenerItem(e.STR_CODARTICULO.id).Result[0].ItemName : null, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO.id, e.STR_PROYECTO.name, e.STR_CENTCOSTO.CostCenter, e.STR_CODARTICULO.posFinanciera,
-                        e.STR_CUP.U_CUP, e.STR_ALMACEN, e.STR_CANTIDAD, e.STR_TPO_OPERACION, idDoc);
-                });
+        //        doc.detalles.ForEach((e) =>
+        //        {
+        //            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt),
+        //                 e.STR_CODARTICULO?.id,
+        //                 e.STR_CONCEPTO!= null ?
+        //                 sq.ObtieneItems("art",e.STR_CODARTICULO.id).Result[0].ItemName : null,
+        //                 e.STR_CONCEPTO,
+                        
+        //                 e.STR_INDIC_IMPUESTO.id,
+        //                 e.STR_DIM1.name,
+        //                 e.STR_DIM2.name,
+                      
+        //                 e.STR_DIM4.name,
+        //                 e.STR_DIM5.name,
+                         
+        //                 e.STR_CANTIDAD,
+        //                 idDoc);
+        //        });
 
-                hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
+        //        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
 
-                Complemento complemento = new Complemento()
-                {
-                    id = idDoc,
-                    name = "Se creó documento exitosamente"
-                };
-                list.Add(complemento);
+        //        Complemento complemento = new Complemento()
+        //        {
+        //            id = idDoc,
+        //            name = "Se creó documento exitosamente"
+        //        };
+        //        list.Add(complemento);
 
-                return Global.ReturnOk(list, respIncorrect);
-            }
-            catch (Exception ex)
-            {
-                return Global.ReturnError<Complemento>(ex);
-            }
-        }
+        //        return Global.ReturnOk(list, respIncorrect);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Global.ReturnError<Complemento>(ex);
+        //    }
+        //}
+        /*
         public ConsultationResponse<Complemento> ActualizarRendicion(Rendicion rendicion)
         {
             var respIncorrect = "No se pudo Actualizar Rendición";
@@ -286,7 +317,7 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
 
-        }
+        }/*
         public ConsultationResponse<Complemento> ActualizarDocumento(Documento doc)
         {
             var respIncorrect = "No se pudo Actualizar Documento";
@@ -445,6 +476,98 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+
         */
+public ConsultationResponse<string>RechazarRendicion(
+    string solicitudId, 
+    string aprobadorId, 
+    string rendicionId, 
+    string comentarios, 
+    string areaAprobador
+    )
+        {
+
+            string nuevoEstado = "5";
+            // Identificar si la aprobación es de Contabilidad o de otros aprobadores
+            Rendicion rendicion = new Rendicion();
+            SolicitudRd solicitudRD = new SolicitudRd();
+            Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
+
+            List<Aprobador> listaAprobados = null;
+
+            Sq_Usuario sQ_Usuario = new Sq_Usuario();
+            Usuario usuario = null;
+
+            try
+            {
+                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(solicitudId), "PWB").Result[0]; // Parametro Area y Id de la solicitud
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+
+                if (valor == "-1")
+                    throw new Exception("No se encontró Aprobadores ");
+
+                // Determina si es 2 aprobadores o solo 1         
+                List<string> aprobadores = valor.Split(',').Take(3).Where(aprobador => aprobador != "-1").ToList();
+                bool existeAprobador = aprobadores.Any(dat => dat.Equals(areaAprobador));
+
+                // Valide que se encuentre en la lista de aprobadores pendientes
+                listaAprobados = new List<Aprobador>();
+                     listaAprobados = ObtieneListaAprobadores("3", rendicionId.ToString(), "0");
+              
+                existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
+
+                if (existeAprobador)
+                {
+                    List<string> lista = new List<string>() {
+                    "Rechazado con exito"
+                    };
+                    EnviarEmail envio = new EnviarEmail();
+
+                    usuario = new Usuario();
+                    usuario = sQ_Usuario.getUsuario("1",listaAprobados[0].empleadoId.ToString());
+
+                    if (usuario.email == null | usuario.email == "")
+                    {
+                        throw new Exception("No se encontró correo del empleado");
+                    }
+                    envio.EnviarInformativo(usuario.email, usuario.nombres, true, listaAprobados[0].idSolicitud.ToString(),
+                        "", listaAprobados[0].fechaRegistro, false, comentarios);
+
+                    hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.dlt_aprobadoresSr), solicitudId);
+                    hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);
+
+                    return Global.ReturnOk(lista, "No se rechazo correctamente");
+                }
+                else
+                {
+                    throw new Exception("No se encontró solicitud a rechazar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<string>(ex);
+            }
+        }
+        public List<Aprobador> ObtieneListaAprobadores(string tipoUsuario, string idSolicitud, string estado)
+        {
+            List<Aprobador> listaAprobadores = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_infoAprobadores), dc =>
+            {
+                return new Aprobador
+                {
+                    idSolicitud = Convert.ToInt32(dc["ID_SR"]),
+                    aprobadorId = Convert.ToInt32(dc["Aprobador Id"]),
+                    aprobadorNombre = dc["Nombre Autorizador"],
+                    emailAprobador = dc["Email Aprobador"],
+                    finalizado = Convert.ToInt32(dc["Finalizado"]),
+                    empleadoId = Convert.ToInt32(dc["Empleado Id"]),
+                    nombreEmpleado = dc["Nombre Empleado"],
+                    area = string.IsNullOrWhiteSpace(Convert.ToString(dc["Area"])) ? (int?)null : Convert.ToInt32(dc["Area"]),
+                    fechaRegistro = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? null : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy")
+                };
+            }, tipoUsuario, idSolicitud, estado).ToList();
+
+            return listaAprobadores;
+        }
+
     }
 }

@@ -8,6 +8,8 @@ namespace STR_CRL_API_COMALM.EL.Response
 {
     public class Articulo
     {
+        public string id { get; set; }
+
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
         public string U_BPP_TIPUNMED { get; set; }

@@ -8,3 +8,13 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll.config
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\STR_CRL_API_COMALM.EL.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CoreCompileInputs.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.pdb

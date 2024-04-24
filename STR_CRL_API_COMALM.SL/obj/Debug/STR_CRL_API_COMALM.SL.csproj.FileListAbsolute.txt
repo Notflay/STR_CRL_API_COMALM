@@ -31,3 +31,36 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.dll.config
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Newtonsoft.Json.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\RestSharp.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Buffers.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Memory.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Numerics.Vectors.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Encodings.Web.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Json.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.ValueTuple.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.pdb
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.dll.config
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Newtonsoft.Json.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\RestSharp.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Buffers.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Memory.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Numerics.Vectors.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Encodings.Web.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Json.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.ValueTuple.xml
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.AssemblyReference.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CoreCompileInputs.cache
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CopyComplete
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.dll
+D:\fiorella\ctrcrl\Nueva carpeta\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.pdb

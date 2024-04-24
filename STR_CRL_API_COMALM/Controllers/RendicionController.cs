@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http.Cors;
 using System.Web.Http;
 using STR_CRL_API_COMALM.BL;
+using STR_CRL_API_COMALM.EL.Request;
+using STR_CRL_API_COMALM.EL;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -26,5 +28,27 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
+        [HttpPatch]
+        [Route("aprobacion/rechazar")]
+        public IHttpActionResult RechazarRendicion(int id, string aprobadorId, Complemento comentarios, string areaAprobador)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.RechazarRendicion(id.ToString(), aprobadorId, comentarios?.name, areaAprobador,"");
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
+
+
+
     }
+
+
+
 }
