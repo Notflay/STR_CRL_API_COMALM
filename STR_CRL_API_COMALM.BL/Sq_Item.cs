@@ -42,6 +42,29 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
+        public ConsultationResponse<Complemento> ObtenerProyecto(string id)
+        {
+            var respIncorrect = "No se encuentró el proyecto Asignado";
+            List<Complemento> list = new List<Complemento>();
+            try
+            {
+                list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_proyecto), dc =>
+                {
+                    return new Complemento()
+                    {
+                        id = dc["id"],
+                        name = dc["name"]
+                    };
+                }, id).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
 
         public ConsultationResponse<Articulo> ObtenerItem(string itemCode)
         {
@@ -74,5 +97,29 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Articulo>(ex);
             }
         }
+
+        public ConsultationResponse<Complemento> ObtenerIndicador(string id)
+        {
+            var respIncorrect = "No se encontró indicador";
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_indicador), dc =>
+                {
+                    return new Complemento()
+                    {
+                        id = dc["id"],
+                        name = dc["name"]
+                    };
+                }, id).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
     }
+
 }

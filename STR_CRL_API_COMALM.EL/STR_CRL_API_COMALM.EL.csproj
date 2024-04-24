@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commons\RendicionSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commons\RendicionDetSerializer.cs" />
     <Compile Include="Request\Documento.cs" />
     <Compile Include="Request\DocumentoDet.cs" />
     <Compile Include="Request\LoginRequest.cs" />

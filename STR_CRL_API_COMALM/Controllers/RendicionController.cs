@@ -28,6 +28,21 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("documento/{id}")]
+        public IHttpActionResult GetDocumento(string id)
+        {
+
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.ObtenerDocumento(id);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("documento")]
         public IHttpActionResult Post(Documento documento)
@@ -42,6 +57,66 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
 
         }
+        [HttpPatch]
+        [Route("documento")]
+        public IHttpActionResult Update(Documento documento)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.ActualizarDocumento(documento);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+        [HttpPatch]
+        [Route("aprobacion/revertir")]
+        public IHttpActionResult AceptaSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.AceptarAprobacion(solicitudId, aprobadorId, areaAprobador, estado, rendicionId, area);
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("aprobacion/{id}")]
+        public IHttpActionResult CreateAprobacion(int id, string idSolicitud, int usuarioId, int estado, string areaAprobador)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.EnviarAprobacion(id.ToString(), idSolicitud, usuarioId, estado, areaAprobador);
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
+
+        [HttpPatch]
+        [Route("aprobacion/acepta")]
+        public IHttpActionResult RevertirSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.RevertirAprobacion(solicitudId, aprobadorId, areaAprobador, estado, rendicionId, area);
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
+
         /*
         [HttpGet]
         [Route("{id}")]

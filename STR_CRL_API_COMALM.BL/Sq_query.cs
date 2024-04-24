@@ -13,6 +13,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_infoUserId = "ObtenerInformacionUsuarioId";
         public static readonly string get_estados = "ObtenerEstados";
         public static readonly string get_proveedores = "ObtenerProveedores";
+        public static readonly string get_proveedor = "ObtenerProveedor";
         public static readonly string get_filiales = "ObtieneFiliales";
         public static readonly string get_filial = "ObtieneFilial";
         public static readonly string get_roles = "ObtieneRoles";
@@ -29,7 +30,7 @@ namespace STR_CRL_API_COMALM.BL
         // Tipo de Viaticos
         public static readonly string get_viaticos = "ObtieneTipoViaticos";
         public static readonly string get_viatico = "ObtieneTipoViatico";
-        public static readonly string get_tpViaticos = "ObtieneViaticos";
+        public static readonly string get_tpViaticos = "ObtieneViaticos";   
         public static readonly string get_tpViatico = "ObtieneViatico";
 
         // Configuración
@@ -82,5 +83,22 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_items = "ListardItems";
 
         public static readonly string get_tpoDocumentos = "ObtenerTpoDocumentos";
+        public static readonly string get_infoAprobadoresRD = "ObtieneInfoAprobadoresRD";
+        public static readonly string upd_cambiarEstadoRD = "CambiaEstadoRD";
+        public static readonly string upd_cambiarMigradaRD = "ActualizaRDMigrado";
+        public static readonly string upd_migradaRdenSAP = "UpdateMigraRdSAP";
+        public static readonly string upd_aprobadoresRD = "ActualizaablaAprobadoresRD";
+        public static readonly string post_insertAprobadoresRD = "InsertaTablaAprobadoresRD";
+        public static readonly string get_rendicion = "ObtenerRendicion";
+        public static readonly string get_listaDocumentoDet = "ObtenerDocumentoDetalles";
+        public static readonly string get_obtenerDocumento = "ObtenerDocumento";
+        public static readonly string get_listaAprobadoresCabRd = "ListarAprobadoresCabeceraRd";
+        public static readonly string get_estado = "ObtenerEstado";
+        public static readonly string get_obtenerDocumentos = "ObtenerDocumentos";
+        public static readonly string get_listaAprobadoresDetRd = "ListarAprobadoresDetalleRd";
+        public static readonly string get_indicador = "ObtenerIndicador";
+        public static readonly string get_tpoDocumento = "ObtenerTpoDocumento";
+        public static readonly string upd_idDOC = "ActualizarDocumento";
+        public static readonly string upd_idDOCDet = "ActualizarDocumentoDet";
     }   
 }

@@ -206,9 +206,10 @@
 			STR_ALMACEN,
 			STR_CANTIDAD,
 			STR_TPO_OPERACION,
+			STR_PROYECTO,
 			STR_PRECIO,
 			STR_IMPUESTO,
-			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')</hana>
+			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}')</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumentos" definition="I">
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
@@ -220,9 +221,65 @@
 		<hana>CALL STR_PW_LISTARITEMS ('{0}','{1}')</hana>
 	</query>
 	<query nameid="ObtenerItem" definition="I">
-		<hana>SELECT T0."ItemCode" as "id", T0."ItemName" as "name",CT."OverCode2"  AS "posFinanciera", CT."AcctCode" AS "CTA" FROM OITM T0 inner join OITW T1 on T1."ItemCode"=T0."ItemCode" inner join OACT CT on CT."AcctCode"=T1."ExpensesAc" WHERE T0."ItemCode" = '{0}' GROUP BY T0."ItemCode", T0."ItemName",CT."OverCode2",CT."AcctCode"</hana>
+		<hana>SELECT T0."ItemCode" as "id", T0."ItemName" as "name",CT."OverCode2"  AS "posFinanciera", CT."AcctCode" AS "CTA" 
+		FROM OITM T0 inner join OITW T1 on T1."ItemCode"=T0."ItemCode" inner join OACT CT on CT."AcctCode"=T1."ExpensesAc" WHERE T0."ItemCode" = '{0}' 
+		GROUP BY T0."ItemCode", T0."ItemName",CT."OverCode2",CT."AcctCode"</hana>
 	</query>
 	<query nameid="ActualizarRDTotal" definition="I">
 		<hana>UPDATE "STR_WEB_RD" SET "STR_TOTALRENDIDO" = (SELECT IFNULL(SUM("STR_TOTALDOC"),'0.0')  FROM "STR_WEB_DOC" WHERE "STR_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
+	</query>
+	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
+		<hana>SELECT DISTINCT T0."STR_ID_RD" "ID_SR",T1."branch" AS "Area",  T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" , T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado" FROM "STR_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN "STR_WEB_RD" T2 ON T2."ID" = T0."STR_ID_RD" INNER JOIN OHEM T3 ON T3."empID" = T0."STR_USUARIOID" WHERE T1."U_STR_TIPO_USUARIO" = '{0}' AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'</hana>
+	</query>
+	<query nameid="CambiaEstadoRD" definition="I">
+		<hana>UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
+	</query>
+	<query nameid="ActualizaRDMigrado" definition="I">
+		<hana>UPDATE "STR_WEB_RD" SET "STR_DOCENTRY" = '{0}', "STR_NRCARGA" = '{1}'  WHERE "ID" = '{2}'</hana>
+	</query>
+	<query nameid="ActualizaablaAprobadoresRD" definition="I">
+		<hana>UPDATE "STR_WEB_APR_RD" SET "STR_USUARIOAPROBADORID" = '{0}',"FECHAAPROBACION" = '{1}', "APROBACIONFINALIZADA" = '{2}' WHERE "STR_AREA" = '{3}' AND "STR_ID_RD" = '{4}' AND "APROBACIONFINALIZADA" = '{5}'</hana>
+	</query>
+	<query nameid="UpdateMigraRdSAP" definition="I">
+		<hana>UPDATE "@STR_EARCRG" SET "U_STR_WEB_AUTPRI" = '{0}',"U_STR_WEB_AUTSEG" = '{1}', "U_STR_WEB_AUTCON" = '{2}'  WHERE "DocEntry" = '{3}'</hana>
+	</query>
+	<query nameid="InsertaTablaAprobadoresRD" definition="I">
+		<hana>INSERT INTO "STR_WEB_APR_RD" VALUES('{0}','{1}','{2}','{3}','{4}','{5}')</hana>
+	</query>
+	<query nameid="ObtenerRendicion" definition="I">
+		<hana>SELECT * FROM STR_WEB_RD WHERE ID = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerDocumentoDetalles" definition="I">
+		<hana>SELECT * FROM "STR_WEB_DOC_DET" WHERE "STR_DOC_ID" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerDocumento" definition="I">
+		<hana>SELECT * FROM "STR_WEB_DOC" WHERE  "ID" = '{0}'</hana>
+	</query>
+	<query nameid="ListarAprobadoresCabeceraRd" definition="I">
+		<hana>SELECT  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."STR_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."STR_AREA" FROM "STR_WEB_APR_RD"  T0 LEFT JOIN OHEM T1 ON T0."STR_USUARIOAPROBADORID"  = T1."empID" WHERE T0."STR_ID_RD" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerEstado" definition="I">
+		<hana>SELECT * FROM "STR_WEB_ESTADOS" WHERE "ID" = {0}</hana>
+	</query>
+	<query nameid="ObtenerDocumentos" definition="I">
+		<hana>SELECT * FROM "STR_WEB_DOC" WHERE  "STR_RD_ID" = '{0}' ORDER BY "STR_FECHA_DOC" DESC</hana>
+	</query>
+	<query nameid="ListarAprobadoresDetalleRd" definition="I">
+		<hana>SELECT "empID","firstName" ||' '||"lastName" AS "lastName" FROM OHEM WHERE "U_STR_TIPO_USUARIO" IN(2,3) AND "branch" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerIndicador" definition="I">
+		<hana>SELECT "Code" as "id","Name" as "name" FROM OSTA WHERE "Code" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerTpoDocumento" definition="I">
+		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141' AND  T0."U_BPP_TDTD" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerProveedor" definition="I">
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
+	</query>
+	<query nameid="ActualizarDocumento" definition="I">
+		<hana>UPDATE "STR_WEB_DOC" SET STR_RENDICION = '{0}', STR_FECHA_CONTABILIZA = '{1}',STR_FECHA_DOC = '{2}',STR_FECHA_VENCIMIENTO = '{3}',STR_PROVEEDOR = '{4}',STR_RUC = '{5}',STR_TIPO_AGENTE = '{6}',STR_MONEDA = '{7}',STR_COMENTARIOS = '{8}',STR_TIPO_DOC = '{9}',STR_SERIE_DOC = '{10}',STR_CORR_DOC = '{11}',STR_VALIDA_SUNAT = '{12}',STR_ANEXO_ADJUNTO = '{13}',STR_OPERACION = '{14}',STR_PARTIDAFLUJO = '{15}',STR_TOTALDOC = '{16}',STR_RAZONSOCIAL = '{17}' WHERE ID = '{18}'</hana>
+	</query>
+	<query nameid="ActualizarDocumentoDet" definition="I">
+		<hana>UPDATE "STR_WEB_DOC_DET" SET STR_CODARTICULO = '{0}',STR_CONCEPTO = '{1}',STR_SUBTOTAL = '{2}',STR_INDIC_IMPUESTO = '{3}',STR_PROYECTO = '{4}',STR_ALMACEN = '{5}',STR_CANTIDAD = '{6}',STR_TPO_OPERACION = '{7}' WHERE ID = '{8}'</hana>
 	</query>
 </root>
