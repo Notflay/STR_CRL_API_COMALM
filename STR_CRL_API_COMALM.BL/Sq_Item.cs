@@ -52,8 +52,8 @@ namespace STR_CRL_API_COMALM.BL
                 {
                     return new Complemento()
                     {
-                        id = dc["id"],
-                        name = dc["name"]
+                        id = dc["PrjCode"],
+                        name = dc["PrjName"]
                     };
                 }, id).ToList();
 
@@ -66,7 +66,7 @@ namespace STR_CRL_API_COMALM.BL
         }
 
 
-        public ConsultationResponse<Articulo> ObtenerItem(string itemCode)
+        public ConsultationResponse<Articulo> ObtenerItem(string itemCode,string centroCosto)
         {
             var respIncorrect = "No se encuentra Items";
 
@@ -88,7 +88,7 @@ namespace STR_CRL_API_COMALM.BL
                         //posFinanciera = dc["posFinanciera"],
                         //CTA = dc["CTA"]
                     };
-                }, itemCode).ToList();
+                }, centroCosto,itemCode).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
             }

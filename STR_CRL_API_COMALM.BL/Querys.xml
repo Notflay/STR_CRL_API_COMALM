@@ -221,16 +221,20 @@
 		<hana>CALL STR_PW_LISTARITEMS ('{0}','{1}')</hana>
 	</query>
 	<query nameid="ObtenerItem" definition="I">
-		<hana>SELECT T0."ItemCode" as "id", T0."ItemName" as "name",CT."OverCode2"  AS "posFinanciera", CT."AcctCode" AS "CTA" 
-		FROM OITM T0 inner join OITW T1 on T1."ItemCode"=T0."ItemCode" inner join OACT CT on CT."AcctCode"=T1."ExpensesAc" WHERE T0."ItemCode" = '{0}' 
-		GROUP BY T0."ItemCode", T0."ItemName",CT."OverCode2",CT."AcctCode"</hana>
+		<hana>
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}' AND
+			T0."ItmsGrpCod" != '110' and T0."InvntItem" ='Y' and T0."SellItem"= 'Y' AND T0."ItemCode" = '{1}'
+		</hana>
 	</query>
 	<query nameid="ActualizarRDTotal" definition="I">
 		<hana>UPDATE "STR_WEB_RD" SET "STR_TOTALRENDIDO" = (SELECT IFNULL(SUM("STR_TOTALDOC"),'0.0')  FROM "STR_WEB_DOC" WHERE "STR_RD_ID" =  '{0}') WHERE "ID" = '{1}'</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
 		<hana>
-			SELECT DISTINCT T0."STR_ID_RD" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",
+			SELECT DISTINCT T0."STR_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",
 			T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" ,
 			T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado",T1."branch"
 			AS "Area" FROM "STR_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN
