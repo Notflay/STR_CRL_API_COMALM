@@ -71,7 +71,9 @@ namespace STR_CRL_API_COMALM.BL
                         rol = Sq_Rol.ObtieneRolPorId(Convert.ToInt32(dc["STR_IDROL"]))[0],
                         filial = Sq_Filial.obtenerFilialPorId(Convert.ToInt32(dc["U_ST_CeCo2"]))[0],
                         area = new Complemento {  id = dc["Area"], name = dc["AreaDesc"] },
-                        branch = dc["branch"]
+                        branch = dc["branch"],
+                        provAsoc = dc["U_CE_PVAS"],
+                        codEar = dc["U_CE_CEAR"]
                     };
                 }, portalId.ToString(), username).ToList();
 
@@ -106,6 +108,9 @@ namespace STR_CRL_API_COMALM.BL
                         rol = Sq_Rol.ObtieneRolPorId(Convert.ToInt32(dc["STR_IDROL"]))[0],
                         filial = Sq_Filial.obtenerFilialPorId(Convert.ToInt32(dc["U_ST_CeCo2"]))[0],
                         branch = dc["branch"]
+                        ,
+                        provAsoc = dc["U_CE_PVAS"],
+                        codEar = dc["U_CE_CEAR"]
                     };
                 }, portalId.ToString(), empId).ToList();
 

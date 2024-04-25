@@ -27,6 +27,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_proyectos = "ObtieneProyectos";
         public static readonly string get_proyecto = "ObtieneProyecto";
 
+        public static readonly string get_cuentaCo = "ObtenerCuentaContable";
         // Tipo de Viaticos
         public static readonly string get_viaticos = "ObtieneTipoViaticos";
         public static readonly string get_viatico = "ObtieneTipoViatico";

@@ -6,7 +6,7 @@
 	<query nameid="ObtenerInformacionUsuario" definition="I">
 		<hana>
 			SELECT T2."branch", T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
-			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc" FROM "STR_WEB_USUARIOS" T1
+			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc",T2."U_CE_PVAS",T2."U_CE_CEAR" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
 			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'  AND T3."STR_IDUSUARIO" = T1."STR_IDUSUARIO"
 			INNER JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
@@ -16,7 +16,7 @@
 	<query nameid="ObtenerInformacionUsuarioId" definition="I">
 		<hana>
 			SELECT T2."branch", T1."STR_IDUSUARIO",T2."empID",T2."firstName",T2."lastName",T2."email",T1."STR_USERNAME",T1."STR_CONTRASENIA"
-			,T3."STR_IDROL",T2."U_ST_CeCo2" FROM "STR_WEB_USUARIOS" T1
+			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_CE_PVAS",T2."U_CE_CEAR" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
 			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'  AND T3."STR_IDUSUARIO" = T1."STR_IDUSUARIO"
 			WHERE T2."empID" = '{1}'
@@ -151,7 +151,7 @@
 		<hana>UPDATE "STR_WEB_SR" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
 	</query>
 	<query nameid="ObtieneNumeroRendicion" definition="I">
-		<hana>SELECT '1' FROM DUMMY</hana>
+		<hana>CALL STR_SP_CCHEAR_GenerarCodigo_CCH_EAR('{0}','EAR')</hana>
 	</query>
 	<query nameid="CambioMigrada" definition="I">
 		<hana>UPDATE "STR_WEB_SR" SET "STR_DOCENTRY" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}' WHERE "ID" = '{3}'</hana>
@@ -184,10 +184,10 @@
 		<hana>UPDATE "STR_WEB_APR_SR" SET "STR_USUARIOAPROBADORID" = '{0}',"FECHAAPROBACION" = '{1}', "APROBACIONFINALIZADA" = '{2}' WHERE "STR_AREA" = '{3}' AND "STR_ID_SR" = '{4}' AND "APROBACIONFINALIZADA" = '{5}'</hana>
 	</query>
 	<query nameid="ListarAprobadoresCabecera" definition="I">
-		<hana>SELECT TOP 1  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."STR_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."STR_AREA" FROM "STR_WEB_APR_SR"  T0 LEFT JOIN OHEM T1 ON T0."STR_USUARIOAPROBADORID"  = T1."empID" WHERE T0."STR_ID_SR" = '{0}'</hana>
+		<hana>SELECT  DISTINCT T1."firstName" || ' ' || T1."lastName" AS "Nombres",T0."STR_USUARIOAPROBADORID",T0."APROBACIONFINALIZADA",T0."FECHAAPROBACION",T0."STR_AREA" FROM "STR_WEB_APR_SR"  T0 LEFT JOIN OHEM T1 ON T0."STR_USUARIOAPROBADORID"  = T1."empID" WHERE T0."STR_ID_SR" = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerSerieOPRQ" definition="I">
-		<hana>SELECT TOP 1 "Series" FROM NNM1 WHERE "Indicator" = '{0}' AND "ObjectCode" = '1470000113' AND"SeriesName" LIKE '%{1}%'</hana>
+		<hana>SELECT '745' FROM DUMMY</hana>
 	</query>
 	<query nameid="InsertRegistroDoc" definition="I">
 		<hana>INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) 
@@ -290,5 +290,8 @@
 	</query>
 	<query nameid="ActualizarDocumentoDet" definition="I">
 		<hana>UPDATE "STR_WEB_DOC_DET" SET STR_CODARTICULO = '{0}',STR_CONCEPTO = '{1}',STR_SUBTOTAL = '{2}',STR_INDIC_IMPUESTO = '{3}',STR_PROYECTO = '{4}',STR_ALMACEN = '{5}',STR_CANTIDAD = '{6}',STR_TPO_OPERACION = '{7}' WHERE ID = '{8}'</hana>
+	</query>
+	<query nameid="ObtenerCuentaContable" definition="I">
+		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='001'</hana>
 	</query>
 </root>

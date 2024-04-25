@@ -268,7 +268,7 @@ namespace STR_CRL_API_COMALM.BL
 
                             // Inserts despues de crear la SR en SAP 
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
-                            string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion));   // Obtiene el número de Rendición con el DocEntry
+                            string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion),solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón                                                                                                                                                                                // Quita de activos en la tabla de pendientes de Borrador
 
                             lista.Add(createResponse);
@@ -509,7 +509,7 @@ namespace STR_CRL_API_COMALM.BL
                     // Inserts despues de crear la SR en SAP 
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);                                       // Actualiza Estado
                                                                                                                                                                     //hash.insertValueSql(SQ_QueryManager.Generar(SQ_Query.post_intermedia), createResponse.DocEntry);                                             // Inserta en la tabla intemedia de EAR para generar codigo
-                    string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion), createResponse.DocEntry);   // Obtiene el número de Rendición con el DocEntry
+                    string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion), solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón
 
                     lista.Add(createResponse);
@@ -612,7 +612,7 @@ namespace STR_CRL_API_COMALM.BL
         public IRestResponse GeneraSolicitudRDenSAP(SolicitudRd sr)
         {
             Sq_Usuario sQ_Usuario = new Sq_Usuario();
-            //List<DetalleSerializar> detalleSerializars = new List<DetalleSerializar>();
+            List<DetalleSerializar> detalleSerializars = new List<DetalleSerializar>();
 
             //int series = Convert.ToInt32(ConfigurationManager.AppSettings["SerieCodeEAR"]);
 
@@ -621,6 +621,8 @@ namespace STR_CRL_API_COMALM.BL
             //AttatchmentSerializer adj = ObtenerAdjuntos(sr.STR_RUTAANEXO);
             List<Aprobador> aprobadores = new List<Aprobador>();
             aprobadores = ObtieneAprobadores(sr.ID.ToString()).Result;
+
+            string cuenta = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_cuentaCo));
 
 
             /*
@@ -656,10 +658,20 @@ namespace STR_CRL_API_COMALM.BL
                 detalleSerializars.Add(detalleSerializar);
             }*/
 
+            DetalleSerializar detalleSerializar = new DetalleSerializar
+            {
+               AccountCode = cuenta,
+               Currency = sr.STR_MONEDA.id,
+               LineVendor = sr.STR_EMPLDASIG.provAsoc,
+               RequiredDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),
+                U_CE_IMSL = sr.STR_TOTALSOLICITADO,
+            };
+            detalleSerializars.Add(detalleSerializar);
+
             SolicitudRDSerializer body = new SolicitudRDSerializer()
             {
                 Series = ObtenerSerieOPRQ(),
-
+                ReqType = 171,
                 // Fechas
                 RequriedDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),
                 DocDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),
@@ -670,10 +682,10 @@ namespace STR_CRL_API_COMALM.BL
                 Comments = sr.STR_COMENTARIO,
                 JournalMemo = sr.STR_COMENTARIO,
                 // AttachmentEntry = adj.AbsoluteEntry,
-                U_STR_TIPOEAR = sr.STR_TIPORENDICION.id,
+                U_STR_TIPOEAR = sr.STR_MOTIVORENDICION.id,
 
-                U_CE_TOTINCIMP = sr.STR_TOTALSOLICITADO.ToString(),
-                U_ELE_Tipo_ER = sr.STR_TIPORENDICION.id,
+                U_CE_TOTINCIMP = sr.STR_TOTALSOLICITADO,
+                U_ELE_Tipo_ER = sr.STR_MOTIVORENDICION.id,
                 U_ST_NroRQWeb = sr.ID.ToString(),
                 U_CE_MNDA = sr.STR_MONEDA.id,
                 /*
@@ -685,17 +697,17 @@ namespace STR_CRL_API_COMALM.BL
                 U_FECFIN = DateTime.ParseExact(sr.STR_FECHAFIN, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAFIN).ToString("yyyy-MM-dd"),              
                  */
 
-                Requester = sr.STR_EMPLDASIG.ToString(),
+                Requester = sr.STR_EMPLDASIG.sapID.ToString(),
                 //RequesterName = sr.STR_EMPLEADO_ASIGNADO.Nombres.ToString(),
                 //RequesterBranch = sr.STR_EMPLEADO_ASIGNADO.SubGerencia,
                 //RequesterDepartment = sr.STR_EMPLEADO_ASIGNADO.dept,
-                ReqType = 171,
+          
                 //DocDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAREGIS).ToString("yyyy-MM-dd"),
                // DocDueDate = string.IsNullOrEmpty(sr.STR_FECHAVENC) ? null : DateTime.ParseExact(sr.STR_FECHAVENC, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),//DateTime.Parse(sr.STR_FECHAVENC).ToString("yyyy-MM-dd"),
                
                 DocCurrency = sr.STR_MONEDA.id,
-               // DocumentLines = detalleSerializars,
-                DocType = "dDocument_Items",
+                DocumentLines = detalleSerializars,
+                DocType = "dDocument_Service",
                 DocRate = 1.0,
              
                 U_STR_WEB_COD = (int)sr.ID,
@@ -703,7 +715,7 @@ namespace STR_CRL_API_COMALM.BL
                 U_STR_WEB_AUTSEG = aprobadores.Count > 1 ? aprobadores[1].aprobadorNombre : null,
                 // U_ELE_Tipo_ER = solicitudRD.STR_TIPORENDICION_INFO.Nombre,
                 Printed = "psYes",
-                AuthorizationStatus = "dasGenerated",
+                //sAuthorizationStatus = "dasGenerated",
                 //U_ELE_SEDE = sr.STR_EMPLEADO_ASIGNADO.fax,
                 //U_ELE_SUBGER = sr.STR_EMPLEADO_ASIGNADO.SubGerencia.ToString(),
                 TaxCode = "EXO",
