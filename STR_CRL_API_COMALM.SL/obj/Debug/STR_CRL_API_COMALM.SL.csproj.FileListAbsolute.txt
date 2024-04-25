@@ -31,36 +31,3 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.pdb
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.dll.config
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.SL.pdb
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Newtonsoft.Json.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\RestSharp.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Buffers.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Memory.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Numerics.Vectors.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Encodings.Web.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Json.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Threading.Tasks.Extensions.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.ValueTuple.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.pdb
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\STR_CRL_API_COMALM.EL.dll.config
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\Newtonsoft.Json.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\RestSharp.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Buffers.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Memory.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Numerics.Vectors.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Encodings.Web.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Text.Json.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\bin\Debug\System.ValueTuple.xml
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.AssemblyReference.cache
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CoreCompileInputs.cache
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.csproj.CopyComplete
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.dll
-D:\new Projects\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SL\obj\Debug\STR_CRL_API_COMALM.SL.pdb

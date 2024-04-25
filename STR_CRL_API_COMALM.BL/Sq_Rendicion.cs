@@ -168,26 +168,54 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<CreateResponse> RevertirAprobacion(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
+        public ConsultationResponse<Complemento> RevertirAprobacion(int rendicionId)
         {
             var respIncorrect = "No se revertio la aprobación";
             // Identificar si la aprobación es de Contabilidad o de otros aprobadores
-            Rendicion rendicion = new Rendicion();
-            SolicitudRd solicitudRD = new SolicitudRd();
-            Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
+            List<Complemento> list = new List<Complemento>();
 
-            List<CreateResponse> list = new List<CreateResponse>();
-            List<Aprobador> listaAprobados = new List<Aprobador>();
             try
             {
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.rev_estadoRD),"9", rendicionId.ToString("F2"));
+                Complemento complemento = new Complemento()
+                {
+                    id = valor,
+                    name = "Se revertio la aprobación"
+                };
+
+                list.Add(complemento);
                 return Global.ReturnOk(list, respIncorrect);
             }
             catch (Exception ex)
             {
-                return Global.ReturnError<CreateResponse>(ex);
+                return Global.ReturnError<Complemento>(ex);
             }
-
         }
+
+        public ConsultationResponse<Complemento> AutorizarRevertirAprobacion(int rendicionId)
+        {
+            var respIncorrect = "No se autorizo la reversion de estado";
+            // Identificar si la aprobación es de Contabilidad o de otros aprobadores
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_stateEdit_RD), "1", rendicionId.ToString("F2"));
+                Complemento complemento = new Complemento()
+                {
+                    id = valor,
+                    name = "Se autorizo la reversion de estado exitosamente"
+                };
+
+                list.Add(complemento);
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
         public ConsultationResponse<CreateResponse> AceptarAprobacion(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
         {
             var respIncorrect = "No se realizo la aprobación";

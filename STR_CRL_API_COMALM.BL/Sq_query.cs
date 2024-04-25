@@ -101,5 +101,10 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_tpoDocumento = "ObtenerTpoDocumento";
         public static readonly string upd_idDOC = "ActualizarDocumento";
         public static readonly string upd_idDOCDet = "ActualizarDocumentoDet";
+        public static readonly string rev_estadoRD = "RevertirEstadoRD";
+        public static readonly string get_stateEdit_RD = "ObtenerEstadoEditRD";
+        public static readonly string upd_stateEdit_RD = "CambiarEstadoEditRD";
+        
+
     }   
 }

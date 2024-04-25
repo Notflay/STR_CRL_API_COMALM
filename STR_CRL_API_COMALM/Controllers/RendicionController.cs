@@ -102,11 +102,26 @@ namespace STR_CRL_API_COMALM.Controllers
 
 
         [HttpPatch]
-        [Route("aprobacion/revertir")]
-        public IHttpActionResult RevertirSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
+        [Route("aprobacion/revertir/{rendicionId}")]
+        public IHttpActionResult RevertirSolicitud(int rendicionId)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.RevertirAprobacion(solicitudId, aprobadorId, areaAprobador, estado, rendicionId, area);
+            var response = sq_Rendicion.RevertirAprobacion(rendicionId);
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPatch]
+        [Route("autorizar/revertir/{rendicionId}")]
+        public IHttpActionResult AutorizarRevertirSolicitud(int rendicionId)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.AutorizarRevertirAprobacion(rendicionId);
 
             if (response != null && response.CodRespuesta == "99")
             {
@@ -117,7 +132,7 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
 
-        
+
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult Get(string id)

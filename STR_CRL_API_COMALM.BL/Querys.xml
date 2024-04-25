@@ -244,6 +244,18 @@
 			AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
 		</hana>
 	</query>
+	<query nameid="RevertirEstadoRD" definition="I">
+		<hana>
+			DELETE FROM "STR_WEB_APR_RD" WHERE "STR_ID_RD" = '{0}'
+			UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}' WHERE "ID" = '{1}'
+		</hana>
+	</query>
+	<query nameid="ObtenerEstadoEditRD" definition="I">
+		<hana>SELECT "STR_EDIT" FROM "STR_WEB_RD" WHERE "ID" = '{0}'</hana>
+	</query>
+	<query nameid="CambiarEstadoEditRD" definition="I">
+		<hana>UPDATE "STR_WEB_RD" SET "STR_EDIT" = '{0}' WHERE "ID" = {1}</hana>
+	</query>
 	<query nameid="CambiaEstadoRD" definition="I">
 		<hana>UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
 	</query>
