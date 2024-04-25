@@ -69,6 +69,7 @@
     <Compile Include="Response\Proveedor.cs" />
     <Compile Include="Response\Usuario.cs" />
     <Compile Include="SL\B1SLLogin.cs" />
+    <Compile Include="SL\DetalleSerializar.cs" />
     <Compile Include="SL\ErrorSL.cs" />
     <Compile Include="SL\SolicitudRDSerializer.cs" />
   </ItemGroup>
