@@ -9,7 +9,7 @@
 			,T3."STR_IDROL",T2."U_ST_CeCo2",T2."U_ST_CeCo4" as "Area", T4."PrcName" as "AreaDesc",T2."U_CE_PVAS",T2."U_CE_CEAR" FROM "STR_WEB_USUARIOS" T1
 			INNER JOIN OHEM T2 ON T1."STR_USERNAME" = T2."U_ST_INT_UserName"
 			INNER JOIN "STR_WEB_USRPRTRL" T3 ON T3."STR_PORTAL_ID" = '{0}'  AND T3."STR_IDUSUARIO" = T1."STR_IDUSUARIO"
-			INNER JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
+			LEFT JOIN OPRC T4 ON T4."PrcCode" = T2."U_ST_CeCo4"
 			WHERE T1."STR_USERNAME" = '{1}'
 		</hana>
 	</query>
@@ -308,6 +308,6 @@
 		<hana>UPDATE "STR_WEB_DOC_DET" SET STR_CODARTICULO = '{0}',STR_CONCEPTO = '{1}',STR_SUBTOTAL = '{2}',STR_INDIC_IMPUESTO = '{3}',STR_PROYECTO = '{4}',STR_ALMACEN = '{5}',STR_CANTIDAD = '{6}',STR_TPO_OPERACION = '{7}' WHERE ID = '{8}'</hana>
 	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
-		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='001'</hana>
+		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='1'</hana>
 	</query>
 </root>

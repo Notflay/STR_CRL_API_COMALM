@@ -8,3 +8,14 @@ C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.dll
 C:\Users\LENOVO\source\repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.pdb
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\STR_CRL_API_COMALM.SQ.dll
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\STR_CRL_API_COMALM.SQ.pdb
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.dll
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.pdb
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.xml
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Debug\Sap.Data.Hana.v4.5.dll.config
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.AssemblyReference.cache
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.csproj.CoreCompileInputs.cache
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_.32C73B98.Up2Date
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.dll
+C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Debug\STR_CRL_API_COMALM.SQ.pdb
