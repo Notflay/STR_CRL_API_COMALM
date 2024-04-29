@@ -25,9 +25,8 @@ namespace STR_CRL_API_COMALM.EL.Request
         public string STR_CONCEPTO { get; set; } //crealo
         public Complemento STR_PROYECTO { get; set; }
 
-        public decimal STR_PRECIO { get; set; } //crealo
-        public int STR_IMPUESTO { get; set; } //crealo
-        public int STR_DIRECCION { get; set; }
-        public Complemento STR_MOTIVORENDICION { get; set; }
+        public decimal? STR_PRECIO { get; set; } //crealo
+        public decimal? STR_IMPUESTO { get; set; } //crealo
+        //public Complemento STR_MOTIVORENDICION { get; set; }
     }
 }

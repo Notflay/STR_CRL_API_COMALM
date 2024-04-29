@@ -129,8 +129,32 @@ namespace STR_CRL_API_COMALM.BL
 
                 string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
+                var test = ("INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO, STR_CONCEPTO, STR_SUBTOTAL, STR_INDIC_IMPUESTO, STR_DIM1, STR_DIM2, STR_DIM4, STR_DIM5, STR_ALMACEN, STR_CANTIDAD, STR_TPO_OPERACION, STR_PROYECTO, STR_PRECIO, STR_IMPUESTO, STR_DOC_ID) VALUES",
+    doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
+    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
+    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
+    doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
+                
+
                 doc.detalles.ForEach((e) =>
                 {
+                    var test2 = ("INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO, STR_CONCEPTO, STR_SUBTOTAL, STR_INDIC_IMPUESTO, STR_DIM1, STR_DIM2, STR_DIM4, STR_DIM5, STR_ALMACEN, STR_CANTIDAD, STR_TPO_OPERACION, STR_PROYECTO, STR_PRECIO, STR_IMPUESTO, STR_DOC_ID) VALUES",
+                         e.STR_CODARTICULO?.ItemCode,
+                         e.STR_CODARTICULO.ItemName,
+                         e.STR_SUBTOTAL,
+                         e.STR_INDIC_IMPUESTO.id,
+                         e.STR_DIM1.id,
+                         e.STR_DIM2.id,
+                         e.STR_DIM4.id,
+                         e.STR_DIM5.id,
+                         e.STR_ALMACEN,
+                         e.STR_CANTIDAD,
+                         e.STR_TPO_OPERACION,
+                         e.STR_PROYECTO.id,
+                         e.STR_PRECIO,
+                         e.STR_IMPUESTO,
+                         idDoc);
+
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt), 
                         e.STR_CODARTICULO?.ItemCode,
                          e.STR_CODARTICULO.ItemName, 
@@ -176,7 +200,7 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.rev_estadoRD),"9", rendicionId.ToString("F2"));
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.rev_estadoRD), rendicionId.ToString("F2"));
                 Complemento complemento = new Complemento()
                 {
                     id = valor,
@@ -428,7 +452,8 @@ namespace STR_CRL_API_COMALM.BL
             var respIncorrect = "No se obtuvo Documento";
             SQ_Complemento sQ_Complemento = new SQ_Complemento();
             Sq_Item sq_item = new Sq_Item();
-
+            Sq_Viatico sq_Viatico = new Sq_Viatico();
+            Sq_Dimension sq_dimension = new Sq_Dimension();
             try
             {
                 List<DocumentoDet> listDet = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_listaDocumentoDet), dc =>
@@ -442,7 +467,14 @@ namespace STR_CRL_API_COMALM.BL
                         STR_PROYECTO = dc["STR_PROYECTO"] == "" ? null : sq_item.ObtenerProyecto(dc["STR_PROYECTO"]).Result[0],
                         STR_SUBTOTAL = Convert.ToDouble(dc["STR_SUBTOTAL"]),
                         STR_ALMACEN = dc["STR_ALMACEN"],
+                        STR_CONCEPTO = dc["STR_CONCEPTO"],
                         STR_CANTIDAD = Convert.ToInt32(dc["STR_CANTIDAD"]),
+                        STR_PRECIO = Convert.ToDecimal(dc["STR_PRECIO"]),
+                        STR_IMPUESTO = Convert.ToDecimal(dc["STR_IMPUESTO"]),
+                        STR_DIM1 = sq_dimension.ObtieneDimension(dc["STR_DIM1"]).Result.FirstOrDefault() ?? null,
+                        STR_DIM2 = sq_dimension.ObtieneDimension(dc["STR_DIM2"]).Result.FirstOrDefault() ?? null,
+                        STR_DIM4 = sq_dimension.ObtieneDimension(dc["STR_DIM4"]).Result.FirstOrDefault() ?? null,
+                        STR_DIM5 = sq_dimension.ObtieneDimension(dc["STR_DIM5"]).Result.FirstOrDefault() ?? null,
                         STR_TPO_OPERACION = dc["STR_TPO_OPERACION"]
                     };
                 }, id).ToList();
@@ -467,6 +499,9 @@ namespace STR_CRL_API_COMALM.BL
                         //STR_TIPO_AGENTE = dc["STR_TIPO_AGENTE"] == "" ? null : ObtenTipoAgente(dc["STR_TIPO_AGENTE"]),
                         STR_TIPO_DOC = dc["STR_TIPO_DOC"] == "" ? null : sQ_Complemento.ObtenerTpoDocumento(dc["STR_TIPO_DOC"]).Result[0],
                         STR_RD_ID = Convert.ToInt32(dc["STR_RD_ID"]),
+                        STR_DIRECCION = dc["STR_DIRECCION"],
+                        STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_MOTIVORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_MOTIVORENDICION"]),
+                        //STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),
                         STR_TOTALDOC = Convert.ToDouble(dc["STR_TOTALDOC"]),
 
                         detalles = listDet

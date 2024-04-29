@@ -246,8 +246,7 @@
 	</query>
 	<query nameid="RevertirEstadoRD" definition="I">
 		<hana>
-			DELETE FROM "STR_WEB_APR_RD" WHERE "STR_ID_RD" = '{0}'
-			UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}' WHERE "ID" = '{1}'
+			CALL REVERTIR_APR_RD({0})
 		</hana>
 	</query>
 	<query nameid="ObtenerEstadoEditRD" definition="I">
