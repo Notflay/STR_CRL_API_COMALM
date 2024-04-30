@@ -1,8 +1,10 @@
-﻿using STR_CRL_API_COMALM.EL;
+﻿using STR_CRL_API_COMALM.BL.Plantilla;
+using STR_CRL_API_COMALM.EL;
 using STR_CRL_API_COMALM.SQ;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -113,5 +115,45 @@ namespace STR_CRL_API_COMALM.BL
                 };
             }
         }
+        /*
+        public async Task<ConsultationResponse<Complemento>> UploadPlantillaAsync(HttpContent file, int id)
+        {
+            Plantilla sq_Plantilla = new Plantilla();
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var respOk = "OK";
+            var respIncorrect = "No se encontró plantilla";
+            List<Complemento> list = new List<Complemento>();
+
+            HanaADOHelper hash = new HanaADOHelper();
+            try
+            {
+
+                var stream = await file.ReadAsStreamAsync();
+                var package = new ExcelPackage(stream);
+                var docs = sq_Plantilla.ObtienePlantilla(package, id);
+                docs.ForEach((e) =>
+                {
+                    sq_Rendicion.CrearDocumento(e);
+                });
+
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+        */
     }
 }

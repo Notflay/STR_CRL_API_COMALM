@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.Cors;
+﻿using STR_CRL_API_COMALM.BL;
 using System.Web.Http;
-using STR_CRL_API_COMALM.BL;
+using System.Web.Http.Cors;
 
 namespace STR_CRL_API_COMALM.Controllers
 {

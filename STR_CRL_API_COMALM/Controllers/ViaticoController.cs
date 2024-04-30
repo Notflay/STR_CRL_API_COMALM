@@ -1,8 +1,4 @@
 ﻿using STR_CRL_API_COMALM.BL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -28,7 +24,8 @@ namespace STR_CRL_API_COMALM.Controllers
 
         [HttpGet]
         [Route("tipos")]
-        public IHttpActionResult GetTipos() {
+        public IHttpActionResult GetTipos()
+        {
             Sq_Viatico sq = new Sq_Viatico();
             var response = sq.ObtieneTpViaticos();
 

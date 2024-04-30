@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.Cors;
-using System.Web.Http;
-using STR_CRL_API_COMALM.BL;
+﻿using STR_CRL_API_COMALM.BL;
 using STR_CRL_API_COMALM.EL.Request;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -136,6 +132,7 @@ namespace STR_CRL_API_COMALM.Controllers
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult Get(string id)
+
         {
 
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -147,6 +144,41 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
+        /*
+        [HttpPost]
+        [Route("documento/plantilla/{id}")]
+        public async Task<IHttpActionResult> PostUpload(int id)
+        {
+            SQ_Complemento sQ_Complemento = new SQ_Complemento();
+            // Verificar si hay algún archivo en la solicitud
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                return BadRequest("La solicitud no contiene un archivo.");
+            }
+
+            var provider = new MultipartMemoryStreamProvider();
+
+            try
+            {
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                if (provider.Contents.Count == 0)
+                {
+                    return BadRequest("No se proporcionó ningún archivo.");
+                }
+
+                var response = sQ_Complemento.UploadPlantillaAsync(provider.Contents[0], id);
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("No se proporcionó ningún archivo.");
+            }
+        }*/
+
         /*
         [HttpGet]
         [Route("documento/{id}")]

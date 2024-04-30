@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.Cors;
-using System.Web.Http;
+﻿using STR_CRL_API_COMALM.BL;
 using STR_CRL_API_COMALM.EL;
-using STR_CRL_API_COMALM.BL;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -15,7 +11,7 @@ namespace STR_CRL_API_COMALM.Controllers
     {
         [Route("login")]
         [HttpPost]
-        public IHttpActionResult Post(string portalId,LoginRequest user) 
+        public IHttpActionResult Post(string portalId, LoginRequest user)
         {
             Sq_Usuario sq = new Sq_Usuario();
             var response = sq.ObtieneSesion(user, portalId);

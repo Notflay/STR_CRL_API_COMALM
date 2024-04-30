@@ -2,9 +2,6 @@
 using STR_CRL_API_COMALM.EL;
 using STR_CRL_API_COMALM.EL.Request;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 

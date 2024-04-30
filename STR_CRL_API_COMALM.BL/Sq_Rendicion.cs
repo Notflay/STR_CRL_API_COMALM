@@ -76,7 +76,7 @@ namespace STR_CRL_API_COMALM.BL
                     if (e.ID != 0)
                     {
                         hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOCDet), e.STR_CODARTICULO?.ItemCode,
-                            e.STR_CODARTICULO?.ItemName, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO?.id, e.STR_PROYECTO?.name,
+                            e.STR_CODARTICULO?.ItemName, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO?.id, e.STR_PROYECTO?.id,
                             e.STR_ALMACEN, e.STR_CANTIDAD, e.STR_TPO_OPERACION, e.ID);
                     }
                     else
@@ -500,6 +500,8 @@ namespace STR_CRL_API_COMALM.BL
                         STR_TIPO_DOC = dc["STR_TIPO_DOC"] == "" ? null : sQ_Complemento.ObtenerTpoDocumento(dc["STR_TIPO_DOC"]).Result[0],
                         STR_RD_ID = Convert.ToInt32(dc["STR_RD_ID"]),
                         STR_DIRECCION = dc["STR_DIRECCION"],
+                        STR_RUC = dc["STR_RUC"],
+                        STR_RAZONSOCIAL = dc["STR_RAZONSOCIAL"],
                         STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_MOTIVORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_MOTIVORENDICION"]),
                         //STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),
                         STR_TOTALDOC = Convert.ToDouble(dc["STR_TOTALDOC"]),
