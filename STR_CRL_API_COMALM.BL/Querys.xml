@@ -234,7 +234,7 @@
 	</query>
 	<query nameid="ObtieneInfoAprobadoresRD" definition="I">
 		<hana>
-			SELECT DISTINCT T0."STR_ID_SR" "ID_SR",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",
+			SELECT DISTINCT T0."STR_ID_RD",T1."empID" "Aprobador Id",T1."firstName"||' '||T1."lastName" as "Nombre Autorizador",
 			T1."email" "Email Aprobador",T0."APROBACIONFINALIZADA" "Finalizado",T3."empID" as "Empleado Id" ,
 			T3."firstName"||' '||T1."lastName" AS "Nombre Empleado",T2."STR_FECHAREGIS",T2."STR_ESTADO" "Estado",T1."branch"
 			AS "Area" FROM "STR_WEB_APR_RD" T0 INNER JOIN OHEM T1 ON T1."branch" = "STR_AREA" INNER JOIN
