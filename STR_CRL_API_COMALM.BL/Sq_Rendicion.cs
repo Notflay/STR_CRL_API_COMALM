@@ -762,7 +762,7 @@ namespace STR_CRL_API_COMALM.BL
                     aprobadorNombre = dc["Nombre Autorizador"],
                     emailAprobador = dc["Email Aprobador"],
                     finalizado = Convert.ToInt32(dc["Finalizado"]),
-                    empleadoId = Convert.ToInt32(dc["Empleado Id"]),
+                    //empleadoId = Convert.ToInt32(dc["Empleado Id"]),
                     nombreEmpleado = dc["Nombre Empleado"],
                     area = string.IsNullOrWhiteSpace(Convert.ToString(dc["Area"])) ? (int?)null : Convert.ToInt32(dc["Area"]),
                     fechaRegistro = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy")

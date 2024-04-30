@@ -15,11 +15,11 @@
       "RelativeMoniker": "D:0:0:{66400F42-030C-451D-A514-7343255FB803}|STR_CRL_API_COMALM.BL\\STR_CRL_API_COMALM.BL.csproj|solutionrelative:str_crl_api_comalm.bl\\querys.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adrian.mamani\\AppData\\Local\\Temp\\.vsdbgsrc\\2a6ac60fd00efb558b79afd118b6af3ab0859d2743f1fff670a4f2dfceaa3c4c\\ExecutionContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{66400F42-030C-451D-A514-7343255FB803}|STR_CRL_API_COMALM.BL\\STR_CRL_API_COMALM.BL.csproj|C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\str_crl_api_comalm.bl\\sq_query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{66400F42-030C-451D-A514-7343255FB803}|STR_CRL_API_COMALM.BL\\STR_CRL_API_COMALM.BL.csproj|solutionrelative:str_crl_api_comalm.bl\\sq_query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adrian.mamani\\AppData\\Local\\Temp\\.vsdbgsrc\\2a6ac60fd00efb558b79afd118b6af3ab0859d2743f1fff670a4f2dfceaa3c4c\\ExecutionContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{38A7A066-9E79-4EFB-908A-9EFF47DACE57}|STR_CRL_API_COMALM\\STR_CRL_API_COMALM.csproj|c:\\users\\adrian.mamani\\documents\\ear\\str_crl_api_comalm\\str_crl_api_comalm\\controllers\\solicitudearcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,25 +49,13 @@
               "Title": "Sq_Rendicion.cs",
               "DocumentMoniker": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs",
               "RelativeDocumentMoniker": "STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs",
-              "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs",
-              "RelativeToolTip": "STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs",
-              "ViewState": "AQIAANcCAAAAAAAAAAAlwOUCAAATAAAA",
+              "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs*",
+              "RelativeToolTip": "STR_CRL_API_COMALM.BL\\Sq_Rendicion.cs*",
+              "ViewState": "AQIAANcCAAAAAAAAAAAlwPICAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-29T19:43:37.465Z",
               "IsPinned": true,
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Plantilla.cs",
-              "DocumentMoniker": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
-              "RelativeDocumentMoniker": "STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
-              "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
-              "RelativeToolTip": "STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAgwJEAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T17:14:28.3Z"
             },
             {
               "$type": "Document",
@@ -89,14 +77,14 @@
               "RelativeDocumentMoniker": "STR_CRL_API_COMALM\\Controllers\\RendicionController.cs",
               "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM\\Controllers\\RendicionController.cs",
               "RelativeToolTip": "STR_CRL_API_COMALM\\Controllers\\RendicionController.cs",
-              "ViewState": "AQIAADsAAAAAAAAAAAAawFcAAAAMAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAIA3wGYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-29T17:10:16.963Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ExecutionContext.cs",
               "DocumentMoniker": "C:\\Users\\adrian.mamani\\AppData\\Local\\Temp\\.vsdbgsrc\\2a6ac60fd00efb558b79afd118b6af3ab0859d2743f1fff670a4f2dfceaa3c4c\\ExecutionContext.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\2a6ac60fd00efb558b79afd118b6af3ab0859d2743f1fff670a4f2dfceaa3c4c\\ExecutionContext.cs",
@@ -115,14 +103,26 @@
               "RelativeDocumentMoniker": "STR_CRL_API_COMALM.BL\\Querys.xml",
               "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Querys.xml",
               "RelativeToolTip": "STR_CRL_API_COMALM.BL\\Querys.xml",
-              "ViewState": "AQIAAM0AAAAAAAAAAAAkwO8AAAAhAAAA",
+              "ViewState": "AQIAAM0AAAAAAAAAAAAkwPYAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
               "WhenOpened": "2024-04-29T19:30:53.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
+              "Title": "Plantilla.cs",
+              "DocumentMoniker": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
+              "RelativeDocumentMoniker": "STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
+              "ToolTip": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
+              "RelativeToolTip": "STR_CRL_API_COMALM.BL\\Plantilla\\Plantilla.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAgwJEAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:14:28.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Sq_Query.cs",
               "DocumentMoniker": "C:\\Users\\adrian.mamani\\Documents\\ear\\STR_CRL_API_COMALM\\STR_CRL_API_COMALM.BL\\Sq_query.cs",
               "RelativeDocumentMoniker": "STR_CRL_API_COMALM.BL\\Sq_query.cs",
