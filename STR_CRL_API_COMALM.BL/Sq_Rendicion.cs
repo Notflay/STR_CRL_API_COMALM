@@ -720,7 +720,7 @@ namespace STR_CRL_API_COMALM.BL
                 hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertAprobadoresRD), idRendicion, usuarioId.ToString(), null, null, 0, estado == 9 ? aprobadores[aprobadores.Count == 2 ? 1 : 2] : estado == 11 ? aprobadores[0] : aprobadores[1]);
 
                 aprobadors = new List<Aprobador>();
-                aprobadors = ObtieneListaAprobadores(estado == 9 ? "3" : "2", idRendicion, "0"); // Autorizadores, solicitud, estado
+                aprobadors = ObtieneListaAprobadores(estado == 9 ? "2" : "3", idRendicion, "0"); // Autorizadores, solicitud, estado
 
                 if (aprobadors.Count < 1)
                     throw new Exception("No se encontró Aprobadores");

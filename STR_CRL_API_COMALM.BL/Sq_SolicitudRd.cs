@@ -268,15 +268,15 @@ namespace STR_CRL_API_COMALM.BL
 
                             // Inserts despues de crear la SR en SAP 
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
-                            string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion),solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
-                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, codigoRendicion, solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón                                                                                                                                                                                // Quita de activos en la tabla de pendientes de Borrador
+                            //string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion),solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
+                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, "", solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón                                                                                                                                                                                // Quita de activos en la tabla de pendientes de Borrador
 
                             lista.Add(createResponse);
 
                             // Envio de Correo
 
 
-                            envio.EnviarInformativo(solicitudRD.STR_EMPLDASIG.email, FormatearNombreCompleto(solicitudRD.STR_EMPLDASIG.nombres), true, solicitudRD.ID.ToString(), "Número de Rendición: " + codigoRendicion, solicitudRD.STR_FECHAREGIS, true, "");
+                            envio.EnviarInformativo(solicitudRD.STR_EMPLDASIG.email, FormatearNombreCompleto(solicitudRD.STR_EMPLDASIG.nombres), true, solicitudRD.ID.ToString(), "", solicitudRD.STR_FECHAREGIS, true, "");
                             return Global.ReturnOk(lista, "");
                         }
                         else
