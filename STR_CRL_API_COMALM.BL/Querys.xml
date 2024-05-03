@@ -190,8 +190,30 @@
 		<hana>SELECT '745' FROM DUMMY</hana>
 	</query>
 	<query nameid="InsertRegistroDoc" definition="I">
-		<hana>INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) 
-		VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')</hana>
+		<hana>
+			INSERT INTO STR_WEB_DOC(
+			STR_RENDICION,
+			STR_FECHA_CONTABILIZA,
+			STR_FECHA_DOC,
+			STR_FECHA_VENCIMIENTO,
+			STR_PROVEEDOR,
+			STR_RUC,
+			STR_MONEDA,
+			STR_COMENTARIOS,
+			STR_TIPO_DOC,
+			STR_SERIE_DOC,
+			STR_CORR_DOC,
+			STR_VALIDA_SUNAT,
+			STR_OPERACION,
+			STR_PARTIDAFLUJO,
+			STR_TOTALDOC,
+			STR_RAZONSOCIAL,
+			STR_MOTIVORENDICION,
+			STR_DIRECCION,
+			STR_RD_ID
+			)
+			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')
+		</hana>
 	</query>
 	<query nameid="InsertRegistroDocDt" definition="I">
 		<hana>
@@ -304,10 +326,51 @@
 		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
 	</query>
 	<query nameid="ActualizarDocumento" definition="I">
-		<hana>UPDATE "STR_WEB_DOC" SET STR_RENDICION = '{0}', STR_FECHA_CONTABILIZA = '{1}',STR_FECHA_DOC = '{2}',STR_FECHA_VENCIMIENTO = '{3}',STR_PROVEEDOR = '{4}',STR_RUC = '{5}',STR_TIPO_AGENTE = '{6}',STR_MONEDA = '{7}',STR_COMENTARIOS = '{8}',STR_TIPO_DOC = '{9}',STR_SERIE_DOC = '{10}',STR_CORR_DOC = '{11}',STR_VALIDA_SUNAT = '{12}',STR_ANEXO_ADJUNTO = '{13}',STR_OPERACION = '{14}',STR_PARTIDAFLUJO = '{15}',STR_TOTALDOC = '{16}',STR_RAZONSOCIAL = '{17}' WHERE ID = '{18}'</hana>
+		<hana>
+			UPDATE
+			"STR_WEB_DOC" SET STR_RENDICION = '{0}',
+			STR_FECHA_CONTABILIZA = '{1}',
+			STR_FECHA_DOC = '{2}',
+			STR_FECHA_VENCIMIENTO = '{3}',
+			STR_PROVEEDOR = '{4}',
+			STR_RUC = '{5}',
+			STR_TIPO_AGENTE = '{6}',
+			STR_MONEDA = '{7}',
+			STR_COMENTARIOS = '{8}',
+			STR_TIPO_DOC = '{9}',
+			STR_SERIE_DOC = '{10}',
+			STR_CORR_DOC = '{11}',
+			STR_VALIDA_SUNAT = '{12}',
+			STR_ANEXO_ADJUNTO = '{13}',
+			STR_OPERACION = '{14}',
+			STR_PARTIDAFLUJO = '{15}',
+			STR_TOTALDOC = '{16}',
+			STR_RAZONSOCIAL = '{17}',
+			STR_DIRECCION = '{18}',
+			STR_MOTIVORENDICION = '{19}'
+			WHERE ID = '{20}'
+		</hana>
 	</query>
 	<query nameid="ActualizarDocumentoDet" definition="I">
-		<hana>UPDATE "STR_WEB_DOC_DET" SET STR_CODARTICULO = '{0}',STR_CONCEPTO = '{1}',STR_SUBTOTAL = '{2}',STR_INDIC_IMPUESTO = '{3}',STR_PROYECTO = '{4}',STR_ALMACEN = '{5}',STR_CANTIDAD = '{6}',STR_TPO_OPERACION = '{7}' WHERE ID = '{8}'</hana>
+		<hana>
+			UPDATE
+			"STR_WEB_DOC_DET"
+			SET STR_CODARTICULO = '{0}',
+			STR_CONCEPTO = '{1}',
+			STR_SUBTOTAL = '{2}',
+			STR_INDIC_IMPUESTO = '{3}',
+			STR_PROYECTO = '{4}',
+			STR_ALMACEN = '{5}',
+			STR_CANTIDAD = '{6}',
+			STR_TPO_OPERACION = '{7}',
+			STR_DIM1 = '{8}',
+			STR_DIM2 = '{9}',
+			STR_DIM4 = '{10}',
+			STR_DIM5 = '{11}',
+			STR_PRECIO = '{12}',
+			STR_IMPUESTO = '{13}'
+			WHERE ID = '{14}'
+		</hana>
 	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
 		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='1'</hana>

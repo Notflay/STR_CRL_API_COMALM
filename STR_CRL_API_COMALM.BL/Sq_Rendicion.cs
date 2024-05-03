@@ -62,10 +62,29 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
-                    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR?.CardCode, doc.STR_PROVEEDOR?.LicTradNum,
-                    doc.STR_TIPO_AGENTE?.id, doc.STR_MONEDA?.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC?.id, doc.STR_SERIE_DOC,
-                    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_ANEXO_ADJUNTO, doc.STR_OPERACION, doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR?.CardName, doc.ID);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOC),
+                    doc.STR_RENDICION,
+                    doc.STR_FECHA_CONTABILIZA,
+                    doc.STR_FECHA_DOC,
+                    doc.STR_FECHA_VENCIMIENTO,
+                    doc.STR_PROVEEDOR?.CardCode,
+                    doc.STR_PROVEEDOR?.LicTradNum,
+                    doc.STR_TIPO_AGENTE?.id,
+                    doc.STR_MONEDA?.name,
+                    doc.STR_COMENTARIOS,
+                    doc.STR_TIPO_DOC?.id,
+                    doc.STR_SERIE_DOC,
+                    doc.STR_CORR_DOC,
+                    doc.STR_VALIDA_SUNAT == true ? 1 : 0,
+                    doc.STR_ANEXO_ADJUNTO,
+                    doc.STR_OPERACION,
+                    doc.STR_PARTIDAFLUJO,
+                    doc.STR_TOTALDOC,
+                    doc.STR_PROVEEDOR?.CardName,
+                    doc.STR_DIRECCION,
+                    doc.STR_MOTIVORENDICION.id,
+                    doc.ID
+                    );
 
                 //string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(SQ_Query.get_idDOC), doc.STR_RD_ID.ToString());
                 // La actualización se hará en otro endpoint
@@ -75,15 +94,42 @@ namespace STR_CRL_API_COMALM.BL
                     // Si el detalle fue creado solo actualiza en la tabla 
                     if (e.ID != 0)
                     {
-                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOCDet), e.STR_CODARTICULO?.ItemCode,
-                            e.STR_CODARTICULO?.ItemName, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO?.id, e.STR_PROYECTO?.id,
-                            e.STR_ALMACEN, e.STR_CANTIDAD, e.STR_TPO_OPERACION, e.ID);
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOCDet),
+                        e.STR_CODARTICULO?.ItemCode,
+                        e.STR_CODARTICULO?.ItemName,
+                        e.STR_SUBTOTAL,
+                        e.STR_INDIC_IMPUESTO?.id,
+                        e.STR_PROYECTO?.id,
+                        e.STR_ALMACEN,
+                        e.STR_CANTIDAD,
+                        e.STR_TPO_OPERACION,
+                        e.STR_DIM1.id,
+                        e.STR_DIM2.id,
+                        e.STR_DIM4.id,
+                        e.STR_DIM5.id,
+                        e.STR_PRECIO,
+                        e.STR_IMPUESTO,
+                        e.ID);
                     }
                     else
                     {
-                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt), e.STR_CODARTICULO?.ItemCode,
-                            e.STR_CODARTICULO?.ItemName, e.STR_SUBTOTAL, e.STR_INDIC_IMPUESTO?.id, e.STR_PROYECTO?.name,
-                            e.STR_ALMACEN, e.STR_CANTIDAD, e.STR_TPO_OPERACION, doc.ID);
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt),
+                             e.STR_CODARTICULO?.ItemCode,
+                             e.STR_CODARTICULO.ItemName,
+                             e.STR_SUBTOTAL,
+                             e.STR_INDIC_IMPUESTO.id,
+                             e.STR_DIM1.id,
+                             e.STR_DIM2.id,
+                             e.STR_DIM4.id,
+                             e.STR_DIM5.id,
+                             e.STR_ALMACEN,
+                             e.STR_CANTIDAD,
+                             e.STR_TPO_OPERACION,
+                             e.STR_PROYECTO.id,
+                             e.STR_PRECIO,
+                             e.STR_IMPUESTO,
+                             doc.ID);
+
                     }
                     // Valida si ya tiene creado ID, si es así                     
                 });
@@ -121,11 +167,26 @@ namespace STR_CRL_API_COMALM.BL
                     doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
                     doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
                 */
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOC), doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
-                    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum, doc.STR_MONEDA.name,
-                    doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
-                    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
-                    doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOC),
+                    doc.STR_RENDICION,
+                    doc.STR_FECHA_CONTABILIZA,
+                    doc.STR_FECHA_DOC,
+                    doc.STR_FECHA_VENCIMIENTO,
+                    doc.STR_PROVEEDOR.CardCode,
+                    doc.STR_PROVEEDOR.LicTradNum,
+                    doc.STR_MONEDA.name,
+                    doc.STR_COMENTARIOS,
+                    doc.STR_TIPO_DOC.id,
+                    doc.STR_SERIE_DOC,
+                    doc.STR_CORR_DOC,
+                    doc.STR_VALIDA_SUNAT == true ? 1 : 0,
+                    doc.STR_OPERACION,
+                    doc.STR_PARTIDAFLUJO,
+                    doc.STR_TOTALDOC,
+                    doc.STR_PROVEEDOR.CardName,
+                    doc.STR_MOTIVORENDICION.id,
+                    doc.STR_DIRECCION,
+                    doc.STR_RD_ID);
 
                 string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
@@ -461,6 +522,7 @@ namespace STR_CRL_API_COMALM.BL
                     return new DocumentoDet()
                     {
                         ID = Convert.ToInt32(dc["ID"]),
+
                         STR_CODARTICULO = sq_item.ObtenerItem(dc["STR_CODARTICULO"], dc["STR_DIM2"]).Result.FirstOrDefault() ?? null,
                         STR_DOC_ID = Convert.ToInt32(dc["STR_DOC_ID"]),
                         STR_INDIC_IMPUESTO = sq_item.ObtenerIndicador(dc["STR_INDIC_IMPUESTO"]).Result.FirstOrDefault() ?? null,
@@ -484,6 +546,7 @@ namespace STR_CRL_API_COMALM.BL
                     return new Documento()
                     {
                         ID = Convert.ToInt32(dc["ID"]),
+                        STR_RENDICION = Convert.ToInt32(dc["STR_RENDICION"]),
                         STR_COMENTARIOS = dc["STR_COMENTARIOS"],
                         STR_ANEXO_ADJUNTO = dc["STR_ANEXO_ADJUNTO"],
                         STR_CORR_DOC = dc["STR_CORR_DOC"],
