@@ -171,14 +171,17 @@ C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\r
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\roslyn\vbc.rsp
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\roslyn\VBCSCompiler.exe
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\EPPlus.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Newtonsoft.Json.Bson.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Newtonsoft.Json.dll
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\OfficeOpenXml.Extension.AspNetCore.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.BL.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.EL.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.SL.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.SQ.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\System.Buffers.dll
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\System.IO.Packaging.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\System.Memory.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\System.Net.Http.Formatting.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\System.Numerics.Vectors.dll
@@ -206,6 +209,7 @@ C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\S
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.SL.pdb
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.SL.dll.config
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\STR_CRL_API_COMALM.SQ.pdb
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\EPPlus.xml
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Newtonsoft.Json.xml
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Newtonsoft.Json.Bson.pdb
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\bin\Newtonsoft.Json.Bson.xml

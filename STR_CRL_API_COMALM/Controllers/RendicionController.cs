@@ -2,6 +2,9 @@
 using STR_CRL_API_COMALM.EL.Request;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Net.Http;
+using System;
+using System.Threading.Tasks;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -145,7 +148,7 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
 
-        /*
+        
         [HttpPost]
         [Route("documento/plantilla/{id}")]
         public async Task<IHttpActionResult> PostUpload(int id)
@@ -177,7 +180,7 @@ namespace STR_CRL_API_COMALM.Controllers
 
                 return BadRequest("No se proporcionó ningún archivo.");
             }
-        }*/
+        }
 
         /*
         [HttpGet]

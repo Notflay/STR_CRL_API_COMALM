@@ -136,7 +136,12 @@
 		</hana>
 	</query>
 	<query nameid="ObtenerSolicitudRendicion" definition="I">
-		<hana>SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", * FROM "STR_WEB_SR" T1 INNER JOIN "STR_WEB_ESTADOS" T2 ON T2."ID" = T1."STR_ESTADO" WHERE T1.ID = '{0}'</hana>
+		<hana>
+			SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", *
+			FROM "STR_WEB_SR" T1
+			INNER JOIN "STR_WEB_ESTADOS" T2
+			ON T2."ID" = T1."STR_ESTADO"
+			WHERE T1.STR_NRSOLICITUD = '{0}'</hana>
 	</query>
 	<query nameid="ActualizarSoliRendicion" definition="I">
 		<hana>UPDATE STR_WEB_SR SET "STR_EMPLDREGI" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}', "STR_ESTADO" = '{3}', "STR_EMPLDASIG" = '{4}', "STR_MONEDA" = '{5}', "STR_TIPORENDICION" ='{6}', "STR_MOTIVORENDICIOON" = '{7}', "STR_COMENTARIO" = '{8}', "STR_TOTALSOLICITADO" = '{9}', "STR_MOTIVOMIGR" = '{10}', "STR_DOCENTRY" = '{11}'  WHERE ID = '{12}'</hana>	
@@ -210,9 +215,10 @@
 			STR_RAZONSOCIAL,
 			STR_MOTIVORENDICION,
 			STR_DIRECCION,
+			STR_AFECTACION,
 			STR_RD_ID
 			)
-			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')
+			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}')
 		</hana>
 	</query>
 	<query nameid="InsertRegistroDocDt" definition="I">
@@ -347,8 +353,9 @@
 			STR_TOTALDOC = '{16}',
 			STR_RAZONSOCIAL = '{17}',
 			STR_DIRECCION = '{18}',
-			STR_MOTIVORENDICION = '{19}'
-			WHERE ID = '{20}'
+			STR_MOTIVORENDICION = '{19}',
+			STR_AFECTACION = '{20}'
+			WHERE ID = '{21}'
 		</hana>
 	</query>
 	<query nameid="ActualizarDocumentoDet" definition="I">

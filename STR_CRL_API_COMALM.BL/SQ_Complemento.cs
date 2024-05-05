@@ -1,4 +1,4 @@
-﻿using STR_CRL_API_COMALM.BL.Plantilla;
+﻿using OfficeOpenXml;
 using STR_CRL_API_COMALM.EL;
 using STR_CRL_API_COMALM.SQ;
 using System;
@@ -36,6 +36,48 @@ namespace STR_CRL_API_COMALM.BL
                     DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
                     Result = list
                 };
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+
+                };
+            }
+        }
+
+        public ConsultationResponse<Complemento> ObtenerAfectacion(string id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encontró la afectacion";
+            HanaADOHelper hash = new HanaADOHelper();
+            try
+            {
+                // if (id == "-99") throw new Exception("No se encuentra data con el Field ID " + id.ToString());
+                //lista de afectaciones
+                List<Complemento> list = new List<Complemento>
+                    {
+                        new Complemento { id = "1", name = "Retencion" },
+                        new Complemento { id = "2", name = "Detraccion" }
+                    };
+
+                Complemento complemento = list.FirstOrDefault(c => c.id == id);
+
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = complemento != null ? "00" : "22",
+                    DescRespuesta = complemento != null ? respOk : respIncorrect,
+                    Result = complemento != null ? new List<Complemento> { complemento } : new List<Complemento>()
+                };
+                /*
+                return new ConsultationResponse<Complemento>
+                {
+                    CodRespuesta = list.Count() > 0 ? "00" : "22",
+                    DescRespuesta = list.Count() > 0 ? respOk : respIncorrect,
+                    Result = list
+                };*/
             }
             catch (Exception ex)
             {
@@ -115,7 +157,7 @@ namespace STR_CRL_API_COMALM.BL
                 };
             }
         }
-        /*
+        
         public async Task<ConsultationResponse<Complemento>> UploadPlantillaAsync(HttpContent file, int id)
         {
             Plantilla sq_Plantilla = new Plantilla();
@@ -123,6 +165,7 @@ namespace STR_CRL_API_COMALM.BL
             var respOk = "OK";
             var respIncorrect = "No se encontró plantilla";
             List<Complemento> list = new List<Complemento>();
+
 
             HanaADOHelper hash = new HanaADOHelper();
             try
@@ -154,6 +197,6 @@ namespace STR_CRL_API_COMALM.BL
                 };
             }
         }
-        */
+        
     }
 }

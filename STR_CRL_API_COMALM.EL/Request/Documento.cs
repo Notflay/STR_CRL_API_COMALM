@@ -33,6 +33,7 @@ namespace STR_CRL_API_COMALM.EL.Request
         public string STR_RAZONSOCIAL { get; set; }
         public string STR_DIRECCION { get; set; }
         public Complemento STR_MOTIVORENDICION { get; set; }
+        public Complemento STR_AFECTACION { get; set; }
         public List<DocumentoDet> detalles { get; set; }
     }
 }

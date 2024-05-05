@@ -83,6 +83,7 @@ namespace STR_CRL_API_COMALM.BL
                     doc.STR_PROVEEDOR?.CardName,
                     doc.STR_DIRECCION,
                     doc.STR_MOTIVORENDICION.id,
+                    doc.STR_AFECTACION.id,
                     doc.ID
                     );
 
@@ -186,35 +187,14 @@ namespace STR_CRL_API_COMALM.BL
                     doc.STR_PROVEEDOR.CardName,
                     doc.STR_MOTIVORENDICION.id,
                     doc.STR_DIRECCION,
+                    doc.STR_AFECTACION.id,
                     doc.STR_RD_ID);
 
                 string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
-
-                var test = ("INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO, STR_CONCEPTO, STR_SUBTOTAL, STR_INDIC_IMPUESTO, STR_DIM1, STR_DIM2, STR_DIM4, STR_DIM5, STR_ALMACEN, STR_CANTIDAD, STR_TPO_OPERACION, STR_PROYECTO, STR_PRECIO, STR_IMPUESTO, STR_DOC_ID) VALUES",
-    doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
-    doc.STR_FECHA_DOC, doc.STR_FECHA_VENCIMIENTO, doc.STR_PROVEEDOR.CardCode, doc.STR_PROVEEDOR.LicTradNum, doc.STR_MONEDA.name, doc.STR_COMENTARIOS, doc.STR_TIPO_DOC.id, doc.STR_SERIE_DOC,
-    doc.STR_CORR_DOC, doc.STR_VALIDA_SUNAT == true ? 1 : 0, doc.STR_OPERACION,
-    doc.STR_PARTIDAFLUJO, doc.STR_TOTALDOC, doc.STR_PROVEEDOR.CardName, doc.STR_RD_ID);
                 
 
                 doc.detalles.ForEach((e) =>
                 {
-                    var test2 = ("INSERT INTO STR_WEB_DOC_DET(STR_CODARTICULO, STR_CONCEPTO, STR_SUBTOTAL, STR_INDIC_IMPUESTO, STR_DIM1, STR_DIM2, STR_DIM4, STR_DIM5, STR_ALMACEN, STR_CANTIDAD, STR_TPO_OPERACION, STR_PROYECTO, STR_PRECIO, STR_IMPUESTO, STR_DOC_ID) VALUES",
-                         e.STR_CODARTICULO?.ItemCode,
-                         e.STR_CODARTICULO.ItemName,
-                         e.STR_SUBTOTAL,
-                         e.STR_INDIC_IMPUESTO.id,
-                         e.STR_DIM1.id,
-                         e.STR_DIM2.id,
-                         e.STR_DIM4.id,
-                         e.STR_DIM5.id,
-                         e.STR_ALMACEN,
-                         e.STR_CANTIDAD,
-                         e.STR_TPO_OPERACION,
-                         e.STR_PROYECTO.id,
-                         e.STR_PRECIO,
-                         e.STR_IMPUESTO,
-                         idDoc);
 
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt), 
                         e.STR_CODARTICULO?.ItemCode,
@@ -568,7 +548,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_MOTIVORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_MOTIVORENDICION"]),
                         //STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),
                         STR_TOTALDOC = Convert.ToDouble(dc["STR_TOTALDOC"]),
-
+                        STR_AFECTACION = sQ_Complemento.ObtenerAfectacion(dc["STR_AFECTACION"]).Result[0],
                         detalles = listDet
                     };
                 }, id).ToList();

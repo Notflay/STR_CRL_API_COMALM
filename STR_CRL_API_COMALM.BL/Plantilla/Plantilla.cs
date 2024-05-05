@@ -6,18 +6,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OfficeOpenXml;
 
-namespace STR_CRL_API_COMALM.BL.Plantilla
+namespace STR_CRL_API_COMALM.BL
 {
     public class Plantilla
     {
-        /*
+        
         public static readonly string ruta = "D:\\Chamba Backend\\Electro Peru\\Plantillas\\PlantillaPortalEAR - Importacion 1.xlsx";
         public ExcelPackage package = null;
 
         public List<Documento> ObtienePlantilla(ExcelPackage excel, int id)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
             package = new ExcelPackage();
             package = excel;
@@ -118,13 +119,13 @@ namespace STR_CRL_API_COMALM.BL.Plantilla
                 {
                     DocumentoDet documentoDet = new DocumentoDet()
                     {
-                        STR_CODARTICULO = new EL.Responses.Item { id = det.Cells[row, 2].Text, posFinanciera = det.Cells[row, 7].Text },
+                        STR_CODARTICULO = new EL.Response.Articulo { ItemCode = det.Cells[row, 2].Text, ItemName = det.Cells[row, 7].Text },
                         STR_SUBTOTAL = Convert.ToDouble(det.Cells[row, 3].Text),
                         STR_INDIC_IMPUESTO = new Complemento { id = det.Cells[row, 4].Text },
                         STR_PROYECTO = new Complemento { name = det.Cells[row, 5].Text },
-                        STR_CENTCOSTO = new CentroCosto { CostCenter = det.Cells[row, 6].Text },
+                        //STR_CENTCOSTO = new CentroCosto { CostCenter = det.Cells[row, 6].Text },
                         //STR_POS_FINANCIERA = new Complemento { id = det.Cells[row, 7].Text },
-                        STR_CUP = new Cup { U_CUP = det.Cells[row, 8].Text },
+                        //STR_CUP = new Cup { U_CUP = det.Cells[row, 8].Text },
                         STR_ALMACEN = almacen,
                         STR_TPO_OPERACION = tpoOpe,
                         STR_CANTIDAD = cantidad
@@ -140,10 +141,10 @@ namespace STR_CRL_API_COMALM.BL.Plantilla
             Sq_Rendicion sq = new Sq_Rendicion();
 
             var data = sq.ObtenerRendicion(id.ToString()).Result[0];
-            almacen = data.STR_EMPLEADO_ASIGNADO.fax;
+            //almacen = data.STR_EMPLEADO_ASIGNADO.fax;
             tpoRendicion = "1";//data.SOLICITUDRD.STR_TIPORENDICION;
 
-        }*/
+        }
     
     }
 }

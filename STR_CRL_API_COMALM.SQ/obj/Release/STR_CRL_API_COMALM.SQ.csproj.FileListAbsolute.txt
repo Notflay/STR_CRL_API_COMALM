@@ -11,7 +11,11 @@ C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\ob
 C:\Users\sebastian.poma\Source\Repos\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.pdb
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\STR_CRL_API_COMALM.SQ.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\STR_CRL_API_COMALM.SQ.pdb
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\EPPlus.dll
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\OfficeOpenXml.Extension.AspNetCore.dll
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\System.IO.Packaging.dll
+C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\EPPlus.xml
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.pdb
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.xml
 C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.dll.config

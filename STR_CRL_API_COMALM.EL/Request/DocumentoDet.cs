@@ -27,6 +27,7 @@ namespace STR_CRL_API_COMALM.EL.Request
 
         public decimal? STR_PRECIO { get; set; } //crealo
         public decimal? STR_IMPUESTO { get; set; } //crealo
+        
         //public Complemento STR_MOTIVORENDICION { get; set; }
     }
 }
