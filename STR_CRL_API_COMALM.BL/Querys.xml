@@ -141,7 +141,16 @@
 			FROM "STR_WEB_SR" T1
 			INNER JOIN "STR_WEB_ESTADOS" T2
 			ON T2."ID" = T1."STR_ESTADO"
-			WHERE T1.STR_NRSOLICITUD = '{0}'</hana>
+			WHERE T1.ID = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerSolicitudRendicionAcep" definition="I">
+		<hana>
+			SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", *
+			FROM "STR_WEB_SR" T1
+			INNER JOIN "STR_WEB_ESTADOS" T2
+			ON T2."ID" = T1."STR_ESTADO"
+			WHERE T1.STR_NRSOLICITUD = '{0}'
+		</hana>
 	</query>
 	<query nameid="ActualizarSoliRendicion" definition="I">
 		<hana>UPDATE STR_WEB_SR SET "STR_EMPLDREGI" = '{0}', "STR_NRSOLICITUD" = '{1}', "STR_NRRENDICION" = '{2}', "STR_ESTADO" = '{3}', "STR_EMPLDASIG" = '{4}', "STR_MONEDA" = '{5}', "STR_TIPORENDICION" ='{6}', "STR_MOTIVORENDICIOON" = '{7}', "STR_COMENTARIO" = '{8}', "STR_TOTALSOLICITADO" = '{9}', "STR_MOTIVOMIGR" = '{10}', "STR_DOCENTRY" = '{11}'  WHERE ID = '{12}'</hana>	
@@ -272,7 +281,7 @@
 			LEFT JOIN "STR_WEB_USRPRTRL" T5 ON T5."STR_IDUSUARIO" = T4."STR_IDUSUARIO"
 			LEFT JOIN OHEM T3 ON T3."empID"
 			= T0."STR_USUARIOID" WHERE T5."STR_IDROL" = '{0}'
-			AND T2."ID" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
+			AND T2."STR_SOLICITUD" = '{1}' AND T0."APROBACIONFINALIZADA" = '{2}'
 		</hana>
 	</query>
 	<query nameid="RevertirEstadoRD" definition="I">
@@ -379,7 +388,22 @@
 			WHERE ID = '{14}'
 		</hana>
 	</query>
+	<query nameid="EliminarDocumentoDet" definition="I">
+		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>
+	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
 		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='1'</hana>
 	</query>
+	<query nameid="CambiarEstadoRDCargaDocs" definition="I">
+		<hana>UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}' WHERE "ID" = {1}</hana>
+	</query>
+	
+	<query nameid="ContarDocumentosDuplicados" definition="I">
+		<hana>SELECT COUNT(*) FROM "STR_WEB_DOC" WHERE "STR_RUC" = '{0}' AND "STR_SERIE_DOC" = '{1}' AND "STR_CORR_DOC" = '{2}'</hana>
+	</query>
+
+	<query nameid="anularModoEdicionRD" definition="I">
+		<hana>UPDATE "STR_WE_RD" SET "STR_EDIT" = '0' WHERE ID = '{0}'</hana>
+	</query>
+	
 </root>

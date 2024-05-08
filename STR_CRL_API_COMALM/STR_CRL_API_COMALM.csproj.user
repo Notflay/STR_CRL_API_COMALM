@@ -8,7 +8,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <NameOfLastUsedPublishProfile>C:\Users\adrian.mamani\Documents\ear\STR_CRL_API_COMALM\STR_CRL_API_COMALM\Properties\PublishProfiles\FolderProfile1.pubxml</NameOfLastUsedPublishProfile>
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>

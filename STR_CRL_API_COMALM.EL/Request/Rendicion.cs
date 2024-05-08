@@ -26,6 +26,7 @@ namespace STR_CRL_API_COMALM.EL.Request
         public Usuario STR_EMPLEADO_ASIGNADO { get; set; }
         public Complemento STR_ESTADO_INFO { get; set; }
         public SolicitudRd SOLICITUDRD { get; set; }
+        public string STR_EDIT { get; set; }
         public List<Documento> documentos { get; set; }
 
     }

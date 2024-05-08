@@ -296,6 +296,7 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+        */
         [HttpPost]
         [Route("documento/validacion/{id}")]
         public IHttpActionResult Validacion(int id)
@@ -309,7 +310,7 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
-
+        /*
         [HttpDelete]
         [Route("documento/detalle")]
         public IHttpActionResult DeleteDet(int id, int docId)

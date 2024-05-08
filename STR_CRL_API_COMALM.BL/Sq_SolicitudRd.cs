@@ -89,7 +89,7 @@ namespace STR_CRL_API_COMALM.BL
             {
                 var test = ("SELECT T2.\"DESCRIPCION\" AS \"STR_ESTADO_INFO\",T1.\"ID\" AS \"IdSolicitud\", * FROM \"STR_WEB_SR\" T1 INNER JOIN \"STR_WEB_ESTADOS\" T2 ON T2.\"ID\" = T1.\"STR_ESTADO\" WHERE T1.ID =",
                     2);
-                List <SolicitudRd> list = hash.GetResultAsType(SQ_QueryManager.Generar(create == "PWB" ? Sq_Query.get_solicitudEar : Sq_Query.get_solicitudEar), dc =>
+                List <SolicitudRd> list = hash.GetResultAsType(SQ_QueryManager.Generar(create == "PWB" ? Sq_Query.get_solicitudEar : Sq_Query.get_solicitudEar2), dc =>
                 {
                     return new SolicitudRd()
                     {

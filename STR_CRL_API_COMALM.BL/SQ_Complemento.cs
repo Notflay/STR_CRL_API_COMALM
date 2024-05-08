@@ -60,10 +60,15 @@ namespace STR_CRL_API_COMALM.BL
                 List<Complemento> list = new List<Complemento>
                     {
                         new Complemento { id = "1", name = "Retencion" },
-                        new Complemento { id = "2", name = "Detraccion" }
-                    };
+                        new Complemento { id = "2", name = "Detraccion" },
+                        new Complemento { id = "3", name = "-" }
+            };
 
                 Complemento complemento = list.FirstOrDefault(c => c.id == id);
+
+                if (complemento == null) {
+                    complemento = new Complemento { id = "3", name = "-" };
+                        }
 
                 return new ConsultationResponse<Complemento>
                 {

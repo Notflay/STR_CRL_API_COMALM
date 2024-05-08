@@ -112,6 +112,7 @@ namespace STR_CRL_API_COMALM.BL
                         e.STR_IMPUESTO,
                         e.ID);
                     }
+
                     else
                     {
                         hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertDOCDt),
@@ -131,6 +132,10 @@ namespace STR_CRL_API_COMALM.BL
                              e.STR_IMPUESTO,
                              doc.ID);
 
+                    }
+                    if (Convert.ToInt32(e.FLG_ELIM) == 1)
+                    {
+                        hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.del_idDOCDet), e.ID);
                     }
                     // Valida si ya tiene creado ID, si es así                     
                 });
@@ -216,6 +221,8 @@ namespace STR_CRL_API_COMALM.BL
                          idDoc);
                 });
 
+                //hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_stateRDLoadDocs_RD), "9", doc.STR_RD_ID); 
+
                 hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
 
                 Complemento complemento = new Complemento()
@@ -294,7 +301,7 @@ namespace STR_CRL_API_COMALM.BL
             try
             {
 
-                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB").Result[0]; // Parametro Area y Id de la solicitud
+                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB2").Result[0]; // Parametro Area y Id de la solicitud
                 string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_MOTIVORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
@@ -306,7 +313,7 @@ namespace STR_CRL_API_COMALM.BL
 
                 // Valide que se encuentre en la lista de aprobadores pendientes
                 listaAprobados = new List<Aprobador>();
-                listaAprobados = ObtieneListaAprobadores(estado == 10 ? "2" : "3", rendicionId.ToString(), "0");
+                listaAprobados = ObtieneListaAprobadores(estado == 10 ? "2" : "3", solicitudRD.STR_NRSOLICITUD.ToString(), "0");
                 existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
 
                 if (existeAprobador)
@@ -355,9 +362,10 @@ namespace STR_CRL_API_COMALM.BL
 
                             list.Add(createResponse);
 
-
+                            /*
                             envio.EnviarInformativo(rendicion.STR_EMPLEADO_ASIGNADO.email, rendicion.STR_EMPLEADO_ASIGNADO.nombres, false,
                                 rendicion.ID.ToString(), rendicion.STR_NRRENDICION, DateTime.Now.ToString("dd/MM/yyyy"), true, "");
+                            */
                             return Global.ReturnOk(list, respIncorrect);
                         }
                         else
@@ -421,7 +429,7 @@ namespace STR_CRL_API_COMALM.BL
                             CardCode = doc.STR_PROVEEDOR.CardCode,
                             CardName = doc.STR_PROVEEDOR.CardName,
                             RUC = doc.STR_PROVEEDOR.LicTradNum,
-                            Comentarios = doc.STR_COMENTARIOS,
+                            //Comentarios = doc.STR_COMENTARIOS,
                             TipoDocumento = doc.STR_TIPO_DOC.id,
                             SerieDocumento = doc.STR_SERIE_DOC,
                             CorrelativoDocumento = doc.STR_CORR_DOC.PadLeft(8, '0'),
@@ -440,9 +448,13 @@ namespace STR_CRL_API_COMALM.BL
                             TipoOperacion = doc.STR_OPERACION == "1" ? "01" : doc.STR_OPERACION,
                             Almacen = d.STR_ALMACEN,
                             Cantidad = d.STR_CANTIDAD,
-                            Retencion = doc.STR_TIPO_AGENTE.id == "0" ? "N" : doc.STR_TIPO_AGENTE.id == "1" ? "Y" : "N",
+                            //Retencion = doc.STR_TIPO_AGENTE.id == "0" ? "N" : doc.STR_TIPO_AGENTE.id == "1" ? "Y" : "N",
                             // Valores de la migración 
                             RutaAdjunto = doc.STR_ANEXO_ADJUNTO,
+                            UnidadNegocio = d.STR_DIM1.id,
+                            Filial = d.STR_DIM2.id,
+                            Area = d.STR_DIM4.id,
+                            CentroCosto = d.STR_DIM5.id,
                             // Valores por Defecto
                             U_CE_ESTD = "CRE",
                             U_CE_SLCC = "Y",
@@ -453,35 +465,35 @@ namespace STR_CRL_API_COMALM.BL
                 });
             });
 
-            RendicionSerializer body = new RendicionSerializer()
-            {
-                NumRendicion = rendicion.STR_NRRENDICION,
-                Moneda = rendicion.documentos[0].STR_MONEDA.id,
-                FechaCargaDocs = DateTime.Now.ToString("yyyy-MM-dd"),   // Por Defecto se asigna del día de hoy
-                DocsTotal = rendicion.STR_TOTALRENDIDO,
+            RendicionSerializer body = new RendicionSerializer();
 
-                SaldoApertura = rendicion.STR_TOTALAPERTURA,
-                //UsuarioEARCod = rendicion.STR_EMPLEADO_ASIGNADO.numeroEAR,
 
-                // Valores de la migración
-                //PrimerAutorizador = aprobadores[1].aprobadorNombre,
-                //SegundoAutorizador = aprobadores.Count > 2 ? aprobadores[2].aprobadorNombre : null,
-                //ContableAutorizador = aprobadores[0].aprobadorNombre,
-                // valores en defecto
-                Estado = "G",
-                TipoActividad = "G",                                    // por defecto se asigna G
-                SaldoFinal = 0.0,
-                TipoRendicion = "EAR",
+            body.NumRendicion = rendicion.STR_NRRENDICION;
+            body.Moneda = rendicion.documentos[0].STR_MONEDA.id;
+            body.FechaCargaDocs = DateTime.Now.ToString("yyyy-MM-dd");   // Por Defecto se asigna del día de hoy
+           body.DocsTotal = rendicion.STR_TOTALRENDIDO;
 
-                U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString(),
-                U_STR_WEB_PRIID = aprobadores[1].aprobadorId.ToString(),
-                U_STR_WEB_SEGID = aprobadores.Count > 2 ? aprobadores[2].aprobadorId.ToString() : null,
-                U_STR_WEB_CONID = aprobadores[0].aprobadorId.ToString(),
-                //U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString(),
+            body.SaldoApertura = rendicion.STR_TOTALAPERTURA;
+            //UsuarioEARCod = rendicion.STR_EMPLEADO_ASIGNADO.numeroEAR,
 
-                STR_EARCRGDETCollection = detalles
-            };
+            // Valores de la migración
+            //PrimerAutorizador = aprobadores[1].aprobadorNombre,
+            //SegundoAutorizador = aprobadores.Count > 2 ? aprobadores[2].aprobadorNombre : null,
+            //ContableAutorizador = aprobadores[0].aprobadorNombre,
+            // valores en defecto
+            body.Estado = "G";
+            body.TipoActividad = "G";                                  // por defecto se asigna G
+            body.SaldoFinal = 0.0;
+            body.TipoRendicion = "EAR";
 
+            body.U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString();
+            body.U_STR_WEB_PRIID = aprobadores[1].aprobadorId.ToString();
+            body.U_STR_WEB_SEGID = aprobadores.Count > 2 ? aprobadores[2].aprobadorId.ToString() : null;
+            body.U_STR_WEB_CONID = aprobadores[0].aprobadorId.ToString();
+            //U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString(),
+
+            body.STR_EARCRGDETCollection = detalles;
+            
             B1SLEndpoint sl = new B1SLEndpoint();
             string json = JsonConvert.SerializeObject(body);
             IRestResponse response = sl.CreateCargaDocumentos(json);
@@ -648,7 +660,8 @@ namespace STR_CRL_API_COMALM.BL
                         STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
                         STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
                         STR_EMPLEADO_ASIGNADO = sQ_Usuario.getUsuarioId("1",dc["STR_EMPLDASIG"]),
-                       SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWB", false).Result[0],
+                        SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWB", false).Result[0],
+                        STR_EDIT = (dc["STR_EDIT"]),
                         documentos = ObtenerDocumentos(dc["ID"]).Result
                     };
                 }, id).ToList();
@@ -763,7 +776,7 @@ namespace STR_CRL_API_COMALM.BL
                 hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.post_insertAprobadoresRD), idRendicion, usuarioId.ToString(), null, null, 0, estado == 9 ? aprobadores[aprobadores.Count == 2 ? 1 : 2] : estado == 11 ? aprobadores[0] : aprobadores[1]);
 
                 aprobadors = new List<Aprobador>();
-                aprobadors = ObtieneListaAprobadores(estado == 9 ? "2" : "3", idRendicion, "0"); // Autorizadores, solicitud, estado
+                aprobadors = ObtieneListaAprobadores(estado == 9 ? "2" : "3", solicitudRD.ID.ToString(), "0"); // Autorizadores, solicitud, estado
 
                 if (aprobadors.Count < 1)
                     throw new Exception("No se encontró Aprobadores");
@@ -779,6 +792,8 @@ namespace STR_CRL_API_COMALM.BL
                         a.fechaRegistro, estado == 9 ? "10" : estado.ToString(), a.area.ToString(), a.aprobadorId.ToString(), solicitudRD.ID.ToString(), solicitudRD.STR_AREA);
                     }
                 });
+
+                hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_AnularModeEditRD), idRendicion);
 
                 response = new List<AprobadorResponse> { new AprobadorResponse() {
                      aprobadores = aprobadores.Count()
@@ -1131,7 +1146,7 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
-
+        */
         public ConsultationResponse<Complemento> ValidacionDocumento(int id)
         {
 
@@ -1145,23 +1160,38 @@ namespace STR_CRL_API_COMALM.BL
                 doc = ObtenerDocumento(id.ToString()).Result[0];
 
                 if (doc.STR_PROVEEDOR == null) CamposVacios.Add("Proveedor");
-                if (doc.STR_TIPO_AGENTE == null) CamposVacios.Add("Retención o Detracción");
+                //if (doc.STR_TIPO_AGENTE == null) CamposVacios.Add("Retención o Detracción");
                 if (doc.STR_MONEDA == null) CamposVacios.Add("Moneda");
                 // if (doc.STR_COMENTARIOS == null) CamposVacios.Add("Moneda");
                 if (doc.STR_TIPO_DOC == null) CamposVacios.Add("Tipo de Documento");
                 if (string.IsNullOrEmpty(doc.STR_SERIE_DOC)) CamposVacios.Add("Serie de Documento");
                 if (string.IsNullOrEmpty(doc.STR_CORR_DOC)) CamposVacios.Add("Correlativo de Documento");
-                if (doc.STR_VALIDA_SUNAT == false) CamposVacios.Add("Validación SUNAT");
-                if (string.IsNullOrEmpty(doc.STR_ANEXO_ADJUNTO)) CamposVacios.Add("Adjunto");
+                //if (doc.STR_VALIDA_SUNAT == false) CamposVacios.Add("Validación SUNAT");
+                //if (string.IsNullOrEmpty(doc.STR_ANEXO_ADJUNTO)) CamposVacios.Add("Adjunto");
+
+                int contDuplicateDocs = Convert.ToInt32(hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_duplicated_docs), doc.STR_PROVEEDOR.LicTradNum, doc.STR_SERIE_DOC, doc.STR_CORR_DOC));
+                if (contDuplicateDocs > 1) CamposVacios.Add("Ya existe un Documento con RUC, SERIE y CORRELATIVO iguales");
 
                 doc.detalles.ForEach((e) =>
                 {
-                    if (e.STR_CODARTICULO == null) { CamposVacios.Add("Nivel detalle"); return; }
-                    if (e.STR_INDIC_IMPUESTO == null) { CamposVacios.Add("Nivel detalle"); return; }
+                    if (e.STR_CODARTICULO == null) { CamposVacios.Add("Nivel detalle 1"); return; }
+                    if (e.STR_INDIC_IMPUESTO == null) { CamposVacios.Add("Nivel detalle 2"); return; }
                     // if (e.STR_PROYECTO == null) { CamposVacios.Add("Nivel detalle"); return; }
-                    if (e.STR_CENTCOSTO == null) { CamposVacios.Add("Nivel detalle"); return; }
-                    if (e.STR_POS_FINANCIERA == null) { CamposVacios.Add("Nivel detalle"); return; }
-                    if (e.STR_CUP == null) { CamposVacios.Add("Nivel detalle"); return; }
+                    if (e.STR_DIM1 == null) { CamposVacios.Add("Nivel detalle 3"); return; }
+                    if (e.STR_DIM2 == null) { CamposVacios.Add("Nivel detalle 4"); return; }
+                    //if (e.STR_DIM3 == null) { CamposVacios.Add("Nivel detalle"); return; }
+                    if (e.STR_DIM4 == null) { CamposVacios.Add("Nivel detalle 5"); return; }
+                    if (e.STR_DIM5 == null) { CamposVacios.Add("Nivel detalle 6"); return; }
+                    if (e.STR_SUBTOTAL == 0) { CamposVacios.Add("Nivel detalle 7"); return; }
+                    if (e.STR_ALMACEN == null) { CamposVacios.Add("Nivel detalle 8"); return; }
+                    if (e.STR_CANTIDAD == 0) { CamposVacios.Add("Nivel detalle 9"); return; }
+                    //if (e.STR_TPO_OPERACION == null) { CamposVacios.Add("Nivel detalle"); return; }
+                    if (e.STR_DOC_ID == 0) { CamposVacios.Add("Nivel detalle 10"); return; }
+                    //if (e.STR_CONCEPTO == null) { CamposVacios.Add("Nivel detalle"); return; }
+                    if (e.STR_PROYECTO == null) { CamposVacios.Add("Nivel detalle 11"); return; }
+                    if (e.STR_PRECIO == 0) { CamposVacios.Add("Nivel detalle 12"); return; }
+                    if (e.STR_IMPUESTO == 0) { CamposVacios.Add("Nivel detalle 13"); return; }
+
                 });
 
                 if (doc.detalles.Count == 0) CamposVacios.Add("Lineas de Detalle");
@@ -1169,7 +1199,16 @@ namespace STR_CRL_API_COMALM.BL
                 if (CamposVacios.Count > 0)
                 {
                     string CamposErroneos = string.Join(", ", CamposVacios);
-                    respIncorrect += $" {doc.STR_SERIE_DOC + "-" + doc.STR_CORR_DOC} | Faltan completar campos de " + CamposErroneos;
+                   
+                    if (contDuplicateDocs > 1)
+                    {
+                        respIncorrect += $" {doc.STR_SERIE_DOC + "-" + doc.STR_CORR_DOC} | " + CamposErroneos + $" al documento con ID : {doc.ID}";
+                    }
+                    else
+                    {
+                        respIncorrect += $" {doc.STR_SERIE_DOC + "-" + doc.STR_CORR_DOC} | Faltan completar campos de " + CamposErroneos;
+                    }
+
                     throw new Exception(respIncorrect);
                 };
                 Complemento complemento = new Complemento()
@@ -1186,6 +1225,7 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+        /*
         public ConsultationResponse<Complemento> BorrarDetalleDcoumento(int id, int docId)
         {
             var respIncorrect = "No se pudo eliminar Detalle de Documento";
