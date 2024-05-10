@@ -22,7 +22,7 @@ namespace STR_CRL_API_COMALM.BL
 
             if (xQRY != null)
             {
-                switch (xQRY.Attribute("definition").Value)
+                 switch (xQRY.Attribute("definition").Value)
                 {
                     case "I":
                         return xQRY.Element("hana").Value;

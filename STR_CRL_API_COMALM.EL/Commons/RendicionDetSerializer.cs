@@ -31,13 +31,13 @@ namespace STR_CRL_API_COMALM.EL.Commons
         */
         [JsonProperty("U_DUM1_OcrCode")]
         public string UnidadNegocio { get; set; }
-        [JsonProperty("U_DUM1_ItemCode")]
+        [JsonProperty("U_DUM1_OcrCode2")]
         public string Filial { get; set; }
-        [JsonProperty("U_DUM1_ItemCode2")]
+        [JsonProperty("U_DUM1_OcrCode4")]
         public string Area { get; set; }
-        [JsonProperty("U_DUM1_ItemCode4")]
+        [JsonProperty("U_DUM1_OcrCode5")]
         public string CentroCosto { get; set; }
-        [JsonProperty("U_DUM1_ItemCode5")]
+        [JsonProperty("U_DUM1_ItemCode")]
         public string ItemCode { get; set; }
         [JsonProperty("U_ODUM_CardCode")]
         public string CardCode { get; set; }
