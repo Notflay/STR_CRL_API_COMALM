@@ -286,7 +286,7 @@
 	</query>
 	<query nameid="RevertirEstadoRD" definition="I">
 		<hana>
-			CALL REVERTIR_APR_RD({0})
+			CALL STR_PW_REVERTIR_APR_RD({0})
 		</hana>
 	</query>
 	<query nameid="ObtenerEstadoEditRD" definition="I">
