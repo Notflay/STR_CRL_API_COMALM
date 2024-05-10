@@ -25,7 +25,7 @@ namespace STR_CRL_API_COMALM.EL.Request
         public string STR_ANEXO_ADJUNTO { get; set; }
         public string STR_OPERACION { get; set; }
         public int? STR_PARTIDAFLUJO { get; set; }
-        public double STR_TOTALDOC { get; set; }
+        public double?STR_TOTALDOC { get; set; }
         public int STR_RD_ID { get; set; }
         public int STR_CANTIDAD { get; set; }
         public string STR_ALMACEN { get; set; }

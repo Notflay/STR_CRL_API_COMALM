@@ -173,7 +173,7 @@ namespace STR_CRL_API_COMALM.BL
 
 
             HanaADOHelper hash = new HanaADOHelper();
-            try
+            try 
             {
 
                 var stream = await file.ReadAsStreamAsync();

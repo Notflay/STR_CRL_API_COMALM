@@ -538,7 +538,7 @@ namespace STR_CRL_API_COMALM.BL
                     return new Documento()
                     {
                         ID = Convert.ToInt32(dc["ID"]),
-                        STR_RENDICION = Convert.ToInt32(dc["STR_RENDICION"]),
+                        //STR_RENDICION = Convert.ToInt32(dc["STR_RENDICION"]),
                         STR_COMENTARIOS = dc["STR_COMENTARIOS"],
                         STR_ANEXO_ADJUNTO = dc["STR_ANEXO_ADJUNTO"],
                         STR_CORR_DOC = dc["STR_CORR_DOC"],
@@ -551,7 +551,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_PROVEEDOR = dc["STR_PROVEEDOR"] == "" ? null : ObtieneProveedorPrev(dc["STR_PROVEEDOR"], dc["STR_RUC"], dc["STR_RAZONSOCIAL"]),
                         STR_SERIE_DOC = dc["STR_SERIE_DOC"],
                         STR_VALIDA_SUNAT = Convert.ToUInt16(dc["STR_VALIDA_SUNAT"]) == 1,
-                        //STR_TIPO_AGENTE = dc["STR_TIPO_AGENTE"] == "" ? null : ObtenTipoAgente(dc["STR_TIPO_AGENTE"]),
+                        //SR_TIPO_AGENTE = dc["STR_TIPO_AGENTE"] == "" ? null : ObtenTipoAgente(dc["STR_TIPO_AGENTE"]),
                         STR_TIPO_DOC = dc["STR_TIPO_DOC"] == "" ? null : sQ_Complemento.ObtenerTpoDocumento(dc["STR_TIPO_DOC"]).Result[0],
                         STR_RD_ID = Convert.ToInt32(dc["STR_RD_ID"]),
                         STR_DIRECCION = dc["STR_DIRECCION"],
