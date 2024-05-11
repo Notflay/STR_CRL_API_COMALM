@@ -660,7 +660,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
                         STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
                         STR_EMPLEADO_ASIGNADO = sQ_Usuario.getUsuarioId("1",dc["STR_EMPLDASIG"]),
-                        SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWB", false).Result[0],
+                        SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWR", false).Result[0],
                         STR_EDIT = (dc["STR_EDIT"]),
                         documentos = ObtenerDocumentos(dc["ID"]).Result
                     };
