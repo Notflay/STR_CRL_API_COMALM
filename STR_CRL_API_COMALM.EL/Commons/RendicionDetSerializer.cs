@@ -67,16 +67,21 @@ namespace STR_CRL_API_COMALM.EL.Commons
         public string CardName { get; set; }
         [JsonProperty("U_CE_ESTD")]
         public string U_CE_ESTD { get; set; }
-        /*
+        
         [JsonProperty("U_ODUM_Comments")]
         public string Comentarios { get; set; }
-        */
+        
         //[JsonProperty("U_ODUM_U_CNCUP")]
         //public string CUP { get; set; }
         [JsonProperty("U_CE_RTNC")]
         public string Retencion { get; set; }
+        [JsonProperty("U_ODUM_U_STR_WtLiable")]
+        public string EsRetencion { get; set; }
+        [JsonProperty("U_ODUM_U_STR_Detraccion")]
+        public string EsDetraccion { get; set; }
+
         //[JsonProperty("U_ER_PW_RUTAD")]
-        
+
         //public string RutaAdjunto { get; set; }
 
     }

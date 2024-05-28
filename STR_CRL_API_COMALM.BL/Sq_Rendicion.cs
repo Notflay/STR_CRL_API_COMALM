@@ -421,15 +421,36 @@ namespace STR_CRL_API_COMALM.BL
                 doc = ObtenerDocumento(e.ID.ToString()).Result[0];
                 doc.detalles?.ForEach((d) =>
                 {
+                    string esRetencion="N", esDetraccion="N";
+                    switch (doc.STR_AFECTACION.id)
+                    {
+                        case "1":
+                            esRetencion = "Y";
+                            esDetraccion = "N";
+                            break;
+                        case "2":
+                            esRetencion = "N";
+                            esDetraccion = "Y";
+                            break;
+                        case "3":
+                            esRetencion = "N";
+                            esDetraccion = "N";
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida");
+                            break;
+                    }
                     detalles.Add(
                         new RendicionDetSerializer()
                         {
                             // doc = Cabecera
                             // d = detalle 
+                            EsRetencion = esRetencion,
+                            EsDetraccion = esDetraccion,
                             CardCode = doc.STR_PROVEEDOR.CardCode,
                             CardName = doc.STR_PROVEEDOR.CardName,
                             RUC = doc.STR_PROVEEDOR.LicTradNum,
-                            //Comentarios = doc.STR_COMENTARIOS,
+                            Comentarios = doc.STR_COMENTARIOS,
                             TipoDocumento = doc.STR_TIPO_DOC.id,
                             SerieDocumento = doc.STR_SERIE_DOC,
                             CorrelativoDocumento = doc.STR_CORR_DOC.PadLeft(8, '0'),
