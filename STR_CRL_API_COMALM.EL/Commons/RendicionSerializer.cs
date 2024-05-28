@@ -10,6 +10,7 @@ namespace STR_CRL_API_COMALM.EL.Commons
     public class RendicionSerializer
     {
         [JsonProperty("Creator")]
+
         public string Creador { get; set; }
         [JsonProperty("U_CE_MNDA")]
         public string Moneda { get; set; }
@@ -31,10 +32,12 @@ namespace STR_CRL_API_COMALM.EL.Commons
         public string TipoRendicion { get; set; }       // EAR
         [JsonProperty("U_CE_ESTADO")]
         public string Estado { get; set; }
-        public string U_STR_WEB_EMPASIG { get; set; }
-        public string U_STR_WEB_PRIID { get; set; }
-        public string U_STR_WEB_SEGID { get; set; }
-        public string U_STR_WEB_CONID { get; set; }
+        
+        //public string U_STR_WEB_EMPASIG { get; set; }
+        //public string U_STR_WEB_PRIID { get; set; }
+        //public string U_STR_WEB_SEGID { get; set; }
+        //public string U_STR_WEB_CONID { get; set; }
+        
         //[JsonProperty("U_STR_WEB_AUTPRI")]
         //public string PrimerAutorizador { get; set; }
         //[JsonProperty("U_STR_WEB_AUTSEG")]

@@ -1,0 +1,14 @@
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\STR_CRL_API_COMALM.SQ.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\STR_CRL_API_COMALM.SQ.pdb
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\EPPlus.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\OfficeOpenXml.Extension.AspNetCore.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\System.IO.Packaging.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\EPPlus.xml
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.xml
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\bin\Release\Sap.Data.Hana.v4.5.dll.config
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.csproj.AssemblyReference.cache
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.csproj.CoreCompileInputs.cache
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.csproj.CopyComplete
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.SQ\obj\Release\STR_CRL_API_COMALM.SQ.pdb

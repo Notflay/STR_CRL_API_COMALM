@@ -242,11 +242,10 @@
 			STR_DIM5,
 			STR_ALMACEN,
 			STR_CANTIDAD,
-			STR_TPO_OPERACION,
 			STR_PROYECTO,
 			STR_PRECIO,
 			STR_IMPUESTO,
-			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}')</hana>
+			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumentos" definition="I">
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
@@ -392,7 +391,7 @@
 		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>
 	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
-		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='1'</hana>
+		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='001'</hana>
 	</query>
 	<query nameid="CambiarEstadoRDCargaDocs" definition="I">
 		<hana>UPDATE "STR_WEB_RD" SET "STR_ESTADO" = '{0}' WHERE "ID" = {1}</hana>

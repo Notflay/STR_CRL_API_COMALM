@@ -213,7 +213,7 @@ namespace STR_CRL_API_COMALM.BL
                          //e.STR_PROYECTO.name,
                          e.STR_ALMACEN,
                          e.STR_CANTIDAD, 
-                         e.STR_TPO_OPERACION,
+                         //e.STR_TPO_OPERACION,
                          e.STR_PROYECTO.id,
                          e.STR_PRECIO,
                          e.STR_IMPUESTO,
@@ -301,7 +301,7 @@ namespace STR_CRL_API_COMALM.BL
             try
             {
 
-                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB2").Result[0]; // Parametro Area y Id de la solicitud
+                solicitudRD = sq_SolicitudRd.ObtenerSolicitud(solicitudId, "PWB").Result[0]; // Parametro Area y Id de la solicitud
                 string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_MOTIVORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
@@ -358,7 +358,7 @@ namespace STR_CRL_API_COMALM.BL
                             // Inserts despues de crear EAR en SAP
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "16", "", rendicionId);
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaRD), createResponse.DocEntry, createResponse.DocNum, rendicion.ID);
-                            hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
+                            //hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_migradaRdenSAP), listaAprobados[1].aprobadorNombre, listaAprobados.Count > 2 ? listaAprobados[2].aprobadorNombre : null, listaAprobados[0].aprobadorNombre, createResponse.DocEntry);
 
                             list.Add(createResponse);
 
@@ -445,12 +445,13 @@ namespace STR_CRL_API_COMALM.BL
                             //PosFinanciera = d.STR_POS_FINANCIERA.name,
                             //CUP = d.STR_CUP.U_CUP,
                             Proyecto = d.STR_PROYECTO?.id,
-                            TipoOperacion = doc.STR_OPERACION == "1" ? "01" : doc.STR_OPERACION,
+                            //TipoOperacion = doc.STR_OPERACION == "1" ? "01" : doc.STR_OPERACION,
+                            TipoOperacion = "01",
                             Almacen = d.STR_ALMACEN,
                             Cantidad = d.STR_CANTIDAD,
                             //Retencion = doc.STR_TIPO_AGENTE.id == "0" ? "N" : doc.STR_TIPO_AGENTE.id == "1" ? "Y" : "N",
                             // Valores de la migración 
-                            RutaAdjunto = doc.STR_ANEXO_ADJUNTO,
+                            //RutaAdjunto = doc.STR_ANEXO_ADJUNTO,
                             UnidadNegocio = d.STR_DIM1.id,
                             Filial = d.STR_DIM2.id,
                             Area = d.STR_DIM4.id,
@@ -474,7 +475,7 @@ namespace STR_CRL_API_COMALM.BL
            body.DocsTotal = rendicion.STR_TOTALRENDIDO;
 
             body.SaldoApertura = rendicion.STR_TOTALAPERTURA;
-            //UsuarioEARCod = rendicion.STR_EMPLEADO_ASIGNADO.numeroEAR,
+            body.UsuarioEARCod = rendicion.STR_EMPLEADO_ASIGNADO.codEar;
 
             // Valores de la migración
             //PrimerAutorizador = aprobadores[1].aprobadorNombre,
@@ -486,10 +487,12 @@ namespace STR_CRL_API_COMALM.BL
             body.SaldoFinal = 0.0;
             body.TipoRendicion = "EAR";
 
-            body.U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString();
-            body.U_STR_WEB_PRIID = aprobadores[1].aprobadorId.ToString();
-            body.U_STR_WEB_SEGID = aprobadores.Count > 2 ? aprobadores[2].aprobadorId.ToString() : null;
-            body.U_STR_WEB_CONID = aprobadores[0].aprobadorId.ToString();
+            
+            //body.U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString();
+            //body.U_STR_WEB_PRIID = aprobadores[1].aprobadorId.ToString();
+            //body.U_STR_WEB_SEGID = aprobadores.Count > 2 ? aprobadores[2].aprobadorId.ToString() : null;
+            //body.U_STR_WEB_CONID = aprobadores[0].aprobadorId.ToString();
+            
             //U_STR_WEB_EMPASIG = rendicion.STR_EMPLDREGI.ToString(),
 
             body.STR_EARCRGDETCollection = detalles;
@@ -1190,7 +1193,7 @@ namespace STR_CRL_API_COMALM.BL
                     //if (e.STR_CONCEPTO == null) { CamposVacios.Add("Nivel detalle"); return; }
                     if (e.STR_PROYECTO == null) { CamposVacios.Add("Nivel detalle 11"); return; }
                     if (e.STR_PRECIO == 0) { CamposVacios.Add("Nivel detalle 12"); return; }
-                    if (e.STR_IMPUESTO == 0) { CamposVacios.Add("Nivel detalle 13"); return; }
+                    //if (e.STR_IMPUESTO == 0) { CamposVacios.Add("Nivel detalle 13"); return; }
 
                 });
 

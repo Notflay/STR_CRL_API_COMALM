@@ -22,5 +22,6 @@ namespace STR_CRL_API_COMALM.EL
         public Complemento rol { get; set; }
         public Filial filial { get; set; }
         public Complemento area { get; set; }
+        public string centroCosto { get; set; }
     }
 }

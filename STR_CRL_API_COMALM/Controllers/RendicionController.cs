@@ -181,7 +181,19 @@ namespace STR_CRL_API_COMALM.Controllers
                 return BadRequest("No se proporcionó ningún archivo.");
             }
         }
+        [HttpPost]
+        [Route("documento/validacion/{id}")]
+        public IHttpActionResult Validacion(int id)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.ValidacionDocumento(id);
 
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
         /*
         [HttpGet]
         [Route("documento/{id}")]
@@ -297,19 +309,6 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
         */
-        [HttpPost]
-        [Route("documento/validacion/{id}")]
-        public IHttpActionResult Validacion(int id)
-        {
-            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.ValidacionDocumento(id);
-
-            if (response.CodRespuesta == "99")
-            {
-                return BadRequest(response.DescRespuesta);
-            }
-            return Ok(response);
-        }
         /*
         [HttpDelete]
         [Route("documento/detalle")]

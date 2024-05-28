@@ -1,0 +1,14 @@
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\STR_CRL_API_COMALM.EL.dll.config
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\STR_CRL_API_COMALM.EL.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\STR_CRL_API_COMALM.EL.pdb
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\EPPlus.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\Newtonsoft.Json.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\OfficeOpenXml.Extension.AspNetCore.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\System.IO.Packaging.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\EPPlus.xml
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Release\Newtonsoft.Json.xml
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Release\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Release\STR_CRL_API_COMALM.EL.csproj.CoreCompileInputs.cache
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Release\STR_CRL_API_COMALM.EL.csproj.CopyComplete
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Release\STR_CRL_API_COMALM.EL.dll
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Release\STR_CRL_API_COMALM.EL.pdb
