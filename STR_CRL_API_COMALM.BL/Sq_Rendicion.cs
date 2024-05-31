@@ -12,6 +12,8 @@ using STR_CRL_API_COMALM.BL.Email;
 using RestSharp;
 using STR_CRL_API_COMALM.SL;
 using System.Globalization;
+using System.Configuration;
+using System.IO;
 
 namespace STR_CRL_API_COMALM.BL
 {
@@ -686,6 +688,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_EMPLEADO_ASIGNADO = sQ_Usuario.getUsuarioId("1",dc["STR_EMPLDASIG"]),
                         SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWR", false).Result[0],
                         STR_EDIT = (dc["STR_EDIT"]),
+                        U_STR_FILER = dc["U_STR_FILER"],
                         documentos = ObtenerDocumentos(dc["ID"]).Result
                     };
                 }, id).ToList();
@@ -1249,6 +1252,83 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+
+        public ConsultationResponse<Complemento> cargarpdfRendicion(string id, string urlFile)
+        {
+           
+
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+
+                //Rendicion ren = new Rendicion();
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RendicionPdf),
+                    urlFile, id
+                    );
+
+
+                // Crear el objeto Complemento y agregarlo a la lista
+                Complemento complemento = new Complemento()
+                {
+                    id = id,
+                    name = "Se agregó PDF"
+                };
+                list.Add(complemento);
+
+                // Retornar la respuesta de éxito
+                return Global.ReturnOk(list, "PDF actualizado correctamente");
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones y retornar el error
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
+        //public ConsultationResponse<Complemento> cargarpdfRendicion(string id)
+        //{
+        //    var respIncorrect = "No se encontró PDF";
+
+        //    List<Complemento> list = new List<Complemento>();
+        //    Rendicion ren = new Rendicion();
+        //    Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+        //    //ren = sq_Rendicion.ObtenerRendicion(id);
+        //    try
+        //    {
+        //        // Obtener la ruta base desde el archivo de configuración
+        //        string urlPdfRendicion = ConfigurationManager.AppSettings["UrlPdfRendicion"];
+        //        if (string.IsNullOrEmpty(urlPdfRendicion))
+        //        {
+        //            throw new Exception("La ruta base de almacenamiento no está configurada.");
+        //        }
+
+        //        // Construir la ruta completa del archivo PDF
+        //        string fullPath = Path.Combine(urlPdfRendicion, ren.U_STR_FILER);
+
+        //        // Generar la consulta SQL para actualizar la ruta del PDF
+        //        string query = SQ_QueryManager.Generar(Sq_Query.upd_RendicionPdf);
+
+        //        // Ejecutar la consulta para actualizar la ruta del PDF
+        //        hash.insertValueSql(query, fullPath, ren.ID);
+
+        //        // Crear el objeto Complemento y agregarlo a la lista
+        //        Complemento complemento = new Complemento()
+        //        {
+        //            id = ren.ID.ToString(),
+        //            name = "Se agregó PDF"
+        //        };
+        //        list.Add(complemento);
+
+        //        // Retornar la respuesta de éxito
+        //        return Global.ReturnOk(list, "PDF actualizado correctamente");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Manejar excepciones y retornar el error
+        //        return Global.ReturnError<Complemento>(ex);
+        //    }
+        //}
         /*
         public ConsultationResponse<Complemento> BorrarDetalleDcoumento(int id, int docId)
         {

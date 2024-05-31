@@ -405,4 +405,12 @@
 		<hana>UPDATE "STR_WE_RD" SET "STR_EDIT" = '0' WHERE ID = '{0}'</hana>
 	</query>
 	
+	<query nameid="ActualiRendicionPdf" definition="I">
+		<hana>
+			UPDATE STR_WEB_RD
+			SET U_STR_FILER ='{0}'
+			WHERE ID ='{1}';
+		</hana>
+	</query>
+	
 </root>
