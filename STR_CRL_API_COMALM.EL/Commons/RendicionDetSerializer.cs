@@ -70,7 +70,8 @@ namespace STR_CRL_API_COMALM.EL.Commons
         
         [JsonProperty("U_ODUM_Comments")]
         public string Comentarios { get; set; }
-        
+        public string U_ER_RTNC { get; set; }
+
         //[JsonProperty("U_ODUM_U_CNCUP")]
         //public string CUP { get; set; }
         [JsonProperty("U_CE_RTNC")]

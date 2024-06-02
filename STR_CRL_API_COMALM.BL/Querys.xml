@@ -26,7 +26,7 @@
 		<hana>SELECT * FROM STR_WEB_ESTADOS</hana>
 	</query>
 	<query nameid="ObtenerProveedores" definition="I">
-		<hana>SELECT TOP 200 "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S'</hana>
 	</query>
 	<query nameid="ObtieneFiliales" definition="I">
 		<hana>SELECT * FROM "@ST_ZONAS_FILIAL"</hana>
@@ -51,11 +51,29 @@
 	</query>
 	<query nameid="ObtieneItemsArticulo" definition="I">
 		<hana>
-			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
+			SELECT 
+				T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice"
+				--COUNT(*) AS Count
+			FROM OITM T0
 			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
 			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
 			WHERE T2."U_STR_PW_CECO" = '{0}'
-			and T0."ItmsGrpCod" != '110' and T0."InvntItem" ='Y' and T0."SellItem"= 'Y'
+			  AND T0."ItmsGrpCod" != '110'
+			  AND T0."InvntItem" = 'Y'
+			  AND T0."SellItem" = 'Y'
+
+			UNION ALL
+
+			SELECT 
+				T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" 
+				--COUNT(*) AS Count
+			FROM OITM T0
+			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}'
+			  AND T0."ItmsGrpCod" != '110'
+			  AND T0."InvntItem" = 'N'
+			  AND T0."PrchseItem" = 'Y';
 		</hana>
 	</query>
 	<query nameid="ObtieneItemsServicio" definition="I">

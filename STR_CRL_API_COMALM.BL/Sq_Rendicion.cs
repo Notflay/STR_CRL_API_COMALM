@@ -480,6 +480,7 @@ namespace STR_CRL_API_COMALM.BL
                             Area = d.STR_DIM4.id,
                             CentroCosto = d.STR_DIM5.id,
                             // Valores por Defecto
+                            U_ER_RTNC = esRetencion,
                             U_CE_ESTD = "CRE",
                             U_CE_SLCC = "Y",
                             U_ObjType = "18",
