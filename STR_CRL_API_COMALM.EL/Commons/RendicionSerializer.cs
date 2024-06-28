@@ -32,12 +32,19 @@ namespace STR_CRL_API_COMALM.EL.Commons
         public string TipoRendicion { get; set; }       // EAR
         [JsonProperty("U_CE_ESTADO")]
         public string Estado { get; set; }
-        
+
+        [JsonProperty("U_ODUM_U_STR_Devolucion")]
+        public string ExisteDevolucion { get; set; }
+        [JsonProperty("U_ODUM_U_STR_Reembolso")]
+        public string ExisteReembolso { get; set; }
+        [JsonProperty("U_ODUM_U_STR_MontoDiferencia")]
+        public double MontoDiferencia { get; set; }
+
         //public string U_STR_WEB_EMPASIG { get; set; }
         //public string U_STR_WEB_PRIID { get; set; }
         //public string U_STR_WEB_SEGID { get; set; }
         //public string U_STR_WEB_CONID { get; set; }
-        
+
         //[JsonProperty("U_STR_WEB_AUTPRI")]
         //public string PrimerAutorizador { get; set; }
         //[JsonProperty("U_STR_WEB_AUTSEG")]

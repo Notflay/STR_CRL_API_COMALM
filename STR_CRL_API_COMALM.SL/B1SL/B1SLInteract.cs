@@ -43,8 +43,8 @@ namespace STR_CRL_API_COMALM.SL
             var request = new RestRequest(uri, Method.POST);
             request.AddHeader("content-type", "application/json");
             request.AddCookie("B1SESSION", sessionId);
-            //request.AddCookie("ROUTEID", ".node2");
-            request.AddCookie("ROUTEID", ".node3");
+            request.AddCookie("ROUTEID", ".node2");
+            //request.AddCookie("ROUTEID", ".node3");
             request.AddParameter("application/json", json, ParameterType.RequestBody);
 
             return client.Execute(request);

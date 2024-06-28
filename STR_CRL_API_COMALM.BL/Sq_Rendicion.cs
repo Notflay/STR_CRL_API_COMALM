@@ -346,7 +346,7 @@ namespace STR_CRL_API_COMALM.BL
 
                         hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_aprobadoresRD), aprobadorId, DateTime.Now.ToString("yyyy-MM-dd"), 1, areaAprobador, rendicionId, 0);
 
-                        var s = ObtenerRendicion(rendicionId.ToString());
+                        var s = ObtenerRendicion(rendicionId.ToString(),true);
                         rendicion = s.Result[0];
                         var response = GenerarRegistroDeRendicion(rendicion);
                         listaAprobados = ObtieneAprobadores(rendicion.ID.ToString()).Result;
@@ -480,7 +480,8 @@ namespace STR_CRL_API_COMALM.BL
                             Area = d.STR_DIM4.id,
                             CentroCosto = d.STR_DIM5.id,
                             // Valores por Defecto
-                            U_ER_RTNC = esRetencion,
+                            //U_ER_RTNC = esRetencion,
+                            U_DUM1_WtLiable = esRetencion,
                             U_CE_ESTD = "CRE",
                             U_CE_SLCC = "Y",
                             U_ObjType = "18",
@@ -489,9 +490,27 @@ namespace STR_CRL_API_COMALM.BL
                         );
                 });
             });
+            
 
             RendicionSerializer body = new RendicionSerializer();
 
+            if (rendicion.STR_MONTO_DIFERENCIA > 0)
+            {
+                body.ExisteDevolucion = "Y";
+                body.ExisteReembolso = "N";
+                body.MontoDiferencia = rendicion.STR_MONTO_DIFERENCIA;
+            }else if(rendicion.STR_MONTO_DIFERENCIA < 0)
+            {
+                body.ExisteDevolucion = "N";
+                body.ExisteReembolso = "Y";
+                body.MontoDiferencia = (-1)*rendicion.STR_MONTO_DIFERENCIA;
+            }
+            else
+            {
+                body.ExisteDevolucion = "N";
+                body.ExisteReembolso = "N";
+                body.MontoDiferencia = 0;
+            }
 
             body.NumRendicion = rendicion.STR_NRRENDICION;
             body.Moneda = rendicion.documentos[0].STR_MONEDA.id;
@@ -500,6 +519,7 @@ namespace STR_CRL_API_COMALM.BL
 
             body.SaldoApertura = rendicion.STR_TOTALAPERTURA;
             body.UsuarioEARCod = rendicion.STR_EMPLEADO_ASIGNADO.codEar;
+
 
             // Valores de la migración
             //PrimerAutorizador = aprobadores[1].aprobadorNombre,
@@ -658,7 +678,7 @@ namespace STR_CRL_API_COMALM.BL
                 return Global.ReturnError<Aprobador>(ex);
             }
         }
-        public ConsultationResponse<Rendicion> ObtenerRendicion(string id)
+        public ConsultationResponse<Rendicion> ObtenerRendicion(string id,bool aux = false)
         
         {
             var respIncorrect = "Obtener Rendicion";
@@ -670,7 +690,7 @@ namespace STR_CRL_API_COMALM.BL
             {
                 List<Rendicion> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_rendicion), dc =>
                 {
-                    return new Rendicion()
+                    Rendicion rendicion = new Rendicion
                     {
                         ID = Convert.ToInt32(dc["ID"]),
                         STR_SOLICITUD = Convert.ToInt32(dc["STR_SOLICITUD"]),
@@ -690,8 +710,11 @@ namespace STR_CRL_API_COMALM.BL
                         SOLICITUDRD = sq_SolicitudRd.ObtenerSolicitud(Convert.ToInt32(dc["STR_SOLICITUD"]), "PWR", false).Result[0],
                         STR_EDIT = (dc["STR_EDIT"]),
                         U_STR_FILER = dc["U_STR_FILER"],
+                        //STR_MONTO_DIFERENCIA = Convert.ToDouble(dc["STR_MONTO_DIFERENCIA"]),
                         documentos = ObtenerDocumentos(dc["ID"]).Result
                     };
+                    if (aux) rendicion.STR_MONTO_DIFERENCIA = Convert.ToDouble(dc["STR_MONTO_DIFERENCIA"]);
+                    return rendicion;
                 }, id).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
@@ -789,6 +812,8 @@ namespace STR_CRL_API_COMALM.BL
             List<Aprobador> aprobadors;
             try
             {
+                
+                //hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_montoDiferenciaRD), montoDiferencia.ToString(), idRendicion);
                 // Solo actualizar a Cargado cuando se envie por primera vez la solicitud
                 if (estado == 9 | estado == 12) hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoRD), "10", "", idRendicion);
 

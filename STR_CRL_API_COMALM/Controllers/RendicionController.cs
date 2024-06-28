@@ -19,6 +19,7 @@ using System.Net;
 using System.Linq;
 
 using System.Xml.Linq;
+using STR_CRL_API_COMALM.SQ;
 
 namespace STR_CRL_API_COMALM.Controllers
 {
@@ -100,10 +101,13 @@ namespace STR_CRL_API_COMALM.Controllers
 
         [HttpPost]
         [Route("aprobacion/{id}")]
-        public IHttpActionResult CreateAprobacion(int id, string idSolicitud, int usuarioId, int estado, string areaAprobador)
+        public IHttpActionResult CreateAprobacion(int id, string idSolicitud, int usuarioId, int estado, string areaAprobador, decimal montoDiferencia)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
             var response = sq_Rendicion.EnviarAprobacion(id.ToString(), idSolicitud, usuarioId, estado, areaAprobador);
+
+            HanaADOHelper hash = new HanaADOHelper();
+            hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.upd_montoDiferenciaRD), montoDiferencia.ToString(), id.ToString());
 
             if (response != null && response.CodRespuesta == "99")
             {

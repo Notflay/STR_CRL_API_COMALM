@@ -668,7 +668,7 @@ namespace STR_CRL_API_COMALM.BL
 
             SolicitudRDSerializer body = new SolicitudRDSerializer()
             {
-                Series = 643,// ObtenerSerieOPRQ(),
+                Series = 836,// ObtenerSerieOPRQ(),
                 ReqType = 171,
                 // Fechas
                 RequriedDate = DateTime.ParseExact(sr.STR_FECHAREGIS, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"),

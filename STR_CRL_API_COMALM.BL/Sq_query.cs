@@ -111,6 +111,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_duplicated_docs = "ContarDocumentosDuplicados";
         public static readonly string upd_AnularModeEditRD = "anularModoEdicionRD";
         public static readonly string upd_RendicionPdf = "ActualiRendicionPdf";
+        public static readonly string upd_montoDiferenciaRD = "actualizarMontoDiferenciaRD";
 
 
     }   

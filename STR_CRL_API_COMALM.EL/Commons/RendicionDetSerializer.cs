@@ -70,7 +70,9 @@ namespace STR_CRL_API_COMALM.EL.Commons
         
         [JsonProperty("U_ODUM_Comments")]
         public string Comentarios { get; set; }
-        public string U_ER_RTNC { get; set; }
+        //public string U_ER_RTNC { get; set; }
+        //public string U_DUM1_WtLiable { get; set; }
+        public string U_DUM1_WtLiable { get; set; }
 
         //[JsonProperty("U_ODUM_U_CNCUP")]
         //public string CUP { get; set; }
@@ -80,7 +82,6 @@ namespace STR_CRL_API_COMALM.EL.Commons
         public string EsRetencion { get; set; }
         [JsonProperty("U_ODUM_U_STR_Detraccion")]
         public string EsDetraccion { get; set; }
-
         //[JsonProperty("U_ER_PW_RUTAD")]
 
         //public string RutaAdjunto { get; set; }

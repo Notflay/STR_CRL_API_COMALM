@@ -51,29 +51,11 @@
 	</query>
 	<query nameid="ObtieneItemsArticulo" definition="I">
 		<hana>
-			SELECT 
-				T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice"
-				--COUNT(*) AS Count
+			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice"
 			FROM OITM T0
-			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
-			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
-			WHERE T2."U_STR_PW_CECO" = '{0}'
-			  AND T0."ItmsGrpCod" != '110'
-			  AND T0."InvntItem" = 'Y'
-			  AND T0."SellItem" = 'Y'
-
-			UNION ALL
-
-			SELECT 
-				T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" 
-				--COUNT(*) AS Count
-			FROM OITM T0
-			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
-			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
-			WHERE T2."U_STR_PW_CECO" = '{0}'
-			  AND T0."ItmsGrpCod" != '110'
-			  AND T0."InvntItem" = 'N'
-			  AND T0."PrchseItem" = 'Y';
+			LEFT JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
+			LEFT JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
+			WHERE T2."U_STR_PW_CECO" = '{0}' AND T0."ItemCode" LIKE 'SRC%'
 		</hana>
 	</query>
 	<query nameid="ObtieneItemsServicio" definition="I">
@@ -279,8 +261,7 @@
 			SELECT T0."ItemCode",T0."ItemName",t0."U_BPP_TIPUNMED",T2."WhsCode",T1."OnHand",T1."AvgPrice" FROM OITM T0
 			INNER JOIN OITW T1 ON T0."ItemCode" = T1."ItemCode"
 			INNER JOIN OWHS T2 ON T2."WhsCode" = T1."WhsCode"
-			WHERE T2."U_STR_PW_CECO" = '{0}' AND
-			T0."ItmsGrpCod" != '110' and T0."InvntItem" ='Y' and T0."SellItem"= 'Y' AND T0."ItemCode" = '{1}'
+			WHERE T2."U_STR_PW_CECO" = '{0}' AND T0."ItemCode" = '{1}'
 		</hana>
 	</query>
 	<query nameid="ActualizarRDTotal" definition="I">
@@ -430,5 +411,10 @@
 			WHERE ID ='{1}';
 		</hana>
 	</query>
+	<query nameid="actualizarMontoDiferenciaRD" definition="I">
+		<hana>UPDATE STR_WEB_RD SET STR_MONTO_DIFERENCIA = {0} WHERE ID = '{1}'</hana>
+	</query>
+	
+
 	
 </root>
