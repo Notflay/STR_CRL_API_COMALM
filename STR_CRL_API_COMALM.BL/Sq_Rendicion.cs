@@ -42,7 +42,7 @@ namespace STR_CRL_API_COMALM.BL
                          STR_EMPLDASIG = Convert.ToInt32(dc["STR_EMPLDASIG"]),
                          STR_EMPLDREGI = Convert.ToInt32(dc["STR_EMPLDREGI"]),
                          STR_TOTALRENDIDO = Convert.ToDouble(dc["STR_TOTALRENDIDO"]),
-                         //STR_TOTALAPERTURA = Convert.ToDouble(dc["STR_TOTALAPERTURA"]),
+                         STR_TOTALAPERTURA = Convert.ToDouble(dc["STR_TOTALAPERTURA"]),
                          STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
                          STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
                          STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"]
