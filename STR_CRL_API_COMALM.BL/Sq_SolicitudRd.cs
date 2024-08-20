@@ -678,7 +678,7 @@ namespace STR_CRL_API_COMALM.BL
                 //RequriedDate = DateTime.ParseExact(sr.STR_FECHAINI, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), //DateTime.Parse(sr.STR_FECHAINI).ToString("yyyy-MM-dd"),
                 RequesterEmail = usuario.email,
                 Comments = sr.STR_COMENTARIO,
-                JournalMemo = sr.STR_COMENTARIO,
+                //JournalMemo = sr.STR_COMENTARIO.Substring(0, 50),
                 // AttachmentEntry = adj.AbsoluteEntry,
                 U_STR_TIPOEAR = sr.STR_MOTIVORENDICION.id,
 
