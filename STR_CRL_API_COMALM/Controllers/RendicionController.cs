@@ -322,7 +322,8 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
 
         }
-
+        */
+        /*
         [HttpPatch]
         [Route]
         public IHttpActionResult Update(Rendicion rendicion)
@@ -336,7 +337,8 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
-
+        */
+        /*
         [HttpPost]
         [Route("aprobacion/{id}")]
         public IHttpActionResult CreateAprobacion(int id, string idSolicitud, int usuarioId, int estado, string areaAprobador)
