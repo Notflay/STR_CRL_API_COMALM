@@ -128,7 +128,6 @@ namespace STR_CRL_API_COMALM.BL
                              e.STR_DIM5.id,
                              e.STR_ALMACEN,
                              e.STR_CANTIDAD,
-                             e.STR_TPO_OPERACION,
                              e.STR_PROYECTO.id,
                              e.STR_PRECIO,
                              e.STR_IMPUESTO,
