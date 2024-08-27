@@ -386,6 +386,9 @@
 			WHERE ID = '{14}'
 		</hana>
 	</query>
+	<query nameid="EliminarDocumento" definition="I">
+		<hana>DELETE FROM STR_WEB_DOC WHERE ID = '{0}'</hana>
+	</query>
 	<query nameid="EliminarDocumentoDet" definition="I">
 		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>
 	</query>

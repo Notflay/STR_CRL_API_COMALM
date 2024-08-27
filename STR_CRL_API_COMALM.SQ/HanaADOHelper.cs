@@ -76,6 +76,24 @@ namespace STR_CRL_API_COMALM.SQ
             }
         }
 
+        //public void ExecuteNonQuery(string qry, params object[] prms)
+        //{
+        //    HanaConnectionManager hcm = new HanaConnectionManager();
+        //    HanaConnection hc = null;
+        //    try
+        //    {
+        //        hc = hcm.GetConnection();
+        //        HanaCommand cmd = new HanaCommand(GetSqlQry(qry, prms), hc);
+        //        hcm.OpenConnection();
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    finally
+        //    {
+        //        if (hc?.State == System.Data.ConnectionState.Open)
+        //            hcm.CloseConnection();
+        //    }
+        //}
+
         private string GetSqlQry(string sqlCommand, object[] prms)
         {
             for (int i = 0; i < prms.Length; i++)

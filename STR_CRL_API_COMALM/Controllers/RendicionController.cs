@@ -84,6 +84,21 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
+        [HttpDelete]
+        [Route("documento")]
+        public IHttpActionResult Delete(Documento documento)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.EliminarDocumento(documento);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+
         [HttpPatch]
         [Route("aprobacion/acepta")]
         public IHttpActionResult AceptaSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
@@ -394,21 +409,8 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
-
-        [HttpDelete]
-        [Route("documento")]
-        public IHttpActionResult Delete(int id, int rdId)
-        {
-            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.BorrarDocumento(id, rdId);
-
-            if (response.CodRespuesta == "99")
-            {
-                return BadRequest(response.DescRespuesta);
-            }
-            return Ok(response);
-        }
         */
+        
         /*
         [HttpDelete]
         [Route("documento/detalle")]

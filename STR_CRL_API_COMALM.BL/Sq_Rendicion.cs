@@ -138,7 +138,7 @@ namespace STR_CRL_API_COMALM.BL
                     {
                         hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.del_idDOCDet), e.ID);
                     }
-                    // Valida si ya tiene creado ID, si es así                     
+                    // Valida si ya tiene creado ID, si es así                 
                 });
 
                 hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RDTotal), doc.STR_RD_ID, doc.STR_RD_ID);
@@ -147,6 +147,34 @@ namespace STR_CRL_API_COMALM.BL
                 {
                     id = doc.ID.ToString(),
                     name = "Se Actualizo Documento exitosamente"
+                };
+                list.Add(complemento);
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
+        public ConsultationResponse<Complemento> EliminarDocumento(Documento doc)
+        {
+            var respIncorrect = "No se pudo eliminar el Documento";
+            Sq_Item sq = new Sq_Item();
+
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDoc), doc.ID);
+
+                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
+
+                Complemento complemento = new Complemento()
+                {
+                    id = doc.ID.ToString(),
+                    name = "Se elimino el documento exitosamente"
                 };
                 list.Add(complemento);
 
