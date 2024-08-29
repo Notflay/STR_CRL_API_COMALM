@@ -6,6 +6,7 @@ using System.Net.Http;
 using System;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.Generic;
 
 
 using System.Web;
@@ -227,68 +228,55 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
         [HttpPost]
         [Route("upload-Pdf/{id}")]
         public async Task<IHttpActionResult> Cargarpdf(string id)
         {
             try
             {
-                // Verificar si hay archivos en la solicitud
                 if (HttpContext.Current.Request.Files.Count == 0)
                     return BadRequest("No se ha subido ningún archivo");
 
-                // Obtener el archivo PDF
-                var file = HttpContext.Current.Request.Files[0];
-
-                // Verificar si el archivo es un PDF
-                //if (file.ContentType != "application/pdf")
-                //    return BadRequest("Tipo de archivo invalido. Sólo se permiten archivos PDF.");
-
-                // Ruta base normal C:\Rendiciones\
                 string urlPdfRendicion = ConfigurationManager.AppSettings["UrlPdfRendicion"];
                 if (urlPdfRendicion == null)
                     return NotFound();
 
-                // Crear la carpeta específica para la rendición
                 string rendicionFolder = Path.Combine(urlPdfRendicion, id);
                 if (!Directory.Exists(rendicionFolder))
                     Directory.CreateDirectory(rendicionFolder);
 
-                // Guardar el archivo en carpeta especifica
-                var filePath = Path.Combine(rendicionFolder, file.FileName);
-                file.SaveAs(filePath);
+                List<string> filePaths = new List<string>();
 
-                // Guardar en la base de datos la ruta del archivo
+                foreach (string fileKey in HttpContext.Current.Request.Files.AllKeys)
+                {
+                    var file = HttpContext.Current.Request.Files[fileKey];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var filePath = Path.Combine(rendicionFolder, file.FileName);
+                        file.SaveAs(filePath);
+
+                        filePaths.Add(filePath);
+                    }
+                }
+
                 Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-                var response = sq_Rendicion.cargarpdfRendicion(id, filePath);
-
-
-                if (!Directory.Exists(Path.GetDirectoryName(urlPdfRendicion)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(urlPdfRendicion));
-
-                // Guardar temporalmente el archivo en el servidor
-                //var tempFilePath = Path.Combine(urlPdfRendicion, file.FileName);
-                //file.SaveAs(tempFilePath);
-
-
-                // Guardar en sap el {tempFilePath} para la rendicion {id}
-                //Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-                //var response = sq_Rendicion.cargarpdfRendicion(id, tempFilePath);
+                var response = sq_Rendicion.cargarpdfRendicion(id, filePaths);
 
                 if (response.CodRespuesta == "99")
                 {
                     return BadRequest(response.DescRespuesta);
                 }
-                return Ok(response);
 
-                //return Ok($"Archivo PDF cargado correctamente en: {tempFilePath}");
-
+                return Ok("Todos los archivos se cargaron y procesaron correctamente.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest("No se proporcionó ningún archivo.");
+                return BadRequest("Error al cargar los archivos: " + ex.Message);
             }
         }
+
 
         [HttpGet]
         [Route("download-pdf/{id}")]

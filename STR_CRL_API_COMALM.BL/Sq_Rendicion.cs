@@ -1310,32 +1310,32 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<Complemento> cargarpdfRendicion(string id, string urlFile)
+        public ConsultationResponse<Complemento> cargarpdfRendicion(string id, List<string> fileUrls)
         {
             List<Complemento> list = new List<Complemento>();
 
             try
             {
-                //Rendicion ren = new Rendicion();
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.ins_RendicionPdf),id, urlFile);
-
-                // Crear el objeto Complemento y agregarlo a la lista
-                Complemento complemento = new Complemento()
+                foreach (var urlFile in fileUrls)
                 {
-                    id = id,
-                    name = "Se agregó PDF"
-                };
-                list.Add(complemento);
+                    hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.ins_RendicionPdf), id, urlFile);
 
-                // Retornar la respuesta de éxito
-                return Global.ReturnOk(list, "PDF actualizado correctamente");
+                    Complemento complemento = new Complemento()
+                    {
+                        id = id,
+                        name = $"Se agregó PDF: {Path.GetFileName(urlFile)}"
+                    };
+                    list.Add(complemento);
+                }
+
+                return Global.ReturnOk(list, "Todos los PDFs se actualizaron correctamente");
             }
             catch (Exception ex)
             {
-                // Manejar excepciones y retornar el error
                 return Global.ReturnError<Complemento>(ex);
             }
         }
+
 
         //public ConsultationResponse<Complemento> cargarpdfRendicion(string id)
         //{
