@@ -202,16 +202,16 @@ namespace STR_CRL_API_COMALM.BL
                 if (aprobadors.Count < 1)
                     throw new Exception("No se encontró Aprobadores");
 
-                aprobadors.ForEach(a =>
-                {
-                    EnviarEmail envio = new EnviarEmail();
+                //aprobadors.ForEach(a =>
+                //{
+                //    EnviarEmail envio = new EnviarEmail();
 
-                    if (!string.IsNullOrWhiteSpace(a.emailAprobador))
-                    {
-                        envio.EnviarConfirmacion(a.emailAprobador,
-                       a.aprobadorNombre, a.nombreEmpleado, true, a.idSolicitud.ToString(), "", a.fechaRegistro, a.estado.ToString(), a.area.ToString(), a.aprobadorId.ToString());
-                    }
-                });
+                //    if (!string.IsNullOrWhiteSpace(a.emailAprobador))
+                //    {
+                //        envio.EnviarConfirmacion(a.emailAprobador,
+                //       a.aprobadorNombre, a.nombreEmpleado, true, a.idSolicitud.ToString(), "", a.fechaRegistro, a.estado.ToString(), a.area.ToString(), a.aprobadorId.ToString());
+                //    }
+                //});
 
                 response = new List<AprobadorResponse> { new AprobadorResponse() {
               aprobadores = aprobadores.Count()
@@ -240,11 +240,11 @@ namespace STR_CRL_API_COMALM.BL
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
-                // Determina si es 2 aprobadores o solo 1         
+                // Determina si es 2 aprobadores o solo 1
                 List<string> aprobadores = valor.Split(',').Take(3).Where(aprobador => aprobador != "-1").ToList();
                 bool existeAprobador = aprobadores.Any(dat => dat.Equals(areaAprobador));
 
-                // Valide que se encuentre en la lista de aprobadores pendientes        
+                // Valide que se encuentre en la lista de aprobadores pendientes
                 listaAprobados = new List<Aprobador>();
                 listaAprobados = ObtieneListaAprobadores(estado == 3 ? "3" : "2", solicitudId.ToString(), "0");
                 existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
@@ -264,7 +264,7 @@ namespace STR_CRL_API_COMALM.BL
                             CreateResponse createResponse = JsonConvert.DeserializeObject<CreateResponse>(response.Content);
                             createResponse.AprobacionFinalizada = 1;
 
-                            // Inserts despues de crear la SR en SAP 
+                            // Inserts despues de crear la SR en SAP
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), "6", "", solicitudId);                                       // Actualiza Estado
                             //string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion),solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, "", solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón                                                                                                                                                                                // Quita de activos en la tabla de pendientes de Borrador

@@ -77,6 +77,7 @@ namespace STR_CRL_API_COMALM.BL
         //
         public static readonly string post_insertDOC = "InsertRegistroDoc";
         public static readonly string delete_idDoc = "EliminarDocumento";
+        public static readonly string delete_idDocDet = "EliminarDocumentoDet";
         public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
         public static readonly string get_idDOC = "ObtieneIdDOC";
         public static readonly string upd_RDTotal = "ActualizarRDTotal";
@@ -111,7 +112,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_solicitudEar2 = "ObtenerSolicitudRendicionAcep";
         public static readonly string get_duplicated_docs = "ContarDocumentosDuplicados";
         public static readonly string upd_AnularModeEditRD = "anularModoEdicionRD";
-        public static readonly string upd_RendicionPdf = "ActualiRendicionPdf";
+        public static readonly string ins_RendicionPdf = "ActualiRendicionPdf";
         public static readonly string upd_montoDiferenciaRD = "actualizarMontoDiferenciaRD";
 
 

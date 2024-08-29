@@ -86,11 +86,11 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
         [HttpDelete]
-        [Route("documento")]
-        public IHttpActionResult Delete(Documento documento)
+        [Route("documento/{id}")]
+        public IHttpActionResult Delete(int id)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.EliminarDocumento(documento);
+            var response = sq_Rendicion.EliminarDocumento(id);
 
             if (response.CodRespuesta == "99")
             {
@@ -229,7 +229,6 @@ namespace STR_CRL_API_COMALM.Controllers
         }
         [HttpPost]
         [Route("upload-Pdf/{id}")]
-
         public async Task<IHttpActionResult> Cargarpdf(string id)
         {
             try
@@ -242,24 +241,39 @@ namespace STR_CRL_API_COMALM.Controllers
                 var file = HttpContext.Current.Request.Files[0];
 
                 // Verificar si el archivo es un PDF
-                if (file.ContentType != "application/pdf")
-                    return BadRequest("Tipo de archivo invalido. Sólo se permiten archivos PDF.");
+                //if (file.ContentType != "application/pdf")
+                //    return BadRequest("Tipo de archivo invalido. Sólo se permiten archivos PDF.");
 
+                // Ruta base normal C:\Rendiciones\
                 string urlPdfRendicion = ConfigurationManager.AppSettings["UrlPdfRendicion"];
                 if (urlPdfRendicion == null)
                     return NotFound();
+
+                // Crear la carpeta específica para la rendición
+                string rendicionFolder = Path.Combine(urlPdfRendicion, id);
+                if (!Directory.Exists(rendicionFolder))
+                    Directory.CreateDirectory(rendicionFolder);
+
+                // Guardar el archivo en carpeta especifica
+                var filePath = Path.Combine(rendicionFolder, file.FileName);
+                file.SaveAs(filePath);
+
+                // Guardar en la base de datos la ruta del archivo
+                Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+                var response = sq_Rendicion.cargarpdfRendicion(id, filePath);
+
 
                 if (!Directory.Exists(Path.GetDirectoryName(urlPdfRendicion)))
                     Directory.CreateDirectory(Path.GetDirectoryName(urlPdfRendicion));
 
                 // Guardar temporalmente el archivo en el servidor
-                var tempFilePath = Path.Combine(urlPdfRendicion, file.FileName);
-                file.SaveAs(tempFilePath);
+                //var tempFilePath = Path.Combine(urlPdfRendicion, file.FileName);
+                //file.SaveAs(tempFilePath);
 
 
                 // Guardar en sap el {tempFilePath} para la rendicion {id}
-                Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-                var response = sq_Rendicion.cargarpdfRendicion(id, tempFilePath);
+                //Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+                //var response = sq_Rendicion.cargarpdfRendicion(id, tempFilePath);
 
                 if (response.CodRespuesta == "99")
                 {
@@ -267,7 +281,7 @@ namespace STR_CRL_API_COMALM.Controllers
                 }
                 return Ok(response);
 
-                return Ok($"Archivo PDF cargado correctamente en: {tempFilePath}");
+                //return Ok($"Archivo PDF cargado correctamente en: {tempFilePath}");
 
             }
             catch (Exception)

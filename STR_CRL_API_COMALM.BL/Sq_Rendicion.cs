@@ -158,7 +158,7 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<Complemento> EliminarDocumento(Documento doc)
+        public ConsultationResponse<Complemento> EliminarDocumento(int id)
         {
             var respIncorrect = "No se pudo eliminar el Documento";
             Sq_Item sq = new Sq_Item();
@@ -167,13 +167,17 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDoc), doc.ID);
+                // ELIMINAR EL O LOS DETALLES DEL DOCUMENTO
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDocDet), id);
 
-                string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
+                // ELIMINAR EL DOCUMENTO
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDoc), id);
+
+                //string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
                 Complemento complemento = new Complemento()
                 {
-                    id = doc.ID.ToString(),
+                    id = id.ToString(),
                     name = "Se elimino el documento exitosamente"
                 };
                 list.Add(complemento);
@@ -1308,18 +1312,12 @@ namespace STR_CRL_API_COMALM.BL
 
         public ConsultationResponse<Complemento> cargarpdfRendicion(string id, string urlFile)
         {
-           
-
             List<Complemento> list = new List<Complemento>();
 
             try
             {
-
                 //Rendicion ren = new Rendicion();
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_RendicionPdf),
-                    urlFile, id
-                    );
-
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.ins_RendicionPdf),id, urlFile);
 
                 // Crear el objeto Complemento y agregarlo a la lista
                 Complemento complemento = new Complemento()

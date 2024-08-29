@@ -245,7 +245,7 @@
 			STR_PROYECTO,
 			STR_PRECIO,
 			STR_IMPUESTO,
-			STR_DOC_ID) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')</hana>
+			STR_DOC_ID) VALUES('{0}','{1}','{2}' + '{12}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')</hana>
 	</query>
 	<query nameid="ObtenerTpoDocumentos" definition="I">
 		<hana>SELECT DISTINCT T0."U_BPP_TDTD" as "id",T0."U_BPP_TDDD" as "name" FROM "@BPP_TPODOC" T0 INNER JOIN "@BPP_TIPOXFORM" T1 ON T0."U_BPP_TDTD" = T1."U_BPP_Tipo" WHERE T1."U_BPP_Form" = '141'</hana>
@@ -371,7 +371,7 @@
 			"STR_WEB_DOC_DET"
 			SET STR_CODARTICULO = '{0}',
 			STR_CONCEPTO = '{1}',
-			STR_SUBTOTAL = '{2}',
+			STR_SUBTOTAL = STR_SUBTOTAL + '{13}',
 			STR_INDIC_IMPUESTO = '{3}',
 			STR_PROYECTO = '{4}',
 			STR_ALMACEN = '{5}',
@@ -409,9 +409,8 @@
 	
 	<query nameid="ActualiRendicionPdf" definition="I">
 		<hana>
-			UPDATE STR_WEB_RD
-			SET U_STR_FILER ='{0}'
-			WHERE ID ='{1}';
+			INSERT INTO "STR_WEB_RD_ARCHIVOS" ("ID", "Ruta")
+			VALUES('{0}','{1}')
 		</hana>
 	</query>
 	<query nameid="actualizarMontoDiferenciaRD" definition="I">
