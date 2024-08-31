@@ -78,7 +78,7 @@ namespace STR_CRL_API_COMALM.BL
             int cantidad = 1;
 
             ValoresPorDefecto(ref almacen, ref tpoRendicion, idRendicion);
-            //documento.STR_RENDICION = Convert.ToInt32(cab.Cells[row, 2].Text);
+            documento.STR_RENDICION = Convert.ToInt32(cab.Cells[row, 2].Text);
             DateTime fechaContabiliza = DateTime.Parse(cab.Cells[row, 3].Text);
             DateTime fechaDocumento = DateTime.Parse(cab.Cells[row, 4].Text);
             DateTime fechaVencimiento = DateTime.Parse(cab.Cells[row, 5].Text);
@@ -89,7 +89,7 @@ namespace STR_CRL_API_COMALM.BL
             documento.STR_FECHA_DOC = fechaDocumento.ToString("yyyy-MM-dd");
             documento.STR_FECHA_VENCIMIENTO = fechaVencimiento.ToString("yyyy-MM-dd");
             documento.STR_PROVEEDOR = cab.Cells[row, 6].Text == "" ? null : new Proveedor { CardCode = cab.Cells[row, 6].Text, CardName = cab.Cells[row, 7].Text, LicTradNum = cab.Cells[row, 8].Text };
-            //documento.STR_PROVEEDOR = cab.Cells[row, 7].Text == "" ? null : new Proveedor {  };
+            documento.STR_PROVEEDOR = cab.Cells[row, 7].Text == "" ? null : new Proveedor {  };
             //documento.STR_PROVEEDOR = cab.Cells[row, 8].Text == "" ? null : new Proveedor { };
             documento.STR_MONEDA = cab.Cells[row, 9].Text == "" ? null : new Complemento { name = cab.Cells[row, 9].Text };
 

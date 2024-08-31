@@ -117,20 +117,20 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
 
-        [HttpPatch]
-        [Route("aprobacion/reintentar/{id}")]
-        public IHttpActionResult ReintentarSR(int id)
-        {
-            Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
-            var response = sq_SolicitudRd.ReintentarSolicitud(id);
+        //[HttpPatch]
+        //[Route("aprobacion/reintentar/{id}")]
+        //public IHttpActionResult ReintentarSR(int id)
+        //{
+        //    Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
+        //    var response = sq_SolicitudRd.ReintentarSolicitud(id);
 
-            if (response != null && response.CodRespuesta == "99")
-            {
-                return BadRequest(response.DescRespuesta);
-            }
+        //    if (response != null && response.CodRespuesta == "99")
+        //    {
+        //        return BadRequest(response.DescRespuesta);
+        //    }
 
-            return Ok(response);
-        }
+        //    return Ok(response);
+        //}
 
         [HttpGet]
         [Route("aprobadores")]

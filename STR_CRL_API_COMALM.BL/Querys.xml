@@ -141,7 +141,8 @@
 			FROM "STR_WEB_SR" T1
 			INNER JOIN "STR_WEB_ESTADOS" T2
 			ON T2."ID" = T1."STR_ESTADO"
-			WHERE T1.ID = '{0}'</hana>
+			WHERE T1.ID = '{0}'
+		</hana>
 	</query>
 	<query nameid="ObtenerSolicitudRendicionAcep" definition="I">
 		<hana>
@@ -416,7 +417,4 @@
 	<query nameid="actualizarMontoDiferenciaRD" definition="I">
 		<hana>UPDATE STR_WEB_RD SET STR_MONTO_DIFERENCIA = {0} WHERE ID = '{1}'</hana>
 	</query>
-	
-
-	
 </root>

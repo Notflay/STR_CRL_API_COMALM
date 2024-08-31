@@ -57,6 +57,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_lstSolicitudEar = "ListarSoliRendicion";
         public static readonly string upd_cambiarMigradaSR = "CambioMigrada";
         public static readonly string dlt_aprobadoresSr = "EliminaAprobadoresDeSolicitud";
+        //public static readonly string ins_rendicionSolicitud = "InsertarRendicionSolicitud";
 
         // Rendiciones
         public static readonly string get_rendiciones = "ListarRendiciones";

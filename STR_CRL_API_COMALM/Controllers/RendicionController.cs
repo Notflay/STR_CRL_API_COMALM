@@ -277,7 +277,6 @@ namespace STR_CRL_API_COMALM.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("download-pdf/{id}")]
         public HttpResponseMessage GetPdfFile(string id)
