@@ -135,6 +135,14 @@
 			,STR_TIPORENDICION,STR_MOTIVORENDICIOON,STR_COMENTARIO,STR_TOTALSOLICITADO,STR_MOTIVOMIGR,STR_DOCENTRY,STR_AREA) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')
 		</hana>
 	</query>
+
+	<query nameid="InsertarRendicionAuto" definition="I">
+		<hana>
+			INSERT INTO STR_WEB_RD(STR_SOLICITUD,STR_NRRENDICION,STR_NRAPERTURA,STR_ESTADO,STR_EMPLDASIG,STR_EMPLDREGI,STR_FECHAREGIS,STR_TOTALAPERTURA,STR_TOTALRENDIDO)
+			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')
+		</hana>
+	</query>
+	
 	<query nameid="ObtenerSolicitudRendicion" definition="I">
 		<hana>
 			SELECT T2."DESCRIPCION" AS "STR_ESTADO_INFO",T1."ID" AS "IdSolicitud", *
@@ -338,6 +346,9 @@
 	</query>
 	<query nameid="ObtenerProveedor" definition="I">
 		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD where "CardType" = 'S' AND "CardCode" = '{0}'</hana>
+	</query>
+	<query nameid="ObtenerProveedorPorRuc" definition="I">
+		<hana>SELECT "CardCode","CardName","LicTradNum" FROM OCRD WHERE "CardType" = 'S' AND "LicTradNum" = '{0}'</hana>
 	</query>
 	<query nameid="ActualizarDocumento" definition="I">
 		<hana>

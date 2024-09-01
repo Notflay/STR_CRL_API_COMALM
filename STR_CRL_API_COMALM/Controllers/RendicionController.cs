@@ -215,6 +215,7 @@ namespace STR_CRL_API_COMALM.Controllers
                 return BadRequest("No se proporcionó ningún archivo.");
             }
         }
+
         [HttpPost]
         [Route("documento/validacion/{id}")]
         public IHttpActionResult Validacion(int id)

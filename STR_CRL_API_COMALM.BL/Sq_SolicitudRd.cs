@@ -269,6 +269,28 @@ namespace STR_CRL_API_COMALM.BL
                             //string codigoRendicion = hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.get_numeroRendicion),solicitudRD.STR_EMPLDASIG.codEar);   // Obtiene el número de Rendición con el DocEntry
                             hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarMigradaSR), createResponse.DocEntry, createResponse.DocNum, "", solicitudId);   // Actualiza en la tabla, DocEnty DocNum y Numero de Rendicón                                                                                                                                                                                // Quita de activos en la tabla de pendientes de Borrador
 
+                            /*
+                             * CAMBIO 31/08/2024 : CAMBIO EN EL FLUJO, DESPUES DE ENVIAR LA SOLICITUD APROBADA HACIA SAP  ( SOLICITUD -> OPRQ )
+                             * INMEDIATAMENTE, DEBE CREAR LA RENDICION(STR_WEB_RD) HACIA EL USUARIO SOLICITADOR , PARA ELLO SE COMENTO EL TRANSACT "SBO_SP_TransactionNotification"
+                             */
+           
+
+                        
+                            hash.insertValueSql(SQ_QueryManager.Generar("InsertarRendicionAuto"),
+                                createResponse.DocNum,
+                                "EAR-2024-" + createResponse.DocNum, //AJUSTAR AÑO
+                                "", "9", 
+                                solicitudRD.STR_EMPLDASIG_ID,
+                                solicitudRD.STR_EMPLDASIG_ID, 
+                                "",
+                                solicitudRD.STR_TOTALSOLICITADO,
+                                "0.00" );
+
+                            /*
+                             * FIN CAMBIO 31/08/2024
+                             */
+
+
                             lista.Add(createResponse);
 
                             // Envio de Correo

@@ -14,6 +14,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_estados = "ObtenerEstados";
         public static readonly string get_proveedores = "ObtenerProveedores";
         public static readonly string get_proveedor = "ObtenerProveedor";
+        public static readonly string get_proveedorxruc = "ObtenerProveedorPorRuc";
         public static readonly string get_filiales = "ObtieneFiliales";
         public static readonly string get_filial = "ObtieneFilial";
         public static readonly string get_roles = "ObtieneRoles";

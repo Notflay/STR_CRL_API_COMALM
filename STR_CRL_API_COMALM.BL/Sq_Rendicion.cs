@@ -22,7 +22,7 @@ namespace STR_CRL_API_COMALM.BL
         HanaADOHelper hash = new HanaADOHelper();
 
         public ConsultationResponse<Rendicion> ListarRendicones(string usrCreate, string usrAsig, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
-        {
+       {
             var respIncorrect = "No trajo la lista de solicitudes de rendición";
            // SQ_Complemento sQ = new SQ_Complemento();
 

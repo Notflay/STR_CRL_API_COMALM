@@ -21,5 +21,19 @@ namespace STR_CRL_API_COMALM.Controllers
             }
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("{ruc}")]
+        public IHttpActionResult GetProveedorPorRUC(string ruc)
+        {
+            Sq_Proveedor sq = new Sq_Proveedor();
+            var response = sq.ObtenerProveedorxRuc(ruc);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
     }
 }
