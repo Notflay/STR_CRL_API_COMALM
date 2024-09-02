@@ -10,5 +10,6 @@ namespace STR_CRL_API_COMALM.EL
     {
         public string id { get; set; }
         public string name { get; set; }
+        public string ruta { get; set; }
     }
 }

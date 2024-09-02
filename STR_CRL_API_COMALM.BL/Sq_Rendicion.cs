@@ -1336,6 +1336,54 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
+        public ConsultationResponse<Complemento> ObtenerArchivosPorRendicionId(string id)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se encontraron archivos";
+
+            try
+            {
+                List<Complemento> list = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_archivosRendicion), dc =>
+                {
+                    return new Complemento
+                    {
+                        id = dc["IdDoc"].ToString(),
+                        name = Path.GetFileName(dc["Ruta"].ToString()),
+                        ruta = dc["Ruta"].ToString()
+                    };
+                }, id.ToString()).ToList();
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
+        public ConsultationResponse<Complemento> ConsultarRutaArchivo(int IdDoc)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se descargo el archivo";
+
+            try
+            {
+                List<Complemento> response = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_descargarArchivoRD), dc =>
+                {
+                    return new Complemento
+                    {
+                        ruta = dc["Ruta"].ToString()
+                    };
+                }, IdDoc.ToString()).ToList();
+
+                return Global.ReturnOk(response, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
 
         //public ConsultationResponse<Complemento> cargarpdfRendicion(string id)
         //{

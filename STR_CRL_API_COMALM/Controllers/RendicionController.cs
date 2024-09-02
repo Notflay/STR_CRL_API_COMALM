@@ -279,23 +279,83 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
         [HttpGet]
-        [Route("download-pdf/{id}")]
-        public HttpResponseMessage GetPdfFile(string id)
+        [Route("archivos/{id}")]
+        public IHttpActionResult GetArchivosPorRendicion(string id)
         {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.ObtenerArchivosPorRendicionId(id);
 
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            //var nombresArchivos = response.Result.Select(archivo => archivo.name).ToList();
+
+            return Ok(response);
+        }
+
+        //[HttpGet]
+        //[Route("download-Pdf/{id}/{fileName}")]
+        //public IHttpActionResult DownloadPdf(string id, string fileName)
+        //{
+        //    try
+        //    {
+        //        // Obtener la ruta base desde la configuración
+        //        string urlPdfRendicion = ConfigurationManager.AppSettings["UrlPdfRendicion"];
+        //        if (urlPdfRendicion == null)
+        //            return NotFound();
+
+        //        // Construir la ruta completa del archivo
+        //        string filePath = Path.Combine(urlPdfRendicion, id, fileName);
+
+        //        if (!File.Exists(filePath))
+        //            return NotFound();
+
+        //        // Leer el archivo y devolverlo como respuesta
+        //        var result = new HttpResponseMessage(HttpStatusCode.OK)
+        //        {
+        //            Content = new ByteArrayContent(File.ReadAllBytes(filePath))
+        //        };
+
+        //        // Determinar el tipo MIME y establecer en la respuesta
+        //        result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+        //        result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+        //        {
+        //            FileName = fileName
+        //        };
+
+        //        // Devolver la respuesta
+        //        return ResponseMessage(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest("Error al descargar el archivo: " + ex.Message);
+        //    }
+        //}
+
+        [HttpGet]
+        [Route("download-pdf/{IdDoc}")]
+        public HttpResponseMessage GetPdfFile(int IdDoc)
+        {
             try
             {
                 Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-                var redencion = sq_Rendicion.ObtenerRendicion(id);
-                var filePath = redencion.Result.FirstOrDefault().U_STR_FILER;
-                if (!File.Exists(filePath))
+                var respuesta = sq_Rendicion.ConsultarRutaArchivo(IdDoc);
+                var ruta = respuesta.Result[0].ruta;
+                //string filePath = sq_Rendicion.ConsultarRutaArchivo(IdDoc).ruta;
+                //filePath = "C:\\Rendiciones\\EAR-2024-480504358\\CapturaFormulario.pdf";
+                //Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+                //var redencion = sq_Rendicion.ObtenerRendicion(id);
+                //var filePath = redencion.Result.FirstOrDefault().U_STR_FILER;
+                if (!File.Exists(ruta))
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Archivo no encontrado");
 
                 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                response.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                response.Content = new StreamContent(new FileStream(ruta, FileMode.Open, FileAccess.Read));
                 response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                 {
-                    FileName = Path.GetFileName(filePath)
+                    FileName = Path.GetFileName(ruta)
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
 
@@ -306,8 +366,6 @@ namespace STR_CRL_API_COMALM.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, $"Error al descargar el archivo PDF: {ex.Message}");
             }
-
-
         }
         /*
         [HttpGet]
@@ -412,7 +470,7 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
         */
-        
+
         /*
         [HttpDelete]
         [Route("documento/detalle")]

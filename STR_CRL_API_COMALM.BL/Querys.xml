@@ -425,7 +425,15 @@
 			VALUES('{0}','{1}')
 		</hana>
 	</query>
+	<query nameid="ObtenerArchivosRendicion" definition="I">
+		<hana>
+			SELECT "IdDoc", "Ruta" FROM "STR_WEB_RD_ARCHIVOS" WHERE "ID" = '{0}'
+		</hana>
+	</query>
 	<query nameid="actualizarMontoDiferenciaRD" definition="I">
 		<hana>UPDATE STR_WEB_RD SET STR_MONTO_DIFERENCIA = {0} WHERE ID = '{1}'</hana>
+	</query>
+	<query nameid="DescargarArchivoRendicion" definition="I">
+		<hana>SELECT "Ruta" FROM "STR_WEB_RD_ARCHIVOS" WHERE "IdDoc" = '{0}'</hana>
 	</query>
 </root>
