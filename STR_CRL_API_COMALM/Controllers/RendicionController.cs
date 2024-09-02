@@ -367,6 +367,21 @@ namespace STR_CRL_API_COMALM.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, $"Error al descargar el archivo PDF: {ex.Message}");
             }
         }
+
+        [HttpDelete]
+        [Route("delete-pdf/{IdDoc}")]
+        public IHttpActionResult DeleteFileUpload(int IdDoc)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.EliminarArchivoSubido(IdDoc);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+
         /*
         [HttpGet]
         [Route("documento/{id}")]

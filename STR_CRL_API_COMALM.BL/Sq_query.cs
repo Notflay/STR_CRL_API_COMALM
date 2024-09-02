@@ -118,5 +118,6 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_archivosRendicion = "ObtenerArchivosRendicion";
         public static readonly string upd_montoDiferenciaRD = "actualizarMontoDiferenciaRD";
         public static readonly string get_descargarArchivoRD = "DescargarArchivoRendicion";
+        public static readonly string del_archivosubidoRD = "EliminarArchivoSubidoRD";
     }   
 }

@@ -1384,6 +1384,32 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
+        public ConsultationResponse<Complemento> EliminarArchivoSubido(int IdDoc)
+        {
+            var respIncorrect = "No se pudo eliminar el Documento";
+            Sq_Item sq = new Sq_Item();
+
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.del_archivosubidoRD), IdDoc);
+
+                Complemento complemento = new Complemento()
+                {
+                    id = IdDoc.ToString(),
+                    name = "Se elimino el archivo cargado"
+                };
+                list.Add(complemento);
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
 
         //public ConsultationResponse<Complemento> cargarpdfRendicion(string id)
         //{

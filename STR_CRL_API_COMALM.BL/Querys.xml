@@ -436,4 +436,7 @@
 	<query nameid="DescargarArchivoRendicion" definition="I">
 		<hana>SELECT "Ruta" FROM "STR_WEB_RD_ARCHIVOS" WHERE "IdDoc" = '{0}'</hana>
 	</query>
+	<query nameid="EliminarArchivoSubidoRD" definition="I">
+		<hana>DELETE FROM "STR_WEB_RD_ARCHIVOS" WHERE "IdDoc" = '{0}'</hana>
+	</query>
 </root>
