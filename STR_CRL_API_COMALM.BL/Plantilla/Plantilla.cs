@@ -85,6 +85,7 @@ namespace STR_CRL_API_COMALM.BL
 
             ValoresPorDefecto(ref mtvRendicion, idRendicion);
             documento.STR_RENDICION = Convert.ToInt32(cab.Cells[row, 2].Text); // ID DE LA RENDICION
+            documento.STR_RD_ID = Convert.ToInt32(cab.Cells[row, 2].Text); // ID DE LA RENDICION
             DateTime fechaContabiliza = DateTime.Parse(cab.Cells[row, 3].Text);
             DateTime fechaDocumento = DateTime.Parse(cab.Cells[row, 4].Text);
             DateTime fechaVencimiento = DateTime.Parse(cab.Cells[row, 5].Text);
@@ -143,9 +144,6 @@ namespace STR_CRL_API_COMALM.BL
 
             documento.STR_MOTIVORENDICION.id = mtvRendicion;
 
-            //documento.STR_RD_ID = Convert.ToInt32(cab.Cells[row, 15].Text);
-
-
             documento.detalles = ObtieneDetalle(almacen, id, tpoRendicion);
 
             documentos.Add(documento);
@@ -161,28 +159,36 @@ namespace STR_CRL_API_COMALM.BL
 
             for (int row = 2; row <= rowCount; row++)
             {
+                // Verificar si la primera celda de la fila está vacía
+                if (string.IsNullOrEmpty(det.Cells[row, 1].Text))
+                {
+                    continue; // Saltar la fila si la primera celda está vacía
+                }
+
                 if (det.Cells[row, 1].Text == id)
                 {
                     DocumentoDet documentoDet = new DocumentoDet()
                     {
+                        ID = Convert.ToInt32(det.Cells[row, 1].Text),
                         STR_CODARTICULO = new EL.Response.Articulo { ItemCode = det.Cells[row, 2].Text, ItemName = det.Cells[row, 3].Text },
                         //STR_ALMACEN = det.Cells[row, 4].Text,
-                        STR_SUBTOTAL = Convert.ToDouble(det.Cells[row, 5].Text),
-                        STR_INDIC_IMPUESTO = new Complemento { id = det.Cells[row, 6].Text },
-                        STR_DIM1 = new Complemento { id = det.Cells[row, 7].Text },
-                        STR_DIM2 = new Complemento { id = det.Cells[row, 8].Text },
-                        STR_DIM4 = new Complemento { id = det.Cells[row, 9].Text },
-                        STR_DIM5 = new Complemento { id = det.Cells[row, 10].Text },
+                        //STR_INDIC_IMPUESTO = new Complemento { id = det.Cells[row, 4].Text },
+                        STR_INDIC_IMPUESTO = det.Cells[row, 4].Text == "" ? null : new Complemento { id = det.Cells[row, 4].Text.Split('-')[0].Trim() },
+                        //STR_SUBTOTAL = Convert.ToDouble(det.Cells[row, 5].Text),
+                        STR_DIM1 = new Complemento { id = det.Cells[row, 5].Text },
+                        STR_DIM2 = new Complemento { id = det.Cells[row, 6].Text },
+                        STR_DIM4 = new Complemento { id = det.Cells[row, 7].Text },
+                        STR_DIM5 = new Complemento { id = det.Cells[row, 8].Text },
 
 
                         STR_ALMACEN = almacen,
                         STR_TPO_OPERACION = tpoOpe,
                         //STR_CANTIDAD = cantidad,
-                        STR_PROYECTO = new Complemento { id = det.Cells[row, 11].Text },
-                        STR_CANTIDAD = Convert.ToInt32(det.Cells[row, 12].Text),
-                        STR_PRECIO = Convert.ToDecimal(det.Cells[row, 13].Text),
-                        STR_IMPUESTO = Convert.ToDecimal(det.Cells[row, 14].Text),
-                        ID = Convert.ToInt32(det.Cells[row, 13].Text),
+                        STR_PROYECTO = new Complemento { id = det.Cells[row, 9].Text },
+                        STR_PRECIO = Convert.ToDecimal(det.Cells[row, 10].Text),
+                        STR_CANTIDAD = Convert.ToInt32(det.Cells[row, 11].Text),
+                        STR_IMPUESTO = Convert.ToDecimal(det.Cells[row, 12].Text),
+                        STR_SUBTOTAL = Convert.ToDouble(det.Cells[row, 13].Text),
                     };
                     detalles.Add(documentoDet);
                 }
