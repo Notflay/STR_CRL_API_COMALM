@@ -28,6 +28,8 @@ namespace STR_CRL_API_COMALM.EL.Request
         public decimal? STR_PRECIO { get; set; } //crealo
         public decimal? STR_IMPUESTO { get; set; } //crealo
 
+        //public decimal? STR_TOTAL_DETALLE { get; set; } // TOTAL DE UN DETALLE
+
         public string FLG_ELIM { get; set; }
         
         //public Complemento STR_MOTIVORENDICION { get; set; }

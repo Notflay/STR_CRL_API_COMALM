@@ -112,6 +112,7 @@ namespace STR_CRL_API_COMALM.BL
                         e.STR_DIM5.id,
                         e.STR_PRECIO,
                         e.STR_IMPUESTO,
+                        //e.STR_TOTAL_DETALLE,
                         e.ID);
                     }
 
@@ -131,6 +132,7 @@ namespace STR_CRL_API_COMALM.BL
                              e.STR_PROYECTO.id,
                              e.STR_PRECIO,
                              e.STR_IMPUESTO,
+                             //e.STR_TOTAL_DETALLE,
                              doc.ID);
 
                     }
@@ -250,6 +252,7 @@ namespace STR_CRL_API_COMALM.BL
                          e.STR_PROYECTO.id,
                          e.STR_PRECIO,
                          e.STR_IMPUESTO,
+                         //e.STR_TOTAL_DETALLE,
                          //e.STR_MOTIVORENDICION.name,
                          idDoc);
                 });
@@ -592,7 +595,6 @@ namespace STR_CRL_API_COMALM.BL
                     return new DocumentoDet()
                     {
                         ID = Convert.ToInt32(dc["ID"]),
-
                         STR_CODARTICULO = sq_item.ObtenerItem(dc["STR_CODARTICULO"], dc["STR_DIM2"]).Result.FirstOrDefault() ?? null,
                         STR_DOC_ID = Convert.ToInt32(dc["STR_DOC_ID"]),
                         STR_INDIC_IMPUESTO = sq_item.ObtenerIndicador(dc["STR_INDIC_IMPUESTO"]).Result.FirstOrDefault() ?? null,
@@ -603,6 +605,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_CANTIDAD = Convert.ToInt32(dc["STR_CANTIDAD"]),
                         STR_PRECIO = Convert.ToDecimal(dc["STR_PRECIO"]),
                         STR_IMPUESTO = Convert.ToDecimal(dc["STR_IMPUESTO"]),
+                        //STR_TOTAL_DETALLE = Convert.ToDecimal(dc["STR_TOTAL_DETALLE"]),
                         STR_DIM1 = sq_dimension.ObtieneDimension(dc["STR_DIM1"]).Result.FirstOrDefault() ?? null,
                         STR_DIM2 = sq_dimension.ObtieneDimension(dc["STR_DIM2"]).Result.FirstOrDefault() ?? null,
                         STR_DIM4 = sq_dimension.ObtieneDimension(dc["STR_DIM4"]).Result.FirstOrDefault() ?? null,
@@ -786,7 +789,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_TIPO_DOC = dc["STR_TIPO_DOC"] == "" ? null : sQ_Complemento.ObtenerTpoDocumento(dc["STR_TIPO_DOC"]).Result[0],
                         // STR_TIPO_DOC = sQ_Complemento.ObtenerTpoDocumento(dc["STR_TIPO_DOC"]).Result[0],
                         STR_RD_ID = Convert.ToInt32(dc["STR_RD_ID"]),
-                        STR_TOTALDOC = Convert.ToDouble(dc["STR_TOTALDOC"])
+                        STR_TOTALDOC = Convert.ToDouble(dc["TotalImpuesto"]) //Convert.ToDouble(dc["STR_TOTALDOC"])
                         //detalles = listDet
                     };
                 }, id).ToList();
