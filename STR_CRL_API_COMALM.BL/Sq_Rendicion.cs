@@ -1364,17 +1364,42 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<Complemento> ConsultarRutaArchivo(int IdDoc)
+        public ConsultationResponse<Complemento> ConsultarRutaArchivoPdf(int IdDoc)
         {
             var respOk = "OK";
             var respIncorrect = "No se descargo el archivo";
 
             try
             {
-                List<Complemento> response = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_descargarArchivoRD), dc =>
+                List<Complemento> response = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_descargarArchivoPdf), dc =>
                 {
                     return new Complemento
                     {
+                        name = Path.GetFileName(dc["Ruta"].ToString()),  // EXTRAYENDO NOMBRE DE LA RUTA DEL ARCHIVO 
+                        ruta = dc["Ruta"].ToString()
+                    };
+                }, IdDoc.ToString()).ToList();
+
+                return Global.ReturnOk(response, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
+        public ConsultationResponse<Complemento> ConsultarRutaArchivoXlsx(int IdDoc)
+        {
+            var respOk = "OK";
+            var respIncorrect = "No se descargo el archivo";
+
+            try
+            {
+                List<Complemento> response = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_descargarArchivoXlsx), dc =>
+                {
+                    return new Complemento
+                    {
+                        name = Path.GetFileName(dc["Ruta"].ToString()),
                         ruta = dc["Ruta"].ToString()
                     };
                 }, IdDoc.ToString()).ToList();

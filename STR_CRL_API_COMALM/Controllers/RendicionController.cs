@@ -341,8 +341,9 @@ namespace STR_CRL_API_COMALM.Controllers
             try
             {
                 Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-                var respuesta = sq_Rendicion.ConsultarRutaArchivo(IdDoc);
+                var respuesta = sq_Rendicion.ConsultarRutaArchivoPdf(IdDoc);
                 var ruta = respuesta.Result[0].ruta;
+                var nombreArchivo = respuesta.Result[0].name;
                 //string filePath = sq_Rendicion.ConsultarRutaArchivo(IdDoc).ruta;
                 //filePath = "C:\\Rendiciones\\EAR-2024-480504358\\CapturaFormulario.pdf";
                 //Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
@@ -355,7 +356,7 @@ namespace STR_CRL_API_COMALM.Controllers
                 response.Content = new StreamContent(new FileStream(ruta, FileMode.Open, FileAccess.Read));
                 response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                 {
-                    FileName = Path.GetFileName(ruta)
+                    FileName = nombreArchivo
                 };
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
 
@@ -367,6 +368,37 @@ namespace STR_CRL_API_COMALM.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, $"Error al descargar el archivo PDF: {ex.Message}");
             }
         }
+
+        [HttpGet]
+        [Route("download-xlsx/{IdDoc}")]
+        public HttpResponseMessage GetXlsxFile(int IdDoc)
+        {
+            try
+            {
+                Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+                var respuesta = sq_Rendicion.ConsultarRutaArchivoXlsx(IdDoc);
+                var ruta = respuesta.Result[0].ruta;
+                var nombreArchivo = respuesta.Result[0].name;
+
+                if (!File.Exists(ruta))
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Archivo no encontrado");
+
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                response.Content = new StreamContent(new FileStream(ruta, FileMode.Open, FileAccess.Read));
+                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = nombreArchivo
+                };
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, $"Error al descargar el archivo Excel: {ex.Message}");
+            }
+        }
+
 
         [HttpDelete]
         [Route("delete-pdf/{IdDoc}")]

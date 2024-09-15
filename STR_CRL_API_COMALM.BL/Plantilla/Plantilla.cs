@@ -78,7 +78,7 @@ namespace STR_CRL_API_COMALM.BL
             }
 
             string id = cab.Cells[row, 1].Text;     // Id del documento
-            string almacen = string.Empty;     // Almacen al que pertenece
+            string almacen = "ALM001";     // Almacen al que pertenece
             string tpoRendicion = string.Empty;      // Tipo de Rendicion
             string mtvRendicion = string.Empty;     // Motivo de Rendicion
             //int cantidad = 1;                 // Cantidad del detalle

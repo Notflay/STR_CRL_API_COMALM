@@ -117,7 +117,8 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string ins_RendicionPdf = "ActualiRendicionPdf";
         public static readonly string get_archivosRendicion = "ObtenerArchivosRendicion";
         public static readonly string upd_montoDiferenciaRD = "actualizarMontoDiferenciaRD";
-        public static readonly string get_descargarArchivoRD = "DescargarArchivoRendicion";
+        public static readonly string get_descargarArchivoPdf = "DescargarArchivoRendicionPdf";
+        public static readonly string get_descargarArchivoXlsx = "DescargarArchivoRendicionXlsx";
         public static readonly string del_archivosubidoRD = "EliminarArchivoSubidoRD";
     }   
 }
