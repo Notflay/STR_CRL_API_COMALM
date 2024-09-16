@@ -335,6 +335,50 @@ namespace STR_CRL_API_COMALM.Controllers
         //}
 
         [HttpGet]
+        [Route("download-file")]
+        public HttpResponseMessage DownloadFile(string filePath)
+        {
+            try
+            {
+                // Verificar si el archivo existe
+                if (!File.Exists(filePath))
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Archivo no encontrado");
+
+                // Obtener la extensión del archivo para determinar el tipo MIME
+                string fileExtension = Path.GetExtension(filePath).ToLower();
+                string mimeType = GetMimeType(fileExtension);
+
+                // Leer el archivo y devolverlo como respuesta
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                response.Content = new StreamContent(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = Path.GetFileName(filePath)
+                };
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue(mimeType);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, $"Error al descargar el archivo: {ex.Message}");
+            }
+        }
+
+        private string GetMimeType(string fileExtension)
+        {
+            switch (fileExtension)
+            {
+                case ".pdf": return "application/pdf";
+                case ".doc": return "application/msword";
+                case ".docx": return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                case ".xls": return "application/vnd.ms-excel";
+                case ".xlsx": return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                default: return "application/octet-stream"; // Tipo MIME por defecto
+            }
+        }
+
+        [HttpGet]
         [Route("download-pdf/{IdDoc}")]
         public HttpResponseMessage GetPdfFile(int IdDoc)
         {

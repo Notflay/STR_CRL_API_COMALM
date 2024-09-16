@@ -399,7 +399,7 @@
 			"STR_WEB_DOC_DET"
 			SET STR_CODARTICULO = '{0}',
 			STR_CONCEPTO = '{1}',
-			STR_SUBTOTAL = STR_SUBTOTAL + '{13}',
+			STR_SUBTOTAL = '{2}',
 			STR_INDIC_IMPUESTO = '{3}',
 			STR_PROYECTO = '{4}',
 			STR_ALMACEN = '{5}',
