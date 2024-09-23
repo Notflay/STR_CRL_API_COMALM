@@ -104,10 +104,10 @@ namespace STR_CRL_API_COMALM.Controllers
 
         [HttpPatch]
         [Route("aprobacion/rechazar")]
-        public IHttpActionResult RechazarSolicitud(int id, string aprobadorId, Complemento comentarios, string areaAprobador)
+        public IHttpActionResult RechazarSolicitud(int id, string aprobadorId, Complemento comentarios, string areaAprobador, int estado)
         {
             Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
-            var response = sq_SolicitudRd.RechazarSolicitud(id.ToString(), aprobadorId, comentarios?.name, areaAprobador);
+            var response = sq_SolicitudRd.RechazarSolicitud(id.ToString(), aprobadorId, comentarios?.name, areaAprobador, estado);
 
             if (response != null && response.CodRespuesta == "99")
             {
@@ -169,7 +169,7 @@ namespace STR_CRL_API_COMALM.Controllers
                 }
                 else
                 {
-                    var response = sq_SolicitudRd.RechazarSolicitud(s.idSolicitud, s.idAprobador, "", s.areaAprobador);
+                    var response = sq_SolicitudRd.RechazarSolicitud(s.idSolicitud, s.idAprobador, "", s.areaAprobador, Convert.ToInt32(s.estado));
 
                     if (response != null && response.CodRespuesta == "99")
                     {

@@ -337,7 +337,7 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<string> RechazarSolicitud(string solicitudId, string aprobadorId, string comentarios, string areaAprobador)
+        public ConsultationResponse<string> RechazarSolicitud(string solicitudId, string aprobadorId, string comentarios, string areaAprobador, int estado)
         {
             string nuevoEstado = "5";
             // Si una solicitud es Rechazada volverá a ser editable
@@ -350,18 +350,18 @@ namespace STR_CRL_API_COMALM.BL
             try
             {
                 solicitudRD = ObtenerSolicitud(Convert.ToInt32(solicitudId), "PWB").Result[0]; // Parametro Area y Id de la solicitud
-                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_TIPORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
+                string valor = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_aprobadores), solicitudRD.STR_MOTIVORENDICION.id, solicitudRD.STR_AREA, solicitudRD.STR_TOTALSOLICITADO.ToString("F2"));
 
                 if (valor == "-1")
                     throw new Exception("No se encontró Aprobadores con la solicitud enviada");
                 // Determina si es 2 aprobadores o solo 1         
-                List<string> aprobadores = valor.Split(',').Take(2).Where(aprobador => aprobador != "-1").ToList();
+                List<string> aprobadores = valor.Split(',').Take(3).Where(aprobador => aprobador != "-1").ToList();
                 bool existeAprobador = aprobadores.Any(dat => dat.Equals(areaAprobador));
 
                 // Valide que se encuentre en la lista de aprobadores pendientes
                 listaAprobados = new List<Aprobador>();
-                listaAprobados = ObtieneListaAprobadores("2", solicitudId.ToString(), "0");
-                existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
+                listaAprobados = ObtieneListaAprobadores(estado == 3 ? "3" : "2", solicitudId.ToString(), "0");
+                //existeAprobador = listaAprobados.Any(dat => dat.aprobadorId == Convert.ToInt32(aprobadorId));
 
                 if (existeAprobador)
                 {
@@ -369,17 +369,17 @@ namespace STR_CRL_API_COMALM.BL
                     "Rechazado con exito"
                     };
 
-                    EnviarEmail envio = new EnviarEmail();
+                    //EnviarEmail envio = new EnviarEmail();
 
-                    usuario = new Usuario();
-                    usuario = sQ_Usuario.getUsuario("1",listaAprobados[0].empleadoId.ToString());
+                    //usuario = new Usuario();
+                    //usuario = sQ_Usuario.getUsuario("1",listaAprobados[0].empleadoId.ToString());
 
-                    if (usuario.email == null | usuario.email == "")
-                    {
-                        throw new Exception("No se encontró correo del empleado");
-                    }
-                    envio.EnviarInformativo(usuario.email, usuario.nombres, true, listaAprobados[0].idSolicitud.ToString(),
-                        "", listaAprobados[0].fechaRegistro, false, comentarios);
+                    //if (usuario.email == null | usuario.email == "")
+                    //{
+                    //    throw new Exception("No se encontró correo del empleado");
+                    //}
+                    //envio.EnviarInformativo(usuario.email, usuario.nombres, true, listaAprobados[0].idSolicitud.ToString(),
+                    //    "", listaAprobados[0].fechaRegistro, false, comentarios);
 
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.dlt_aprobadoresSr), solicitudId);
                     hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_cambiarEstadoSR), nuevoEstado, "", solicitudId);
