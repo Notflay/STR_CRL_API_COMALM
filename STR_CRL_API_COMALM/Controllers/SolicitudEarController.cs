@@ -146,6 +146,22 @@ namespace STR_CRL_API_COMALM.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("moneda")]
+        public IHttpActionResult ObtieneMonedaSolicitud()
+        {
+            Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
+            var response = sq_SolicitudRd.ObtieneMonedas();
+
+            if (response != null && response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("validatoken")]
         public IHttpActionResult ValidaToken(string token)

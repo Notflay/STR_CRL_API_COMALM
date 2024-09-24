@@ -611,6 +611,45 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
+        public ConsultationResponse<List<Moneda>> ObtieneMonedas()
+        {
+            try
+            {
+                List<Moneda> monedas = hash.GetResultAsType(SQ_QueryManager.Generar(Sq_Query.get_monedas), dc =>
+                {
+                    return new Moneda
+                    {
+                        Id = Convert.ToInt32(dc["ID"]),
+                        Code = dc["CODE"],
+                        Nombre = dc["NOMBRE"],
+                        Simbolo = dc["SIMBOLO"]
+                    };
+                }).ToList();
+
+                if (monedas == null || monedas.Count == 0)
+                {
+                    return new ConsultationResponse<List<Moneda>>
+                    {
+                        CodRespuesta = "99",
+                        DescRespuesta = "No se encontraron monedas.",
+                        Result = null
+                    };
+                }
+
+                return Global.ReturnOk(monedas, "Éxito");
+            }
+            catch (Exception ex)
+            {
+                return new ConsultationResponse<List<Moneda>>
+                {
+                    CodRespuesta = "99",
+                    DescRespuesta = ex.Message,
+                    Result = null
+                };
+            }
+        }
+
+
         public int ObtenerSerieOPRQ()
         {
             try

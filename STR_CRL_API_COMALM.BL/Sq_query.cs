@@ -35,6 +35,9 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string get_tpViaticos = "ObtieneViaticos";   
         public static readonly string get_tpViatico = "ObtieneViatico";
 
+        // Tipos de moneda
+        public static readonly string get_monedas = "ObtenerMonedas";
+
         // Configuración
         public static readonly string get_cf = "ObtenerConfGeneral";
 

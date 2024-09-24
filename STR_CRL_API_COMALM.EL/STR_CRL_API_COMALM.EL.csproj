@@ -81,6 +81,7 @@
     <Compile Include="Response\Articulo.cs" />
     <Compile Include="Response\B1SLLoginResponse.cs" />
     <Compile Include="Response\CFGeneral.cs" />
+    <Compile Include="Response\Moneda.cs" />
     <Compile Include="Response\Complemento.cs" />
     <Compile Include="Response\ConsultationResponse.cs" />
     <Compile Include="Response\CreateResponse.cs" />

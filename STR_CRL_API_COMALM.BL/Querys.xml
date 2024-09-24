@@ -103,6 +103,12 @@
 	<query nameid="ObtenerConfGeneral" definition="I">
 		<hana>SELECT * FROM "STR_WEB_CF_GENERAL" WHERE "STR_SOCIEDAD" = '{0}'</hana>
 	</query>
+	
+	<!-- Tipo de Monedas -->
+	<query nameid="ObtenerMonedas" definition="I">
+		<hana>SELECT * FROM STR_WEB_MONEDA</hana>
+	</query>
+	
 	<!-- SOLICITUD DE TRASLADO -->
 	<query nameid="CreacionSolicitudTraslado" definition="I">
 		<hana>INSERT INTO STR_WEB_SLCTD_TRSL(STR_USUARIO_ID,STR_FEC_REGISTRO,STR_FEC_REQUER,STR_FILIAL_ID,STR_MONEDA,STR_ESTADO,STR_DOCNUM,STR_MENSAJE_MIG) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
