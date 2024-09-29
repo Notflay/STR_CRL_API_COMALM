@@ -279,12 +279,14 @@ namespace STR_CRL_API_COMALM.BL
                             hash.insertValueSql(SQ_QueryManager.Generar("InsertarRendicionAuto"),
                                 createResponse.DocNum,
                                 "EAR-2024-" + createResponse.DocNum, //AJUSTAR AÑO
-                                "", "9", 
+                                "", 
+                                "9", 
                                 solicitudRD.STR_EMPLDASIG_ID,
-                                solicitudRD.STR_EMPLDASIG_ID, 
-                                "",
+                                solicitudRD.STR_EMPLDASIG_ID,
+                                DateTime.Parse(solicitudRD.STR_FECHAREGIS).ToString("yyyy-MM-dd"),
                                 solicitudRD.STR_TOTALSOLICITADO,
-                                "0.00" );
+                                "0.00",
+                                solicitudRD.STR_MONEDA.id);
 
                             /*
                              * FIN CAMBIO 31/08/2024
