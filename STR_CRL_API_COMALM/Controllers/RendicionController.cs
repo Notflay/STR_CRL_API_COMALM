@@ -87,11 +87,11 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
         [HttpDelete]
-        [Route("documento/{id}")]
-        public IHttpActionResult Delete(int id)
+        [Route("documento/{idDocumento}/rendicion/{idRendicion}")]
+        public IHttpActionResult Delete(int idDocumento, int idRendicion)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.EliminarDocumento(id);
+            var response = sq_Rendicion.EliminarDocumento(idDocumento, idRendicion);
 
             if (response.CodRespuesta == "99")
             {

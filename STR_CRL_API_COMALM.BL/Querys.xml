@@ -421,7 +421,7 @@
 		</hana>
 	</query>
 	<query nameid="EliminarDocumento" definition="I">
-		<hana>DELETE FROM STR_WEB_DOC WHERE ID = '{0}'</hana>
+		<hana>CALL STR_PW_ELIMINARDOCUMENTO('{0}','{1}')</hana>
 	</query>
 	<query nameid="EliminarDocumentoDet" definition="I">
 		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>

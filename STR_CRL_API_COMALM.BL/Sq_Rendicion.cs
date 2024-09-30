@@ -161,26 +161,24 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<Complemento> EliminarDocumento(int id)
+        public ConsultationResponse<Complemento> EliminarDocumento(int idDocumento, int idRendicion)
         {
             var respIncorrect = "No se pudo eliminar el Documento";
-            Sq_Item sq = new Sq_Item();
-
             List<Complemento> list = new List<Complemento>();
 
             try
             {
                 // ELIMINAR EL O LOS DETALLES DEL DOCUMENTO
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDocDet), id);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDocDet), idDocumento);
 
                 // ELIMINAR EL DOCUMENTO
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDoc), id);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_idDoc), idRendicion, idDocumento);
 
                 //string idDoc = hash.GetValueSql(SQ_QueryManager.Generar(Sq_Query.get_idDOC), doc.STR_RD_ID.ToString());
 
                 Complemento complemento = new Complemento()
                 {
-                    id = id.ToString(),
+                    id = idDocumento.ToString(),
                     name = "Se elimino el documento exitosamente"
                 };
                 list.Add(complemento);
