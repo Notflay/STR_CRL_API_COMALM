@@ -49,8 +49,8 @@ namespace STR_CRL_API_COMALM.BL
             }
 
         }
-        public Usuario getUsuario(string portalId, string username) {
-
+        public Usuario getUsuario(string portalId, string username) 
+        {
             List<Usuario> list = null; 
             try
             {

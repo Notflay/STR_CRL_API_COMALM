@@ -143,9 +143,14 @@ namespace STR_CRL_API_COMALM.BL
                            STR_TOTALSOLICITADO = Convert.ToDouble(dc["STR_TOTALSOLICITADO"]),
                        STR_COMENTARIO = dc["STR_COMENTARIO"],
                          STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"],
+
                          STR_EMPLDASIG_ID = sq_Usuario.getUsuarioId(portal_ear, dc["STR_EMPLDASIG"]).sapID,
                          STR_EMPLDREGI_ID = sq_Usuario.getUsuarioId(portal_ear, dc["STR_EMPLDREGI"]).sapID,
-                         STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
+
+                        STR_EMPLDASIG_NOMBRE = $"{dc["Asignado_Nombre"]} {dc["Asignado_Apellido"]}",
+                        STR_EMPLDREGI_NOMBRE = $"{dc["Registrador_Nombre"]} {dc["Registrador_Apellido"]}",
+
+                        STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
                          STR_AREA = dc["STR_AREA"],
                          CREATE = dc["CREATE"]
                     };

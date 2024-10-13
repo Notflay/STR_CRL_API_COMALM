@@ -21,8 +21,8 @@ C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Off
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\System.IO.Packaging.dll
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\EPPlus.xml
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\bin\Debug\Newtonsoft.Json.xml
-C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CoreCompileInputs.cache
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.CopyComplete
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.dll
 C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.pdb
+C:\Users\strat1\Documents\STR_CRL_API_COMALM\STR_CRL_API_COMALM.EL\obj\Debug\STR_CRL_API_COMALM.EL.csproj.AssemblyReference.cache

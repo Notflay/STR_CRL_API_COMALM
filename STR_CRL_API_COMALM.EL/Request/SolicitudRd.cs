@@ -11,8 +11,10 @@ namespace STR_CRL_API_COMALM.EL.Request
         public int? ID { get; set; }
         public Usuario STR_EMPLDREGI { get; set; }
         public int STR_EMPLDREGI_ID { get; set; }
+        public string STR_EMPLDREGI_NOMBRE { get; set; }
         public Usuario STR_EMPLDASIG { get; set; }
         public int STR_EMPLDASIG_ID { get; set; }
+        public string STR_EMPLDASIG_NOMBRE { get; set; }
         public int? STR_NRSOLICITUD { get; set; }
         public string STR_NRRENDICION { get; set; }
         public string STR_ESTADO_INFO { get; set; }
