@@ -69,6 +69,15 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
+                // Aseguramos que tipoCambio sea 1 si se recibe como 0.
+                decimal tipoCambio = doc.STR_TIPO_CAMBIO == 0 ? 1 : doc.STR_TIPO_CAMBIO;
+
+                // Convertimos STR_TOTALDOC de nullable double a decimal
+                decimal totalDoc = Convert.ToDecimal(doc.STR_TOTALDOC ?? 0);
+
+                // Calculamos el total ajustado con el tipo de cambio
+                decimal totalDocConCambio = totalDoc * tipoCambio;
+
                 hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.upd_idDOC),
                     doc.STR_RENDICION,
                     doc.STR_FECHA_CONTABILIZA,
@@ -86,7 +95,9 @@ namespace STR_CRL_API_COMALM.BL
                     doc.STR_ANEXO_ADJUNTO,
                     doc.STR_OPERACION,
                     doc.STR_PARTIDAFLUJO,
-                    doc.STR_TOTALDOC,
+                    //doc.STR_TOTALDOC,
+                    totalDocConCambio,
+                    tipoCambio,
                     doc.STR_PROVEEDOR?.CardName,
                     doc.STR_DIRECCION,
                     doc.STR_MOTIVORENDICION.id,
@@ -184,6 +195,31 @@ namespace STR_CRL_API_COMALM.BL
                 {
                     id = idDocumento.ToString(),
                     name = "Se elimino el documento exitosamente"
+                };
+                list.Add(complemento);
+
+                return Global.ReturnOk(list, respIncorrect);
+            }
+            catch (Exception ex)
+            {
+                return Global.ReturnError<Complemento>(ex);
+            }
+        }
+
+        public ConsultationResponse<Complemento> BorrarDetalleDoc(int idDocumento, int idDetalle)
+        {
+            var respIncorrect = "No se pudo eliminar el Detalle del Documento";
+            List<Complemento> list = new List<Complemento>();
+
+            try
+            {
+                //ELIMINAR EL DETALLE DENTRO DE UN DOCUMENTO
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_detInDoc), idDocumento, idDetalle);
+
+                Complemento complemento = new Complemento()
+                {
+                    id = idDetalle.ToString(),
+                    name = "Se eliminó el detalle del docuemnto exitosamente"
                 };
                 list.Add(complemento);
 

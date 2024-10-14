@@ -83,6 +83,7 @@ namespace STR_CRL_API_COMALM.BL
         public static readonly string post_insertDOC = "InsertRegistroDoc";
         public static readonly string delete_idDoc = "EliminarDocumento";
         public static readonly string delete_idDocDet = "EliminarDocumentoDet";
+        public static readonly string delete_detInDoc = "EliminarDetalleEnDoc";
         public static readonly string post_insertDOCDt = "InsertRegistroDocDt";
         public static readonly string get_idDOC = "ObtieneIdDOC";
         public static readonly string upd_RDTotal = "ActualizarRDTotal";

@@ -393,11 +393,12 @@
 			STR_OPERACION = '{14}',
 			STR_PARTIDAFLUJO = '{15}',
 			STR_TOTALDOC = '{16}',
-			STR_RAZONSOCIAL = '{17}',
-			STR_DIRECCION = '{18}',
-			STR_MOTIVORENDICION = '{19}',
-			STR_AFECTACION = '{20}'
-			WHERE ID = '{21}'
+			STR_TIPO_CAMBIO = '{17}',
+			STR_RAZONSOCIAL = '{18}',
+			STR_DIRECCION = '{19}',
+			STR_MOTIVORENDICION = '{20}',
+			STR_AFECTACION = '{21}'
+			WHERE ID = '{22}'
 		</hana>
 	</query>
 	<query nameid="ActualizarDocumentoDet" definition="I">
@@ -426,6 +427,9 @@
 	</query>
 	<query nameid="EliminarDocumentoDet" definition="I">
 		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>
+	</query>
+	<query nameid="EliminarDetalleEnDoc" definition="I">
+		<hana>CALL STR_PW_ELIMINARDETALLEDOC('{0}','{1}')</hana>
 	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
 		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='001'</hana>

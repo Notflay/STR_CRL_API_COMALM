@@ -100,6 +100,20 @@ namespace STR_CRL_API_COMALM.Controllers
             return Ok(response);
         }
 
+        [HttpDelete]
+        [Route("detalle/{idDetalle}/documento/{idDocumento}")]
+        public IHttpActionResult BorrarDetalle(int idDocumento, int idDetalle)
+        {
+            Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
+            var response = sq_Rendicion.BorrarDetalleDoc(idDocumento, idDetalle);
+
+            if (response.CodRespuesta == "99")
+            {
+                return BadRequest(response.DescRespuesta);
+            }
+            return Ok(response);
+        }
+
         [HttpPatch]
         [Route("aprobacion/acepta")]
         public IHttpActionResult AceptaSolicitud(int solicitudId, string aprobadorId, string areaAprobador, int estado, int rendicionId, int area)
