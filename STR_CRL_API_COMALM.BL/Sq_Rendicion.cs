@@ -21,7 +21,7 @@ namespace STR_CRL_API_COMALM.BL
     {
         HanaADOHelper hash = new HanaADOHelper();
 
-        public ConsultationResponse<Rendicion> ListarRendicones(string usrCreate, string usrAsig, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
+        public ConsultationResponse<Rendicion> ListarRendicones(string usrCreate, string usrAsig, string empNombre, int perfil, string fecIni, string fecFin, string nrRendi, string estado, string area)
        {
             var respIncorrect = "No trajo la lista de solicitudes de rendición";
            // SQ_Complemento sQ = new SQ_Complemento();
@@ -39,16 +39,20 @@ namespace STR_CRL_API_COMALM.BL
                          STR_NRCARGA = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_NRCARGA"])) ? (int?)null : Convert.ToInt32(dc["STR_NRCARGA"]),
                          STR_ESTADO = Convert.ToInt32(dc["STR_ESTADO"]),
                          STR_ESTADO_INFO = new Complemento {id = dc["STR_ESTADO"], name = dc["STR_ESTADO_INFO"] },//dc["STR_ESTADO_INFO"] ,
+
                          STR_EMPLDASIG = Convert.ToInt32(dc["STR_EMPLDASIG"]),
-                         STR_EMPLDREGI = Convert.ToInt32(dc["STR_EMPLDREGI"]),
-                         STR_MONEDA = string.IsNullOrEmpty(dc["STR_MONEDA"]) ? null : new Complemento { id = dc["STR_MONEDA"], name = dc["STR_MONEDA"] },
+                         STR_EMPLDASIG_NOMBRE = $"{dc["Asignado_Nombre"]} {dc["Asignado_Apellido"]}",
+                        STR_EMPLDREGI = Convert.ToInt32(dc["STR_EMPLDREGI"]),
+                         STR_EMPLDREGI_NOMBRE = $"{dc["Registrador_Nombre"]} {dc["Registrador_Apellido"]}",
+
+                        STR_MONEDA = string.IsNullOrEmpty(dc["STR_MONEDA"]) ? null : new Complemento { id = dc["STR_MONEDA"], name = dc["STR_MONEDA"] },
                         STR_TOTALRENDIDO = Convert.ToDouble(dc["STR_TOTALRENDIDO"]),
                          STR_TOTALAPERTURA = Convert.ToDouble(dc["STR_TOTALAPERTURA"]),
                          STR_FECHAREGIS = string.IsNullOrWhiteSpace(dc["STR_FECHAREGIS"]) ? "" : Convert.ToDateTime(dc["STR_FECHAREGIS"]).ToString("dd/MM/yyyy"),
                          STR_DOCENTRY = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_DOCENTRY"])) ? (int?)null : Convert.ToInt32(dc["STR_DOCENTRY"]),
                          STR_MOTIVOMIGR = dc["STR_MOTIVOMIGR"]
                     };
-                }, usrCreate, usrAsig, perfil.ToString(), fecIni, fecFin, nrRendi, estado, area).ToList();
+                }, usrCreate, usrAsig, empNombre, perfil.ToString(), fecIni, fecFin, nrRendi, estado, area).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
             }
@@ -200,6 +204,15 @@ namespace STR_CRL_API_COMALM.BL
 
             try
             {
+                // Aseguramos que tipoCambio sea 1 si se recibe como 0.
+                decimal tipoCambio = doc.STR_TIPO_CAMBIO == 0 ? 1 : doc.STR_TIPO_CAMBIO;
+
+                // Convertimos STR_TOTALDOC de nullable double a decimal
+                decimal totalDoc = Convert.ToDecimal(doc.STR_TOTALDOC ?? 0);
+
+                // Calculamos el total ajustado con el tipo de cambio
+                decimal totalDocConCambio = totalDoc * tipoCambio;
+
                 /*
                 var test = ("INSERT INTO STR_WEB_DOC(STR_RENDICION,STR_FECHA_CONTABILIZA,STR_FECHA_DOC,STR_FECHA_VENCIMIENTO,STR_PROVEEDOR,STR_RUC,STR_MONEDA,STR_COMENTARIOS,STR_TIPO_DOC,STR_SERIE_DOC,STR_CORR_DOC,STR_VALIDA_SUNAT,STR_OPERACION,STR_PARTIDAFLUJO,STR_TOTALDOC,STR_RAZONSOCIAL,STR_RD_ID) VALUES",
                     doc.STR_RENDICION, doc.STR_FECHA_CONTABILIZA,
@@ -222,10 +235,11 @@ namespace STR_CRL_API_COMALM.BL
                     doc.STR_VALIDA_SUNAT == true ? 1 : 0,
                     doc.STR_OPERACION,
                     doc.STR_PARTIDAFLUJO,
-                    doc.STR_TOTALDOC,
+                    totalDocConCambio,
                     doc.STR_PROVEEDOR.CardName,
                     doc.STR_MOTIVORENDICION.id,
                     doc.STR_DIRECCION,
+                    tipoCambio,
                     doc.STR_AFECTACION.id,
                     doc.STR_RD_ID);
 

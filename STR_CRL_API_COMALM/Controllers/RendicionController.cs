@@ -30,11 +30,11 @@ namespace STR_CRL_API_COMALM.Controllers
     {
         [HttpGet]
         [Route("lista")]
-        public IHttpActionResult Get(string usrCreate, string usrAsign, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
+        public IHttpActionResult Get(string usrCreate, string usrAsign, string empNombre, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
         {
 
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.ListarRendicones(usrCreate, usrAsign, perfil, fecini, fecfin, nrrendi, estados, area);
+            var response = sq_Rendicion.ListarRendicones(usrCreate, usrAsign, empNombre, perfil, fecini, fecfin, nrrendi, estados, area);
 
             if (response.CodRespuesta == "99")
             {

@@ -16,6 +16,8 @@ namespace STR_CRL_API_COMALM.EL.Request
         public int STR_ESTADO { get; set; }
         public int STR_EMPLDASIG { get; set; }
         public int STR_EMPLDREGI { get; set; }
+        public string STR_EMPLDASIG_NOMBRE { get; set; }
+        public string STR_EMPLDREGI_NOMBRE { get; set; }
         //public string STR_ESTADO_INFO { get; set; }
         public Complemento STR_MONEDA { get; set; }
         public double STR_TOTALRENDIDO { get; set; }

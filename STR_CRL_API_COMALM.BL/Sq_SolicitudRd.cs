@@ -119,7 +119,7 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<SolicitudRd> ListarSolicutudes(string usrCreate, string usrAsign, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
+        public ConsultationResponse<SolicitudRd> ListarSolicutudes(string usrCreate, string usrAsign, string empNombre, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
         {
             var respIncorrect = "No trajo la lista solicitud de rendición";
             Sq_Usuario sq_Usuario = new Sq_Usuario();
@@ -154,7 +154,7 @@ namespace STR_CRL_API_COMALM.BL
                          STR_AREA = dc["STR_AREA"],
                          CREATE = dc["CREATE"]
                     };
-                },usrCreate,  usrAsign, perfil.ToString(), fecini, fecfin, nrrendi, estados, area).ToList();
+                },usrCreate,  usrAsign, empNombre, perfil.ToString(), fecini, fecfin, nrrendi, estados, area).ToList();
 
                 return Global.ReturnOk(list, respIncorrect);
             }

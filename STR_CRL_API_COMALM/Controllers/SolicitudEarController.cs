@@ -43,11 +43,11 @@ namespace STR_CRL_API_COMALM.Controllers
 
         [HttpGet]
         [Route("lista")]
-        public IHttpActionResult Get(string usrCreate, string usrAsign, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
+        public IHttpActionResult Get(string usrCreate, string usrAsign, string empNombre, int perfil, string fecini, string fecfin, string nrrendi, string estados, string area)
         {
 
             Sq_SolicitudRd sq_SolicitudRd = new Sq_SolicitudRd();
-            var response = sq_SolicitudRd.ListarSolicutudes(usrCreate, usrAsign, perfil, fecini, fecfin, nrrendi, estados, area);
+            var response = sq_SolicitudRd.ListarSolicutudes(usrCreate, usrAsign, empNombre, perfil, fecini, fecfin, nrrendi, estados, area);
             if (response != null && response.CodRespuesta == "99")
             {
                 return BadRequest(response.DescRespuesta);

@@ -174,7 +174,7 @@
 		<hana>SELECT TOP 1 "ID"  FROM "STR_WEB_SR" WHERE "STR_EMPLDASIG" = {0}  ORDER BY "ID" DESC</hana>
 	</query>
 	<query nameid="ListarSoliRendicion" definition="I">
-		<hana>CALL STR_PW_LISTARSR('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+		<hana>CALL STR_PW_LISTARSR('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')</hana>
 	</query>
 	<query nameid="CambiaEstadoSR" definition="I">
 		<hana>UPDATE "STR_WEB_SR" SET "STR_ESTADO" = '{0}', "STR_MOTIVOMIGR" = '{1}' WHERE "ID" = '{2}'</hana>
@@ -195,7 +195,7 @@
 	</query>
 	<!-- RENDICIÓN -->
 	<query nameid="ListarRendiciones" definition="I">
-		<hana>CALL STR_PW_LISTARRD('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')</hana>
+		<hana>CALL STR_PW_LISTARRD('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')</hana>
 	</query>
 	<query nameid="ObtieneInfoAprobadores" definition="I">
 		<hana>
@@ -239,10 +239,11 @@
 			STR_RAZONSOCIAL,
 			STR_MOTIVORENDICION,
 			STR_DIRECCION,
+			STR_TIPO_CAMBIO,
 			STR_AFECTACION,
 			STR_RD_ID
 			)
-			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}')
+			VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')
 		</hana>
 	</query>
 	<query nameid="InsertRegistroDocDt" definition="I">
