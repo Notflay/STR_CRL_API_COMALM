@@ -654,6 +654,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_MOTIVORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_MOTIVORENDICION"]),
                         //STR_MOTIVORENDICION = string.IsNullOrEmpty(dc["STR_TIPORENDICION"]) ? null : sq_Viatico.ObtieneViatico(dc["STR_TIPORENDICION"]),
                         STR_TOTALDOC = Convert.ToDouble(dc["STR_TOTALDOC"]),
+                        STR_TIPO_CAMBIO = Convert.ToDecimal(dc["STR_TIPO_CAMBIO"]),
                         STR_AFECTACION = sQ_Complemento.ObtenerAfectacion(dc["STR_AFECTACION"]).Result[0],
                         detalles = listDet
                     };
