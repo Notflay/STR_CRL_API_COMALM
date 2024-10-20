@@ -101,11 +101,11 @@ namespace STR_CRL_API_COMALM.Controllers
         }
 
         [HttpDelete]
-        [Route("detalle/{idDetalle}/documento/{idDocumento}")]
-        public IHttpActionResult BorrarDetalle(int idDocumento, int idDetalle)
+        [Route("detalle/{idDetalle}/documento/{idDocumento}/rendicion/{idRendicion}")]
+        public IHttpActionResult BorrarDetalle(int idDocumento, int idDetalle, int idRendicion)
         {
             Sq_Rendicion sq_Rendicion = new Sq_Rendicion();
-            var response = sq_Rendicion.BorrarDetalleDoc(idDocumento, idDetalle);
+            var response = sq_Rendicion.BorrarDetalleDoc(idDocumento, idDetalle, idRendicion);
 
             if (response.CodRespuesta == "99")
             {

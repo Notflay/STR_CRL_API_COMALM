@@ -429,7 +429,7 @@
 		<hana>DELETE FROM STR_WEB_DOC_DET WHERE ID = '{0}'</hana>
 	</query>
 	<query nameid="EliminarDetalleEnDoc" definition="I">
-		<hana>CALL STR_PW_ELIMINARDETALLEDOC('{0}','{1}')</hana>
+		<hana>CALL STR_PW_ELIMINARDETALLEDOC('{0}','{1}','{2}')</hana>
 	</query>
 	<query nameid="ObtenerCuentaContable" definition="I">
 		<hana>select "U_VALUE" from "@STR_CCHEARCONF" Where "Code"='001'</hana>

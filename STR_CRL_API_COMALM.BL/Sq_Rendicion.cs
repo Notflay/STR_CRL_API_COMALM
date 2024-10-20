@@ -206,7 +206,7 @@ namespace STR_CRL_API_COMALM.BL
             }
         }
 
-        public ConsultationResponse<Complemento> BorrarDetalleDoc(int idDocumento, int idDetalle)
+        public ConsultationResponse<Complemento> BorrarDetalleDoc(int idDocumento, int idDetalle, int idRendicion)
         {
             var respIncorrect = "No se pudo eliminar el Detalle del Documento";
             List<Complemento> list = new List<Complemento>();
@@ -214,7 +214,7 @@ namespace STR_CRL_API_COMALM.BL
             try
             {
                 //ELIMINAR EL DETALLE DENTRO DE UN DOCUMENTO
-                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_detInDoc), idDocumento, idDetalle);
+                hash.insertValueSql(SQ_QueryManager.Generar(Sq_Query.delete_detInDoc), idDocumento, idDetalle, idRendicion);
 
                 Complemento complemento = new Complemento()
                 {
@@ -830,7 +830,7 @@ namespace STR_CRL_API_COMALM.BL
                         STR_FECHA_CONTABILIZA = string.IsNullOrWhiteSpace(dc["STR_FECHA_CONTABILIZA"]) ? "" : Convert.ToDateTime(dc["STR_FECHA_CONTABILIZA"]).ToString("dd/MM/yyyy"),
                         STR_FECHA_DOC = string.IsNullOrWhiteSpace(dc["STR_FECHA_DOC"]) ? "" : Convert.ToDateTime(dc["STR_FECHA_DOC"]).ToString("dd/MM/yyyy"),
                         STR_FECHA_VENCIMIENTO = string.IsNullOrWhiteSpace(dc["STR_FECHA_VENCIMIENTO"]) ? "" : Convert.ToDateTime(dc["STR_FECHA_VENCIMIENTO"]).ToString("dd/MM/yyyy"),
-                        STR_MONEDA = new Complemento { id = dc["STR_MONEDA"], name = dc["STR_MONEDA"] },
+                        STR_MONEDA = string.IsNullOrEmpty(dc["STR_MONEDA"]) ? null : new Complemento { id = dc["STR_MONEDA"], name = dc["STR_MONEDA"] },
                         STR_OPERACION = dc["STR_OPERACION"],
                         STR_PARTIDAFLUJO = string.IsNullOrWhiteSpace(Convert.ToString(dc["STR_PARTIDAFLUJO"])) ? (int?)null : Convert.ToInt32(dc["STR_PARTIDAFLUJO"]),
                         STR_PROVEEDOR = dc["STR_PROVEEDOR"] == "" ? null : ObtieneProveedorPrev(dc["STR_PROVEEDOR"], dc["STR_RUC"], dc["STR_RAZONSOCIAL"]),
